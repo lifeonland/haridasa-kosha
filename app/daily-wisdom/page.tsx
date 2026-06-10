@@ -72,7 +72,7 @@ export default function DailyWisdomPage() {
                     <div className="flex items-center gap-4">
                         <div className="h-12 w-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center"><Sun className="h-6 w-6"/></div>
                         <div>
-                            <Typography variant="h5" className="font-bold text-sm">{data.practice.title}</Typography>
+                            <Typography variant="h4" className="font-bold text-sm">{data.practice.title}</Typography>
                             <Typography variant="p" className="text-xs text-slate-500">{data.practice.desc}</Typography>
                         </div>
                     </div>
