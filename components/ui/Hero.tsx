@@ -49,7 +49,7 @@ export default function Hero() {
 
                 <div className="flex flex-wrap gap-5 pt-2">
                     <Button asChild className="group relative overflow-hidden rounded-full px-8 h-12 font-bold tracking-widest text-[11px] shadow-lg hover:shadow-orange-500/40 transition-all duration-500 bg-orange-600 hover:bg-orange-700 text-white">
-                        <Link href="/compositions" className="flex items-center gap-3">
+                        <Link href="/library" className="flex items-center gap-3">
                             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             <Music className="h-3 w-3" />
                             {t('exploreCompositions')}

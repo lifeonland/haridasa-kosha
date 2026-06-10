@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Filters from '@/components/ui/Filters';
 import { X } from 'lucide-react';
 
-export default function CompositionsPageContent({ 
+export default function CompositionsPageContent({ composerCount, ragaCount, ankitaCount,  
   compositions, 
   totalCompositions, 
   totalPages, 
@@ -75,9 +75,9 @@ export default function CompositionsPageContent({
             {/* Archive Stats */}
             <div className="flex justify-center gap-12 pt-8 text-sm font-bold text-slate-500  tracking-widest border-t border-slate-100 mt-8 pt-8">
                 <div>{totalCompositions.toLocaleString()}+ <span className="block text-slate-400 text-[10px]">{t('statsCompositions')}</span></div>
-                <div>38 <span className="block text-slate-400 text-[10px]">{t('statsHaridasas')}</span></div>
-                <div>200+ <span className="block text-slate-400 text-[10px]">{t('statsRagas')}</span></div>
-                <div>100+ <span className="block text-slate-400 text-[10px]">{t('statsAnkitas')}</span></div>
+                <div>{composerCount.toLocaleString()} <span className="block text-slate-400 text-[10px]">{t('statsHaridasas')}</span></div>
+                <div>{ragaCount.toLocaleString()}+ <span className="block text-slate-400 text-[10px]">{t('statsRagas')}</span></div>
+                <div>{ankitaCount.toLocaleString()}+ <span className="block text-slate-400 text-[10px]">{t('statsAnkitas')}</span></div>
             </div>
         </div>
 

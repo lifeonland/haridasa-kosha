@@ -48,63 +48,49 @@ export default async function CompositionsPage(props: {
     };
   }
 
-  // Fetch total count
-  const totalCompositions = await prisma.composition.count({
-    where: searchFilter,
-  });
-
-  // Fetch compositions
-  const compositions = await prisma.composition.findMany({
-    where: searchFilter,
-    include: {
-      composer: { select: { name: true } },
-      deity: { select: { name: true } },
-      raga: { select: { name: true } },
-      tala: { select: { name: true } },
-    },
-    skip,
-    take: COMPOSITIONS_PER_PAGE,
-    orderBy: { title: 'asc' },
-  });
-
-  // Fetch filter options
-  const [allComposers, allDeities, allAnkitas, allRagas, allTalas, allTags] = await Promise.all([
-    prisma.composer.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: 'asc' },
+  // Fetch data in parallel
+  const [
+    totalCompositions,
+    compositions,
+    allComposers,
+    allDeities,
+    allAnkitas,
+    allRagas,
+    allTalas,
+    allTags,
+    composerCount,
+    ragaCount,
+    ankitaCount
+  ] = await Promise.all([
+    prisma.composition.count({ where: searchFilter }),
+    prisma.composition.findMany({
+      where: searchFilter,
+      include: {
+        composer: { select: { name: true } },
+        deity: { select: { name: true } },
+        raga: { select: { name: true } },
+        tala: { select: { name: true } },
+      },
+      skip,
+      take: COMPOSITIONS_PER_PAGE,
+      orderBy: { title: 'asc' },
     }),
-    prisma.deity.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: 'asc' },
-    }),
-    prisma.ankita.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: 'asc' },
-    }),
-    prisma.raga.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: 'asc' },
-    }),
-    prisma.tala.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: 'asc' },
-    }),
-    prisma.tag.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: 'asc' },
-    }),
+    prisma.composer.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+    prisma.deity.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+    prisma.ankita.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+    prisma.raga.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+    prisma.tala.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+    prisma.tag.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+    prisma.composer.count(),
+    prisma.raga.count(),
+    prisma.ankita.count()
   ]);
 
-  // Ensure unique by name
+  console.log("DEBUG: totalCompositions:", totalCompositions);
+  console.log("DEBUG: compositions.length:", compositions.length);
+  
   const uniqueByName = (items: Array<{ id: string; name: string }>) => 
     Array.from(new Map(items.map(item => [item.name.toLowerCase().trim(), item])).values());
-
-  const composers = uniqueByName(allComposers);
-  const deities = uniqueByName(allDeities);
-  const ankitas = uniqueByName(allAnkitas);
-  const ragas = uniqueByName(allRagas);
-  const talas = uniqueByName(allTalas);
-  const tags = uniqueByName(allTags);
 
   const totalPages = Math.ceil(totalCompositions / COMPOSITIONS_PER_PAGE);
 
@@ -121,12 +107,15 @@ export default async function CompositionsPage(props: {
         raga={raga}
         tala={tala}
         tag={tag}
-        composers={composers}
-        deities={deities}
-        ankitas={ankitas}
-        ragas={ragas}
-        talas={talas}
-        tags={tags}
+        composers={uniqueByName(allComposers)}
+        deities={uniqueByName(allDeities)}
+        ankitas={uniqueByName(allAnkitas)}
+        ragas={uniqueByName(allRagas)}
+        talas={uniqueByName(allTalas)}
+        tags={uniqueByName(allTags)}
+        composerCount={composerCount}
+        ragaCount={ragaCount}
+        ankitaCount={ankitaCount}
     />
   );
 }

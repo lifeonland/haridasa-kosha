@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     console.log("Received messages:", messages);
 
     const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
+        model: "gemini-pro",
         systemInstruction: "You are a knowledgeable assistant specializing in Dasa Sahitya, the devotional literature of the Haridasaru of Karnataka. Provide accurate, insightful, and respectful answers based on Dvaita philosophy and the works of saints like Purandara Dasa and Kanaka Dasa. Keep your responses concise, focused on the query, and include relevant emojis to make the content feel more engaging and devotional."
     });
 

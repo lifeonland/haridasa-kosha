@@ -15,7 +15,7 @@
 - Seed data for sample content.
 
 ### 2. Frontend & Routing (Next.js 16 App Router)
-- **Directory**: Refactored `(catalog)/compositions` to `(catalog)/library` to align with the navigation.
+- **Directory**: Refactored `(catalog)/library` to `(catalog)/library` to align with the navigation.
 - **Multilingual Support**: Fully translated interface (English & Kannada) using `LanguageContext`.
 - **UI Modernization**: Updated search bar, compact filter design, and improved cards.
 

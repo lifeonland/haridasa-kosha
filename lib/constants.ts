@@ -13,14 +13,14 @@ export const COMPOSITIONS_PER_PAGE = 12;
 // API endpoints
 export const API_BASE_URL = `${APP_URL}/api`;
 export const API_COMPOSERS = `${API_BASE_URL}/composers`;
-export const API_COMPOSITIONS = `${API_BASE_URL}/compositions`;
+export const API_COMPOSITIONS = `${API_BASE_URL}/library`;
 export const API_SEARCH = `${API_BASE_URL}/search`;
 
 // Navigation links
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/composers', label: 'Composers' },
-  { href: '/compositions', label: 'Compositions' },
+  { href: '/library', label: 'Compositions' },
 ];
 
 // Features

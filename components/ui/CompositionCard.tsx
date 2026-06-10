@@ -40,7 +40,7 @@ export default function CompositionCard({
         {/* Subtle Manuscript Motif Border */}
         <div className="absolute inset-0 border border-slate-200/50 rounded-[2rem] pointer-events-none" />
 
-        <Link href={`/compositions/${id}`} className="block">
+        <Link href={`/library/${id}`} className="block">
             {/* Title & Composer */}
             <div className="flex justify-between items-start mb-2">
               <Typography variant="h3" className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-2">
@@ -83,7 +83,7 @@ export default function CompositionCard({
                   {saved ? <BookmarkCheck className="h-4 w-4 fill-current"/> : <Bookmark className="h-4 w-4"/>}
                 </button>
             </div>
-            <Link href={`/compositions/${id}`} className="flex items-center gap-2 text-xs font-bold text-primary hover:text-primary/80 transition-colors">
+            <Link href={`/library/${id}`} className="flex items-center gap-2 text-xs font-bold text-primary hover:text-primary/80 transition-colors">
                 {t('read')} <ArrowRight className="h-3 w-3" />
             </Link>
         </div>

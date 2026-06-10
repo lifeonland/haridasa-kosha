@@ -146,7 +146,7 @@ export default function AskAiPage() {
             <div className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden group">
                  <Typography variant="h4" className="font-bold text-sm mb-4">{t('dailyWisdom')}</Typography>
                  {dailyWisdom ? (
-                    <Link href={`/library/${dailyWisdom.composition.id}`} className="block space-y-3">
+                    <Link href={dailyWisdom?.composition?.id ? `/library/${dailyWisdom.composition.id}` : "#"} className="block space-y-3">
                         <div className="h-32 rounded-2xl bg-primary/5 flex items-center justify-center text-primary/30 group-hover:bg-primary/10 transition-colors">
                             <Sparkles className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-500"/>
                         </div>

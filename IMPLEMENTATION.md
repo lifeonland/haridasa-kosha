@@ -11,7 +11,7 @@
 
 ### Frontend & Routing
 - [x] Next.js 16 App Router setup
-- [x] Path refactoring: `/compositions` -> `/library`
+- [x] Path refactoring: `/library` -> `/library`
 - [x] Responsive layout & UI/UX modernization
 - [x] Multilingual support (English & Kannada)
 - [x] Prototype warning callouts

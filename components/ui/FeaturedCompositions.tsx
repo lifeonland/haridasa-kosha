@@ -40,7 +40,7 @@ export default function FeaturedCompositions({ compositions }: FeaturedCompositi
             </Typography>
           </div>
           <Button variant="outline" className="hidden md:flex rounded-full h-14 px-10 border-primary/20 font-bold  tracking-widest text-xs hover:bg-primary hover:text-white transition-all duration-500" asChild>
-            <Link href="/compositions" className="flex items-center gap-2">
+            <Link href="/library" className="flex items-center gap-2">
               {t('viewEntireCollection')}
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -64,7 +64,7 @@ export default function FeaturedCompositions({ compositions }: FeaturedCompositi
 
         <div className="md:hidden text-center mt-12">
             <Button size="lg" variant="outline" className="rounded-full h-14 px-10 border-primary/20 font-bold  tracking-widest text-xs" asChild>
-                <Link href="/compositions" className="flex items-center gap-2">
+                <Link href="/library" className="flex items-center gap-2">
                     {t('viewEntireCollection')}
                     <ArrowRight className="h-4 w-4" />
                 </Link>

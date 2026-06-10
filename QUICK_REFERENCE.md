@@ -8,8 +8,8 @@ app/(marketing)/page.tsx          → /
 app/(marketing)/layout.tsx        → Root marketing layout
 app/(catalog)/haridasaru/page.tsx  → /haridasaru
 app/(catalog)/haridasaru/[id]/page.tsx → /haridasaru/:id
-app/(catalog)/compositions/page.tsx → /compositions
-app/(catalog)/compositions/[id]/page.tsx → /compositions/:id
+app/(catalog)/library/page.tsx → /library
+app/(catalog)/library/[id]/page.tsx → /library/:id
 app/search/page.tsx               → /search?q=query
 ```
 
@@ -29,8 +29,8 @@ components/ui/Filters.tsx                 → Filter sidebar
 ```
 api/haridasaru/route.ts        → GET /api/haridasaru
 api/haridasaru/[id]/route.ts   → GET /api/haridasaru/:id
-api/compositions/route.ts     → GET /api/compositions
-api/compositions/[id]/route.ts → GET /api/compositions/:id
+api/library/route.ts     → GET /api/library
+api/library/[id]/route.ts → GET /api/library/:id
 api/search/route.ts           → GET /api/search?q=query
 ```
 
@@ -144,16 +144,16 @@ GET /api/haridasaru/purandara-dasa
 
 ### Get All Compositions
 ```
-GET /api/compositions
-GET /api/compositions?composer={composerId}
-GET /api/compositions?deity={deityId}
-GET /api/compositions?ankita={ankitaId}
-GET /api/compositions?search=bhagyada&limit=12&offset=0
+GET /api/library
+GET /api/library?composer={composerId}
+GET /api/library?deity={deityId}
+GET /api/library?ankita={ankitaId}
+GET /api/library?search=bhagyada&limit=12&offset=0
 ```
 
 ### Get Single Composition
 ```
-GET /api/compositions/bhagyada-lakshmi-1
+GET /api/library/bhagyada-lakshmi-1
 ```
 
 ### Global Search
@@ -333,7 +333,7 @@ hidden, sm:flex
 ## 🔄 Data Flow
 
 ### Homepage
-1. Server-side fetch featured composers/compositions
+1. Server-side fetch featured composers/library
 2. Pass data to client components (FeaturedComposers, FeaturedCompositions)
 3. Client renders with animations
 
