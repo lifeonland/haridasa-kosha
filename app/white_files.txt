@@ -1,0 +1,4 @@
+./(catalog)/layout.tsx:      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-slate-200">
+./search/page.tsx:      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-slate-200">
+./(marketing)/layout.tsx:      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-slate-200">
+./layout.tsx:      <body className="bg-white text-slate-900 antialiased">

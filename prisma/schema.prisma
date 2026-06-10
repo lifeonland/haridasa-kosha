@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Composer {
+  id           String        @id @default(cuid())
+  name         String
+  biography    String?
+  imageUrl     String?
+  ankitaId     String
+  ankita       Ankita        @relation(fields: [ankitaId], references: [id])
+  timeline     String?
+  compositions Composition[]
+}
+
+model Composition {
+  id                String        @id @default(cuid())
+  title             String
+  firstLine         String
+  lyrics            String
+  transliteration   String?
+  composerId        String
+  composer          Composer      @relation(fields: [composerId], references: [id])
+  deityId           String
+  deity             Deity         @relation(fields: [deityId], references: [id])
+  ankitaId          String
+  ankita            Ankita        @relation(fields: [ankitaId], references: [id])
+  ragaId            String?
+  raga              Raga?         @relation(fields: [ragaId], references: [id])
+  talaId            String?
+  tala              Tala?         @relation(fields: [talaId], references: [id])
+  tags              Tag[]
+  translations      Translation[]
+  audioFiles        AudioFile[]
+  themes            Theme[]
+  dailyCompositions DailyComposition[]
+}
+
+model Raga {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  compositions Composition[]
+}
+
+model Tala {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  compositions Composition[]
+}
+
+model Tag {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  compositions Composition[]
+}
+
+model Ankita {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  composers    Composer[]
+  compositions Composition[]
+}
+
+model Deity {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  imageUrl     String?
+  compositions Composition[]
+}
+
+model Translation {
+  id             String      @id @default(cuid())
+  compositionId  String
+  composition    Composition @relation(fields: [compositionId], references: [id])
+  english        String
+  kannadaMeaning String
+  wordByWord     String
+}
+
+model AudioFile {
+  id            String      @id @default(cuid())
+  compositionId String
+  composition   Composition @relation(fields: [compositionId], references: [id])
+  title         String
+  url           String
+}
+
+model Theme {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  compositions Composition[]
+}
+
+model DailyComposition {
+  id            String      @id @default(cuid())
+  date          DateTime    @unique
+  compositionId String
+  composition   Composition @relation(fields: [compositionId], references: [id])
+  commentary    String
+  isEditorial   Boolean     @default(false)
+}
+
+model UserStreak {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  count     Int      @default(0)
+  lastDate  DateTime
+}
+
+model Reflection {
+  id            String      @id @default(cuid())
+  userId        String
+  compositionId String
+  note          String
+  createdAt     DateTime    @default(now())
+}

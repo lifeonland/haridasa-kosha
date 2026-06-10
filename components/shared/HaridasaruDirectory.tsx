@@ -1,0 +1,189 @@
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+
+import { Typography } from "@/components/ui/typography";
+import { useLanguage } from './LanguageContext';
+
+const composerOverrides: Record<string, { displayName: string; id: string; imageUrl?: string; biography?: string; timeline?: string }> = {
+  'Achyuta Dasa': {
+    displayName: 'Narahari Tirtharu',
+    id: 'narahari-tirtha',
+    imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
+    biography: 'Sri Narahari Tirtha (c. 1243 – c. 1333) was a prominent scholar and the second direct disciple of Sri Madhvacharya. He is considered the progenitor of the Haridasa movement and an influential devotional poet.',
+    timeline: '1243–1333',
+  },
+  'Achyuta Dasaru': {
+    displayName: 'Narahari Tirtharu',
+    id: 'narahari-tirtha',
+    imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
+    biography: 'Sri Narahari Tirtha (c. 1243 – c. 1333) was a prominent scholar and the second direct disciple of Sri Madhvacharya. He is considered the progenitor of the Haridasa movement and an influential devotional poet.',
+    timeline: '1243–1333',
+  },
+  'Gopala Dasa': {
+    displayName: 'Sripadarajaru',
+    id: 'sripadaraja',
+    imageUrl: 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+    biography: 'Sri Sripadarajaru (1404–1502) was a great scholar and saint in the Dvaita Vedantic tradition, regarded as the founder of the Haridasa movement and the respected Rajaguru of the Vijayanagara Empire.',
+    timeline: '1404–1502',
+  },
+  'Gopala Dasaru': {
+    displayName: 'Sripadarajaru',
+    id: 'sripadaraja',
+    imageUrl: 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+    biography: 'Sri Sripadarajaru (1404–1502) was a great scholar and saint in the Dvaita Vedantic tradition, regarded as the founder of the Haridasa movement and the respected Rajaguru of the Vijayanagara Empire.',
+    timeline: '1404–1502',
+  },
+  'Govinda Dasa': {
+    displayName: 'Vysasa Tirtharu',
+    id: 'vyasatirtha',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeDKhsjkHk65drD1nTqi8E_UG5eN6JKLfXNA&s',
+    biography: 'Sri Vyasatirtha (1460–1539) was a leading philosopher and Rajaguru of the Vijayanagara Empire, known for his scholarly works and mentorship of many Haridasa saints.',
+    timeline: '1460–1539',
+  },
+  'Govinda Dasaru': {
+    displayName: 'Vysasa Tirtharu',
+    id: 'vyasatirtha',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeDKhsjkHk65drD1nTqi8E_UG5eN6JKLfXNA&s',
+    biography: 'Sri Vyasatirtha (1460–1539) was a leading philosopher and Rajaguru of the Vijayanagara Empire, known for his scholarly works and mentorship of many Haridasa saints.',
+    timeline: '1460–1539',
+  },
+  'Guru Jagannatha Dasa': {
+    displayName: 'Vadiraja Tirtharu',
+    id: 'vadiraja-tirtha',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFs8UkKEyXda__AbaWW5sXr9y1_2Fehplcbg&s',
+    biography: 'Sri Vadiraja Tirtha (1480–1600) was a celebrated Dvaita philosopher and devotional saint, known for his poetry, scholarship, and leadership of the Sodhe Matha.',
+    timeline: '1480–1600',
+  },
+  'Guru Jagannatha Dasaru': {
+    displayName: 'Vadiraja Tirtharu',
+    id: 'vadiraja-tirtha',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFs8UkKEyXda__AbaWW5sXr9y1_2Fehplcbg&s',
+    biography: 'Sri Vadiraja Tirtha (1480–1600) was a celebrated Dvaita philosopher and devotional saint, known for his poetry, scholarship, and leadership of the Sodhe Matha.',
+    timeline: '1480–1600',
+  },
+  'Purandara Dasaru': {
+    displayName: 'Purandara Dasaru',
+    id: 'purandara-dasa',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Purandara_Dasa_1964_stamp_of_India.jpg',
+    biography: 'Purandara Dasaru (1484–1564) is honored as the father of Carnatic music, who systematized devotional practice with accessible compositions and musical pedagogy.',
+    timeline: '1484–1564',
+  },
+  'purandara-dasa': {
+    displayName: 'Purandara Dasaru',
+    id: 'purandara-dasa',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Purandara_Dasa_1964_stamp_of_India.jpg',
+    biography: 'Purandara Dasaru (1484–1564) is honored as the father of Carnatic music, who systematized devotional practice with accessible compositions and musical pedagogy.',
+    timeline: '1484–1564',
+  },
+  'Kanaka Dasa': {
+    displayName: 'Kanaka Dasaru',
+    id: 'kanaka-dasa',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Kanakadasa_art.jpg',
+    biography: 'Kanaka Dasaru (1509–1609) was a devotional poet and social reformer whose devotional songs helped democratize spiritual knowledge through Kannada verse.',
+    timeline: '1509–1609',
+  },
+  'kanaka-dasa': {
+    displayName: 'Kanaka Dasaru',
+    id: 'kanaka-dasa',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Kanakadasa_art.jpg',
+    biography: 'Kanaka Dasaru (1509–1609) was a devotional poet and social reformer whose devotional songs helped democratize spiritual knowledge through Kannada verse.',
+    timeline: '1509–1609',
+  },
+  'Helavanakatte Giriyamma': {
+    displayName: 'Kanaka Dasaru',
+    id: 'kanaka-dasa',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Kanakadasa_art.jpg',
+    biography: 'Kanaka Dasaru (1509–1609) was a devotional poet and social reformer whose devotional songs helped democratize spiritual knowledge through Kannada verse.',
+    timeline: '1509–1609',
+  },
+};
+
+function getComposerDisplay(dasaru: any) {
+  const override = composerOverrides[dasaru.name] || composerOverrides[dasaru.id];
+  return override
+    ? {
+        ...dasaru,
+        id: override.id,
+        name: override.displayName,
+        imageUrl: override.imageUrl ?? dasaru.imageUrl,
+        biography: override.biography ?? dasaru.biography,
+        timeline: override.timeline ?? dasaru.timeline,
+      }
+    : dasaru;
+}
+
+export default function HaridasaruDirectory() {
+  const [haridasaru, setHaridasaru] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    fetch('/api/haridasaru?limit=6')
+      .then(res => res.json())
+      .then(res => {
+        setHaridasaru(res.data || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return <Typography variant="muted" className="py-12 text-center">{t('loading')}</Typography>;
+  if (haridasaru.length === 0) return null;
+
+  return (
+    <div className="-mx-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex gap-5 snap-x snap-mandatory">
+      {haridasaru.map((dasaru) => {
+        const displayDasaru = getComposerDisplay(dasaru);
+
+        return (
+          <Link key={dasaru.id} href={`/haridasaru/${displayDasaru.id}`} className="group block snap-start">
+            <article className="w-[18rem] sm:w-[20rem] overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/90 p-4 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-2xl">
+              <div className="h-1 w-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent opacity-80" />
+
+              <div className="mt-4 flex items-center gap-4">
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-[1.2rem] border border-white/80 bg-gradient-to-br from-primary/15 via-white to-secondary/40 p-1 shadow-inner">
+                  {displayDasaru.imageUrl ? (
+                    <img
+                      src={displayDasaru.imageUrl}
+                      alt={t(displayDasaru.name)}
+                      className="h-full w-full rounded-[1rem] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center rounded-[1rem] bg-secondary/60 text-primary/80">🙏</div>
+                  )}
+                </div>
+
+                <div className="min-w-0 flex-1 space-y-1">
+                  <Typography variant="h3" className="truncate s font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+                    {t(displayDasaru.name)}
+                  </Typography>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[10px] font-bold tracking-[0.16em] text-primary">
+                      {t('haridasa')}
+                    </span>
+                    <Typography variant="muted" className="text-[11px] tracking-[0.18em] text-muted-foreground/80">
+                      {t(dasaru.timeline) || t('historical')}
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+
+              <Typography variant="p" className="mt-4 line-clamp-3 s leading-6 text-foreground/70">
+                {t(displayDasaru.biography) || t('defaultBio')}
+              </Typography>
+
+              <div className="mt-4 flex items-center justify-between border-t border-slate-200/80 pt-4 s text-muted-foreground">
+                <span>{t('exploreProfile')}</span>
+                <span className="font-semibold text-primary transition-transform duration-300 group-hover:translate-x-0.5">{t('open')} →</span>
+              </div>
+            </article>
+          </Link>
+        );
+      })}
+      </div>
+    </div>
+  );
+}
