@@ -150,7 +150,7 @@ export default function AskAiPage() {
                         <div className="h-32 rounded-2xl bg-primary/5 flex items-center justify-center text-primary/30 group-hover:bg-primary/10 transition-colors">
                             <Sparkles className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-500"/>
                         </div>
-                        <Typography variant="h5" className="font-bold text-sm group-hover:text-primary transition-colors">{t(dailyWisdom?.composition?.title || 'Unknown')}</Typography>
+                        <Typography variant="h4" className="font-bold text-sm group-hover:text-primary transition-colors">{t(dailyWisdom?.composition?.title || 'Unknown')}</Typography>
                         <Typography variant="p" className="text-[10px] text-slate-500 tracking-widest uppercase">{t(dailyWisdom?.composition?.composer?.name || 'Unknown')}</Typography>
                         <Typography variant="p" className="text-xs text-slate-600 line-clamp-2 italic leading-relaxed">
                             "{dailyWisdom?.quote?.text || ''}"
