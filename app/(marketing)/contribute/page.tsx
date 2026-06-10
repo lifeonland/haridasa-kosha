@@ -36,7 +36,7 @@ export default function ContributePage() {
               { title: t('translation'), desc: t('translationDesc'), icon: <Languages className="h-8 w-8 text-amber-600" /> },
               { title: t('technicalSupport'), desc: t('technicalSupportDesc'), icon: <Code className="h-8 w-8 text-indigo-600" /> }
             ].map((item, idx) => (
-              <RevealOnScroll key={item.title} delay={idx * 0.1}>
+              <RevealOnScroll key={item.title} >
                 <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-start gap-8 hover:shadow-lg transition-all duration-300">
                   <div className="h-16 w-16 shrink-0 rounded-3xl bg-slate-50 flex items-center justify-center text-primary">
                     {item.icon}
