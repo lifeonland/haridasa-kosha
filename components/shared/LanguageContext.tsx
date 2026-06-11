@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useMemo } from 'react';
 
 const translations = {
   EN: {
-    brand: "The Haridasa Kosha",
+    brand: "The Haridasa Kosha (Testing)",
     navLibrary: "Library",
     navComposers: "Haridasaru",
     navLearn: "Learn",
