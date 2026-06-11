@@ -44,7 +44,7 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
         {featured && !searchQuery && (
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white p-6 md:p-8 border border-slate-100 rounded-[2.5rem] shadow-sm mb-16 flex flex-col md:flex-row gap-8 items-center max-w-4xl mx-auto">
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-slate-100 overflow-hidden shrink-0 shadow-inner">
-                    <img src={featured.imageUrl || ''} alt={t(featured.name)} className="w-full h-full object-cover" />
+                    <img src={featured.imageUrl || null} alt={t(featured.name)} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 space-y-3 text-center md:text-left">
                     <Typography variant="small" className="text-primary font-bold tracking-widest text-[10px]">FEATURED HARIDASA</Typography>
