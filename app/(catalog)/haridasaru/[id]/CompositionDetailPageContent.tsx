@@ -13,6 +13,8 @@ export default function ComposerDetailPageContent({ composer }: any) {
   const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
+  if (!composer) return null;
+
   return (
     <main className="min-h-screen bg-[#fcfaf7] py-12 px-6">
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]" 
@@ -30,17 +32,6 @@ export default function ComposerDetailPageContent({ composer }: any) {
                             <div className="w-full h-full bg-slate-100 flex items-center justify-center text-6xl opacity-20">🙏</div>
                         )}
                     </div>
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-3 mt-6 w-full max-w-[280px]">
-                        <div className="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm text-center">
-                            <div className="text-xl font-bold">{composer.compositions?.length ?? 0}</div>
-                            <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{t('statsCompositions')}</div>
-                        </div>
-                        <div className="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm text-center">
-                            <div className="text-xl font-bold truncate">{composer.timeline ? t(composer.timeline) : '-'}</div>
-                            <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{t('tblPeriod')}</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="flex-1 space-y-10 min-w-0">
@@ -49,6 +40,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                         <div className="flex items-center gap-4 text-sm font-bold text-slate-500 tracking-widest">
                             <span className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {composer.ankita?.name ? t(composer.ankita.name) : '-'}</span>
                             <span className="flex items-center gap-2"><Calendar className="h-4 w-4"/> {t(composer.timeline || '')}</span>
+                            <span className="flex items-center gap-2">({composer.compositions?.length ?? 0} {t('statsCompositions')})</span>
                         </div>
                     </div>
 
@@ -71,7 +63,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                     </div>
                 </div>
                 
-                {composer.compositions.length === 0 ? (
+                {(!composer.compositions || composer.compositions.length === 0) ? (
                     <div className="text-center py-12 bg-white border border-slate-100 rounded-[2rem]">
                         <Typography variant="p" className="text-slate-500">No compositions available</Typography>
                     </div>
@@ -99,6 +91,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                     <thead className="bg-slate-50 text-slate-500 font-bold text-xs uppercase tracking-widest">
                                         <tr>
                                             <th className="px-6 py-4">{t('tblName')}</th>
+                                            <th className="px-6 py-4">English</th>
                                             <th className="px-6 py-4">{t('ragaLabel')}</th>
                                             <th className="px-6 py-4">{t('talaLabel')}</th>
                                             <th className="px-6 py-4 text-right">{t('view')}</th>
@@ -108,6 +101,11 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                         {composer.compositions.map((comp: any) => (
                                             <tr key={comp.id} className="hover:bg-slate-50/50">
                                                 <td className="px-6 py-4 font-bold">{t(comp.title)}</td>
+                                                <td className="px-6 py-4 text-slate-600">
+                                                  {comp.translations && comp.translations.length > 0 
+                                                    ? comp.translations[0].english 
+                                                    : 'No translation'}
+                                                </td>
                                                 <td className="px-6 py-4 text-slate-600">{comp.raga ? t(comp.raga.name) : '-'}</td>
                                                 <td className="px-6 py-4 text-slate-600">{comp.tala ? t(comp.tala.name) : '-'}</td>
                                                 <td className="px-6 py-4 text-right"><Link href={`/library/${comp.id}`} className="text-primary font-bold">{t('read')}</Link></td>

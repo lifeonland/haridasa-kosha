@@ -16,6 +16,7 @@ interface CompositionCardProps {
   raga?: string;
   tala?: string;
   hasLyrics?: boolean;
+  featured?: boolean;
 }
 
 export default function CompositionCard({
@@ -26,7 +27,8 @@ export default function CompositionCard({
   deityName,
   raga = "TBD",
   tala = "TBD",
-  hasLyrics = true
+  hasLyrics = true,
+  featured = false
 }: CompositionCardProps) {
   const { t } = useLanguage();
   const { toggleBookmark, isBookmarked } = useBookmarks();
