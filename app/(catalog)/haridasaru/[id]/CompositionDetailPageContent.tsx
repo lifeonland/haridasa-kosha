@@ -50,8 +50,6 @@ export default function ComposerDetailPageContent({ composer }: any) {
                             {t(composer.biography === 'A revered Haridasa.' ? 'reveredHaridasa' : composer.biography)}
                         </Typography>
                     </div>
-                        </Typography>
-                    </div>
                 </div>
             </div>
 
