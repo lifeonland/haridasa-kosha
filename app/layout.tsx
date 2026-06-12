@@ -9,6 +9,7 @@ import Footer from '@/components/shared/Footer';
 import Link from 'next/link';
 import { Noto_Sans_Kannada } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const kannadaFont = Noto_Sans_Kannada({ subsets: ['kannada'], variable: '--font-kannada' });
 
@@ -53,6 +54,7 @@ export default function RootLayout({
           <Footer />
         </LanguageProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
