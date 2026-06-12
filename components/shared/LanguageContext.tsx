@@ -194,6 +194,7 @@ const translations = {
     Bhakti: "Bhakti",
     Philosophy: "Philosophy",
     Social: "Social",
+    Jhampa: "Jhampa",
     paramparaHeading: "The Haridasa Parampara",
     paramparaLead: "A journey through the divine lineage of saints",
     narahariTirtha: "Sri Narahari Tirtha",
