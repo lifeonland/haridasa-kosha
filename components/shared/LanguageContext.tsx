@@ -118,11 +118,6 @@ const translations = {
     tblAnkita: "Ankita nama",
     tblName: "Composer Name",
     tblPeriod: "Year",
-    composerLabel: "Composer",
-    deityLabel: "Deity",
-    ankitaLabel: "Ankita",
-    ragaLabel: "Raga",
-    talaLabel: "Tala",
     technicalSupport: "Technical Support",
     technicalSupportDesc: "Contribute your technical expertise to improve our archive.",
     thinking: "Thinking...",
@@ -446,19 +441,7 @@ const translations = {
     Adi: "ಆದಿ",
     Bhakti: "ಭಕ್ತಿ",
     Philosophy: "ತತ್ವಶಾಸ್ತ್ರ",
-    Social: "ಸಾಮಾಜಿಕ",
-    Jhampa: "ಝಂಪೆ",
-    Kambhoji: "ಕಾಂಭೋಜಿ",
-    Purvi: "ಪೂರ್ವಿ",
-    Kapi: "ಕಾಪಿ",
-    Atana: "ಅಠಾಣ",
-    "Khanda Chapu": "ಖಂಡ ಚಾಪು",
-    Shankarabharana: "ಶಂಕರಾಭರಣ",
-    composerLabel: "ಹರಿದಾಸರು",
-    deityLabel: "ದೇವತೆ",
-    ankitaLabel: "ಅಂಕಿತ",
-    ragaLabel: "ರಾಗ",
-    talaLabel: "ತಾಳ"
+    Social: "ಸಾಮಾಜಿಕ"
   }
 };
 
