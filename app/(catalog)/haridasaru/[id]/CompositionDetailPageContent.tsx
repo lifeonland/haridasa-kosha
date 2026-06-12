@@ -13,6 +13,35 @@ export default function ComposerDetailPageContent({ composer }: any) {
   const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
+    // Map composer ID to translation key
+    const getComposerTranslationKey = (id: string) => {
+        const map: Record<string, string> = {
+            'purandara-dasa': 'purandaraDasaru',
+            'kanaka-dasa': 'kanakaDasaru',
+            'vijaya-dasa': 'vijayaDasaru',
+            'gopala-dasa': 'gopalaDasaru',
+            'jagannatha-dasa': 'jagannathaDasaru',
+            'sripadaraja': 'sripadarajaru',
+            'vyasatirtha': 'vyasatirthaName',
+            'vadiraja-tirtha': 'vadirajaTirtharu',
+            'narahari-tirtha': 'narahariTirtharu',
+        };
+        return map[id];
+    };
+
+    const getBioTranslationKey = (id: string) => {
+        const map: Record<string, string> = {
+            'purandara-dasa': 'purandaraDasaDesc',
+            'kanaka-dasa': 'kanakaDasaDesc',
+            'vijaya-dasa': 'vijayaDasaDesc',
+            'jagannatha-dasa': 'jagannathaDasaDesc',
+            'sripadaraja': 'sripadarajaDesc',
+            'vyasatirtha': 'vyasatirthaDesc',
+            'narahari-tirtha': 'narahariTirthaDesc',
+        };
+        return map[id] || 'reveredHaridasa';
+    };
+
   if (!composer) return null;
 
   return (
@@ -27,7 +56,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                 <div className="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
                     <div className="w-full max-w-[280px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg shrink-0">
                         {composer.imageUrl ? (
-                            <img src={composer.imageUrl} alt={t(composer.name)} className="w-full h-full object-cover" />
+                            <img src={composer.imageUrl} alt={t(getComposerTranslationKey(composer.id) || composer.name)} className="w-full h-full object-cover" />
                         ) : (
                             <div className="w-full h-full bg-slate-100 flex items-center justify-center text-6xl opacity-20">🙏</div>
                         )}
@@ -36,7 +65,9 @@ export default function ComposerDetailPageContent({ composer }: any) {
 
                 <div className="flex-1 space-y-10 min-w-0">
                     <div>
-                        <Typography variant="h1" className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">{t(composer.name)}</Typography>
+                        <Typography variant="h1" className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+                            {t(getComposerTranslationKey(composer.id) || composer.name)}
+                        </Typography>
                         <div className="flex items-center gap-4 text-sm font-bold text-slate-500 tracking-widest">
                             <span className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {composer.ankita?.name ? t(composer.ankita.name) : '-'}</span>
                             <span className="flex items-center gap-2"><Calendar className="h-4 w-4"/> {t(composer.timeline || '')}</span>
@@ -47,7 +78,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                     <div className="prose prose-slate max-w-none">
                         <Typography variant="h3" className="font-bold mb-4">{t('about')}</Typography>
                         <Typography variant="p" className="text-base text-slate-600 leading-relaxed">
-                            {t(composer.biography === 'A revered Haridasa.' ? 'reveredHaridasa' : composer.biography)}
+                            {t(getBioTranslationKey(composer.id))}
                         </Typography>
                     </div>
                 </div>
