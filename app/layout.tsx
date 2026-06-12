@@ -7,6 +7,9 @@ import { Navigation } from '@/components/shared/Navigation';
 import { MobileNavigation } from '@/components/shared/MobileNavigation';
 import Footer from '@/components/shared/Footer';
 import Link from 'next/link';
+import { Noto_Sans_Kannada } from 'next/font/google';
+
+const kannadaFont = Noto_Sans_Kannada({ subsets: ['kannada'], variable: '--font-kannada' });
 
 function Header() {
   const { t } = useLanguage();
@@ -39,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-background text-foreground antialiased flex flex-col min-h-screen">
+    <html lang="en" className={kannadaFont.variable} suppressHydrationWarning>
+      <body className="bg-background text-foreground antialiased flex flex-col min-h-screen font-sans">
         <LanguageProvider>
           <Header />
           <div className="flex-1">
