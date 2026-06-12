@@ -15,6 +15,8 @@
     "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-slot": "^1.2.4",
+    "@tailwindcss/typography": "^0.5.20",
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "eslint-config-next": "^16.2.6",
@@ -25,8 +27,7 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-markdown": "^10.1.0",
-    "tailwind-merge": "^3.6.0",
-    "@tailwindcss/typography": "^0.5.20"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
