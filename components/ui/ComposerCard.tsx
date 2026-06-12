@@ -16,7 +16,7 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
   return (
     <Link href={`/haridasaru/${composer.id}`} className="group block h-full">
       <div className="flex flex-col h-full gap-4 p-4 rounded-3xl border border-border/50 bg-white transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
-        <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-secondary/50 relative">
+        <div className="aspect-square md:aspect-[4/5] overflow-hidden rounded-2xl bg-secondary/50 relative">
           {composer.imageUrl ? (
             <Image
               src={composer.imageUrl}
@@ -34,7 +34,7 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
           <Typography variant="small" className="text-primary tracking-wider uppercase text-[10px] font-bold">
             {t('archivalEntry')}
           </Typography>
-          <Typography variant="h3" className="text-xl md:text-2xl font-bold group-hover:text-primary transition-colors duration-300">
+          <Typography variant="h3" className="text-lg md:text-2xl font-bold group-hover:text-primary transition-colors duration-300 break-words hyphens-auto">
             {t(composer.name)}
           </Typography>
 
