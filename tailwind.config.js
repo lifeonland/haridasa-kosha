@@ -54,6 +54,13 @@ module.exports = {
       },
       spacing: {
         'section': 'var(--section-spacing, 5rem)',
+        'xs': '0.5rem',  // 8px
+        'sm': '1rem',    // 16px
+        'md': '1.5rem',  // 24px
+        'lg': '2rem',    // 32px
+        'xl': '2.5rem',  // 40px
+        '2xl': '3rem',   // 48px
+        '3xl': '4rem',   // 64px
       }
     },
   },

@@ -71,7 +71,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                     <AnimatePresence mode="wait">
                         {viewMode === 'grid' ? (
                             <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {composer.compositions.map((comp: any) => (
+                                {composer.compositions?.map((comp: any) => (
                                     <CompositionCard
                                         key={comp.id}
                                         id={comp.id}
@@ -81,7 +81,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                         deityName={comp.deity?.name || 'Unknown'}
                                         raga={comp.raga?.name || 'TBD'}
                                         tala={comp.tala?.name || 'TBD'}
-                                        hasLyrics={comp.lyrics && comp.lyrics.trim() !== comp.title.trim() && comp.lyrics.length > comp.title.length + 5}
+                                        hasLyrics={comp.lyrics && comp.lyrics.length > 0}
                                     />
                                 ))}
                             </motion.div>
@@ -98,16 +98,14 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-100">
-                                        {composer.compositions.map((comp: any) => (
+                                        {composer.compositions?.map((comp: any) => (
                                             <tr key={comp.id} className="hover:bg-slate-50/50">
                                                 <td className="px-6 py-4 font-bold">{t(comp.title)}</td>
                                                 <td className="px-6 py-4 text-slate-600">
-                                                  {comp.translations && comp.translations.length > 0 
-                                                    ? comp.translations[0].english 
-                                                    : 'No translation'}
+                                                  {comp.translations?.[0]?.english || 'No translation'}
                                                 </td>
-                                                <td className="px-6 py-4 text-slate-600">{comp.raga ? t(comp.raga.name) : '-'}</td>
-                                                <td className="px-6 py-4 text-slate-600">{comp.tala ? t(comp.tala.name) : '-'}</td>
+                                                <td className="px-6 py-4 text-slate-600">{comp.raga?.name ? t(comp.raga.name) : '-'}</td>
+                                                <td className="px-6 py-4 text-slate-600">{comp.tala?.name ? t(comp.tala.name) : '-'}</td>
                                                 <td className="px-6 py-4 text-right"><Link href={`/library/${comp.id}`} className="text-primary font-bold">{t('read')}</Link></td>
                                             </tr>
                                         ))}

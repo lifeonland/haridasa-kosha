@@ -24,12 +24,12 @@ export default function Hero() {
             >
                 <div className="space-y-6">
                     <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-slate-950 leading-[0.95] lg:-ml-1">
-                        {t('heroTitle').split('Haridasa').map((part, i, arr) => (
+                        {t('heroTitle').split(t('haridasa')).map((part, i, arr) => (
                         <span key={i}>
                             {part}
                             {i < arr.length - 1 && (
                             <span className="relative inline-block text-primary">
-                                Haridasa
+                                {t('haridasa')}
                                 <motion.div 
                                     initial={{ width: 0 }}
                                     animate={{ width: '100%' }}

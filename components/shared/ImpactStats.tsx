@@ -37,7 +37,7 @@ export default function ImpactStats() {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-16 py-12 border-y border-border/40">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 gap-y-16 py-12 border-y border-border/40">
       {stats.map((stat) => (
         <AnimatedCounter key={stat.label} {...stat} />
       ))}

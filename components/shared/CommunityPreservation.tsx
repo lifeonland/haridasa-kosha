@@ -30,7 +30,7 @@ export default function CommunityPreservation() {
               </Button>
             </div>
 
-            <div className="pt-16 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale contrast-125">
+            <div className="pt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 opacity-40 grayscale contrast-125">
               {['Manuscripts', 'Notations', 'Oral History', 'Translations'].map((item) => (
                 <div key={item} className="text-[10px] font-bold  tracking-[0.4em] text-foreground">
                   {item}

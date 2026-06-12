@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma';
 import CompositionsPageContent from './CompositionsPageContent';
 import type { Metadata } from 'next';
 
-const COMPOSITIONS_PER_PAGE = 12;
+const COMPOSITIONS_PER_PAGE = 10000;
 
 export const metadata: Metadata = {
   title: 'Compositions | Haridasa Kosha',

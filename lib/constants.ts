@@ -6,9 +6,9 @@ export const APP_DESCRIPTION =
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
 // Pagination
-export const ITEMS_PER_PAGE = 12;
-export const COMPOSERS_PER_PAGE = 12;
-export const COMPOSITIONS_PER_PAGE = 12;
+export const ITEMS_PER_PAGE = 10000;
+export const COMPOSERS_PER_PAGE = 10000;
+export const COMPOSITIONS_PER_PAGE = 10000;
 
 // API endpoints
 export const API_BASE_URL = `${APP_URL}/api`;

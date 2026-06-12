@@ -2,11 +2,11 @@ import { prisma } from '@/lib/prisma';
 import ComposersPageContent from './ComposersPageContent';
 import type { Metadata } from 'next';
 
-const COMPOSERS_PER_PAGE = 12;
+import { COMPOSERS_PER_PAGE } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Haridasaru | The Haridasa Kosha',
-  description: 'Browse all Haridasa composers',
+  title: 'Parampara | The Haridasa Kosha',
+  description: 'The lineage of divine wisdom, from Sri Madhvacharya to the modern era.',
 };
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -37,7 +37,7 @@ export default async function ComposersPage(props: {
 
   // Define custom historical order
   const historicalOrder = [
-    'narahari-tirtha', 'sripadaraja', 'vyasatirtha', 'vadiraja-tirtha',
+    'madhwacharya', 'narahari-tirtha', 'sripadaraja', 'vyasatirtha', 'vadiraja-tirtha',
     'purandara-dasa', 'kanaka-dasa', 'vijaya-dasa', 'gopala-dasa',
     'jagannatha-dasa', 'pranesha-dasa', 'venugopala-dasa', 'mohana-dasa',
     'srinivasa-dasa', 'subbanna-dasa', 'lakshmipati-dasa', 'madhwapati-dasa',
@@ -51,6 +51,9 @@ export default async function ComposersPage(props: {
     where: searchFilter,
     include: { _count: { select: { compositions: true } }, ankita: true },
   });
+
+  console.log("DEBUG: totalComposers (DB count):", totalComposers);
+  console.log("DEBUG: allComposers.length (Fetched):", allComposers.length);
 
   // Custom sort: Use historical order, then alphabetical for any remaining
   const composers = allComposers.sort((a, b) => {

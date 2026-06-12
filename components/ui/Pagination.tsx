@@ -46,7 +46,7 @@ export default function Pagination({
       {currentPage > 1 && (
         <Link
           href={getPageUrl(currentPage - 1)}
-          className="px-4 py-2 rounded-lg text-foreground bg-white border border-border hover:border-primary/50 transition-colors shadow-sm"
+          className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
         >
           Previous
         </Link>
@@ -57,11 +57,11 @@ export default function Pagination({
         <>
           <Link
             href={getPageUrl(1)}
-            className="px-3 py-2 rounded-lg text-foreground bg-white border border-border hover:border-primary/50 transition-colors shadow-sm"
+            className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
           >
             1
           </Link>
-          {startPage > 2 && <span className="text-muted-foreground px-1">...</span>}
+          {startPage > 2 && <span className="text-muted-foreground px-2 font-bold">...</span>}
         </>
       )}
 
@@ -69,10 +69,10 @@ export default function Pagination({
         <Link
           key={page}
           href={getPageUrl(page)}
-          className={`px-4 py-2 rounded-lg transition-all border shadow-sm ${
+          className={`px-5 py-2 rounded-xl transition-all duration-300 border font-bold shadow-sm ${
             page === currentPage
-              ? 'bg-accent border-accent text-white font-bold'
-              : 'text-foreground bg-white border-border hover:border-primary/50'
+              ? 'bg-primary border-primary text-white shadow-md'
+              : 'text-primary bg-white border-primary/30 hover:border-primary hover:bg-accent'
           }`}
         >
           {page}
@@ -82,10 +82,10 @@ export default function Pagination({
       {/* Next button */}
       {endPage < totalPages && (
         <>
-          {endPage < totalPages - 1 && <span className="text-muted-foreground px-1">...</span>}
+          {endPage < totalPages - 1 && <span className="text-muted-foreground px-2 font-bold">...</span>}
           <Link
             href={getPageUrl(totalPages)}
-            className="px-3 py-2 rounded-lg text-foreground bg-white border border-border hover:border-primary/50 transition-colors shadow-sm"
+            className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
           >
             {totalPages}
           </Link>
@@ -95,7 +95,7 @@ export default function Pagination({
       {currentPage < totalPages && (
         <Link
           href={getPageUrl(currentPage + 1)}
-          className="px-4 py-2 rounded-lg text-foreground bg-white border border-border hover:border-primary/50 transition-colors shadow-sm"
+          className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
         >
           Next
         </Link>

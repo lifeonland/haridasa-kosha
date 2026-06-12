@@ -3,14 +3,14 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Updating image for Pranesha Dasaru...');
+  console.log('Updating Narahari Tirtharu image...');
   
   await prisma.composer.update({
-    where: { id: 'pranesha-dasa' },
-    data: { imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGxspCJhJJkOH7L6pEiaI6G80RD-7p4dtWWw&s' },
+    where: { id: 'narahari-tirtha' },
+    data: { imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg' },
   });
 
-  console.log('✅ Pranesha Dasaru image updated successfully!');
+  console.log('✅ Narahari Tirtharu image updated successfully!');
 }
 
 main()
