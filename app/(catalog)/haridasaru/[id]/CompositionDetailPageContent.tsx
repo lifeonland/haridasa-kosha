@@ -45,9 +45,11 @@ export default function ComposerDetailPageContent({ composer }: any) {
                     </div>
 
                     <div className="prose prose-slate max-w-none">
-                        <Typography variant="h3" className="font-bold mb-4">Biography</Typography>
+                        <Typography variant="h3" className="font-bold mb-4">{t('about')}</Typography>
                         <Typography variant="p" className="text-base text-slate-600 leading-relaxed">
-                            {t(composer.biography || 'defaultBio')}
+                            {t(composer.biography === 'A revered Haridasa.' ? 'reveredHaridasa' : composer.biography)}
+                        </Typography>
+                    </div>
                         </Typography>
                     </div>
                 </div>
