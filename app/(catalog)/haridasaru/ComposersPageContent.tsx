@@ -128,12 +128,22 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
         </AnimatePresence>
 
         {/* 5. Pagination Controls */}
-        <div className="mt-12 flex justify-center items-center gap-4">
-            <Link href={`/haridasaru?page=${Math.max(1, currentPage - 1)}`} className={`px-6 py-3 rounded-full border bg-white font-bold text-sm ${currentPage === 1 ? 'opacity-50 pointer-events-none' : 'hover:border-primary'}`}>
+        <div className="mt-12 flex justify-center items-center gap-2">
+            <Link 
+                href={`/haridasaru?page=${Math.max(1, currentPage - 1)}`} 
+                className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${currentPage === 1 ? 'opacity-50 pointer-events-none' : ''}`}
+            >
                 {t('previous')}
             </Link>
-            <span className="font-bold text-lg">{currentPage}</span>
-            <Link href={`/haridasaru?page=${currentPage + 1}`} className={`px-6 py-3 rounded-full border bg-white font-bold text-sm ${composers.length < 20 ? 'opacity-50 pointer-events-none' : 'hover:border-primary'}`}>
+            
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold text-sm shadow-md">
+                {currentPage}
+            </div>
+
+            <Link 
+                href={`/haridasaru?page=${currentPage + 1}`} 
+                className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${composers.length < 20 ? 'opacity-50 pointer-events-none' : ''}`}
+            >
                 {t('next')}
             </Link>
         </div>
