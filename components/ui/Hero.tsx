@@ -11,8 +11,8 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden pt-2">
-      <div className="relative z-10 mx-auto min-h-[80svh] flex items-start pt-24 max-w-7xl px-6 py-6 lg:py-12">
+    <section className="relative overflow-hidden pt-8 md:pt-16">
+      <div className="relative z-10 mx-auto min-h-[70svh] flex items-start max-w-7xl px-6 py-6 lg:py-12">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start w-full">
             
             {/* Left Content Column */}
@@ -20,7 +20,7 @@ export default function Hero() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-7 space-y-8"
+                className="lg:col-span-7 space-y-8 pt-0 md:pt-12"
             >
                 <div className="space-y-6">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-slate-950 leading-[1.1] lg:-ml-1">

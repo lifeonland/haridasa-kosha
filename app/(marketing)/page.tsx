@@ -125,7 +125,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-          <div className="mt-[-4rem]"><Hero /></div>
+          <Hero />
       </div>
 
       <Section id="about" spacing="lg" className="relative z-10 mt-16">
