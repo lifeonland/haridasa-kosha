@@ -78,9 +78,11 @@ export default function AskAiPage() {
                             </div>
                         )}
                         <div className={`p-5 rounded-[1.5rem] max-w-[85%] text-sm leading-relaxed ${m.role === 'user' ? 'bg-primary text-white rounded-tr-none' : 'bg-slate-50 text-slate-800 rounded-tl-none'}`}>
-                            <ReactMarkdown className="prose prose-sm prose-slate max-w-none">
-                              {m.content}
-                            </ReactMarkdown>
+                            <div className="prose prose-sm prose-slate max-w-none">
+                              <ReactMarkdown>
+                                {m.content}
+                              </ReactMarkdown>
+                            </div>
                         </div>
                     </motion.div>
                 ))}
