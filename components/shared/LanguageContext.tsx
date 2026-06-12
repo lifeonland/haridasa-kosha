@@ -183,6 +183,11 @@ const translations = {
     hanuman: "Hanuman",
     srinivasa: "Srinivasa",
     shiva: "Shiva",
+    Mukhari: "Mukhari",
+    Adi: "Adi",
+    Bhakti: "Bhakti",
+    Philosophy: "Philosophy",
+    Social: "Social",
     paramparaHeading: "The Haridasa Parampara",
     paramparaLead: "A journey through the divine lineage of saints",
     narahariTirtha: "Sri Narahari Tirtha",
@@ -422,7 +427,12 @@ const translations = {
     vyasatirthaName: "ವ್ಯಾಸತೀರ್ಥರು",
     vadirajaTirtharu: "ವಾದಿರಾಜ ತೀರ್ಥರು",
     narahariTirtharu: "ನರಹರಿ ತೀರ್ಥರು",
-    reveredHaridasa: "ಒಬ್ಬ ಗೌರವಾನ್ವಿತ ಹರಿದಾಸರು."
+    reveredHaridasa: "ಒಬ್ಬ ಗೌರವಾನ್ವಿತ ಹರಿದಾಸರು.",
+    Mukhari: "ಮುಖಾರಿ",
+    Adi: "ಆದಿ",
+    Bhakti: "ಭಕ್ತಿ",
+    Philosophy: "ತತ್ವಶಾಸ್ತ್ರ",
+    Social: "ಸಾಮಾಜಿಕ"
   }
 };
 
