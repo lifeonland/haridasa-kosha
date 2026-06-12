@@ -20,7 +20,7 @@ export default function Hero() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-7 space-y-8 pt-0 md:pt-12"
+                className="lg:col-span-7 space-y-8"
             >
                 <div className="space-y-6">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-slate-950 leading-[1.1] lg:-ml-1">
