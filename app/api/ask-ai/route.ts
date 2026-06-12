@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     console.log("Received messages:", messages);
 
     const model = genAI.getGenerativeModel({ 
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-flash-lite",
         systemInstruction: "You are a knowledgeable assistant specializing in Dasa Sahitya. Provide accurate, highly concise, and clear answers. Use bullet points for readability. Avoid lengthy introductions or conclusions. Maximum 3-4 sentences."
     });
 
