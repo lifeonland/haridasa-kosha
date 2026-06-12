@@ -81,7 +81,7 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
         {/* 4. Composer Grid */}
         <AnimatePresence mode="wait">
             {viewMode === 'grid' ? (
-                <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredComposers.map((c: any) => (
                         <div key={c.id} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 group">
                             <div className="w-16 h-16 mb-4 rounded-2xl bg-slate-100 overflow-hidden shrink-0 transition-transform duration-500 group-hover:scale-105 shadow-inner">
@@ -101,8 +101,8 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
                     ))}
                 </motion.div>
             ) : (
-                <motion.div key="table" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-                    <table className="w-full text-sm text-left border-collapse">
+                <motion.div key="table" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-x-auto">
+                    <table className="w-full text-sm text-left border-collapse min-w-[600px]">
                         <thead className="bg-slate-50 text-slate-500 font-bold text-xs uppercase tracking-widest">
                             <tr>
                                 <th className="px-6 py-4">{t('tblName')}</th>
