@@ -34,6 +34,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.sripadarajamutt.org',
       },
+      {
+        protocol: 'https',
+        hostname: 'd18x2uyjeekruj.cloudfront.net',
+      },
     ],
   },
 }
