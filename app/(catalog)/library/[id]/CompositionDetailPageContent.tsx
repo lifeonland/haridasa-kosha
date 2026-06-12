@@ -56,7 +56,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
               </h2>
               <CopyButton text={composition.lyrics} />
             </div>
-            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-sm leading-relaxed">
+            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-border/40 shadow-sm hover:shadow-xl transition-all duration-300 leading-relaxed">
               <p className="text-lg text-slate-800 whitespace-pre-wrap font-kannada">
                 {composition.lyrics}
               </p>
