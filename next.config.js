@@ -22,6 +22,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'blogger.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+      },
     ],
   },
 }
