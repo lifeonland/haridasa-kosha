@@ -49,10 +49,8 @@ export default function CompositionDetailPageContent({ composition }: any) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left Column: Lyrics & Transliteration */}
-        <div className="space-y-12">
-          {/* Lyrics Section */}
-          <section>
-            <div className="flex items-center justify-between mb-8">
+        <section className="space-y-8">
+            <div className="flex items-center justify-between min-h-[3rem]">
               <h2 className="text-2xl font-bold text-foreground tracking-tight">
                 {t('kannadaLyrics')}
               </h2>
@@ -63,18 +61,15 @@ export default function CompositionDetailPageContent({ composition }: any) {
                 {composition.lyrics}
               </p>
             </div>
-          </section>
-        </div>
+        </section>
 
         {/* Right Column: Translations */}
-        <div className="space-y-12">
-          {composition.translations.length > 0 && (
-            <section>
-              <div className="flex items-center justify-between mb-8">
+        {composition.translations.length > 0 && (
+            <section className="space-y-8">
+              <div className="flex items-center min-h-[3rem]">
                 <h2 className="text-2xl font-bold text-foreground tracking-tight">
                   {t('translation')}
                 </h2>
-                <div className="h-8"></div> {/* Alignment spacer */}
               </div>
               <div className="space-y-8">
                 {composition.translations.map((translation: any) => (
@@ -91,8 +86,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
                 ))}
               </div>
             </section>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
