@@ -13,6 +13,23 @@ interface ComposerCardProps {
 export default function ComposerCard({ composer }: ComposerCardProps) {
   const { t } = useLanguage();
 
+  const getComposerTranslationKey = (id: string) => {
+    const map: Record<string, string> = {
+        'purandara-dasa': 'purandaraDasaru',
+        'kanaka-dasa': 'kanakaDasaru',
+        'vijaya-dasa': 'vijayaDasaru',
+        'gopala-dasa': 'gopalaDasaru',
+        'jagannatha-dasa': 'jagannathaDasaru',
+        'sripadaraja': 'sripadarajaru',
+        'vyasatirtha': 'vyasatirthaName',
+        'vadiraja-tirtha': 'vadirajaTirtharu',
+        'narahari-tirtha': 'narahariTirtharu',
+    };
+    return map[id];
+  };
+
+  const name = t(getComposerTranslationKey(composer.id) || composer.name);
+
   return (
     <Link href={`/haridasaru/${composer.id}`} className="group block h-full">
       <div className="flex flex-col h-full gap-4 p-4 rounded-3xl border border-border/50 bg-white transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
@@ -20,7 +37,7 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
           {composer.imageUrl ? (
             <Image
               src={composer.imageUrl}
-              alt={t(composer.name)}
+              alt={name}
               fill
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -35,7 +52,7 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
             {t('archivalEntry')}
           </Typography>
           <Typography variant="h3" className="text-lg md:text-2xl font-bold group-hover:text-primary transition-colors duration-300 break-words hyphens-auto">
-            {t(composer.name)}
+            {name}
           </Typography>
 
           <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
