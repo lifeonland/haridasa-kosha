@@ -77,28 +77,13 @@ export default function CompositionDetailPageContent({ composition }: any) {
               <div className="space-y-8">
                 {composition.translations.map((translation: any) => (
                   <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div className="flex flex-col gap-6">
-                        {/* Kannada Meaning */}
-                        <div>
-                            <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
-                                {t('kannadaLyrics')}
-                            </h3>
-                            <p className="text-base text-slate-700 leading-relaxed whitespace-pre-line font-kannada">
-                                {translation.kannadaMeaning}
-                            </p>
-                        </div>
-                        
-                        <div className="h-px bg-slate-100" />
-                        
-                        {/* English Translation */}
-                        <div>
-                            <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
-                                {t('englishTranslation')}
-                            </h3>
-                            <p className="text-base text-slate-600 leading-relaxed whitespace-pre-line">
-                                {translation.english}
-                            </p>
-                        </div>
+                    <div>
+                        <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
+                            {t('englishTranslation')}
+                        </h3>
+                        <p className="text-base text-slate-600 leading-relaxed whitespace-pre-line">
+                            {translation.english}
+                        </p>
                     </div>
                   </div>
                 ))}

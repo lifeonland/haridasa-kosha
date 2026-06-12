@@ -60,8 +60,12 @@ export default function CompositionCard({
             </Typography>
 
             <div className="flex flex-wrap gap-2 mb-8">
-                <span className="text-[10px] font-bold text-slate-600 bg-slate-50 px-3 py-1 rounded-full">{t(raga)}</span>
-                <span className="text-[10px] font-bold text-slate-600 bg-slate-50 px-3 py-1 rounded-full">{t(tala)}</span>
+                {raga !== "TBD" && (
+                    <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full">{t(raga)}</span>
+                )}
+                {tala !== "TBD" && (
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full">{t(tala)}</span>
+                )}
             </div>
         </Link>
 
