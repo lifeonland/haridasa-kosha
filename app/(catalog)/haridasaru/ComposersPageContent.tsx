@@ -17,9 +17,6 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
     t(c.biography || '').toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Featured Haridasa (First in our custom order)
-  const featured = allComposers[0];
-
   return (
     <main className="min-h-screen bg-[#fcfaf7] py-12 px-6">
       <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]" 
@@ -27,47 +24,50 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
       
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* 1. Hero Section */}
-        <div className="text-center mb-16 space-y-6">
-            <Typography variant="h1" className="text-5xl font-bold tracking-tighter">{t('composersPageTitle')}</Typography>
-            <Typography variant="lead" className="text-slate-600 max-w-2xl mx-auto">{t('composersPageDesc')}</Typography>
+        {/* 1. Header & Stats Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-8">
+            <div className="text-left space-y-2">
+                <Typography variant="h1" className="text-4xl font-bold tracking-tighter">{t('composersPageTitle')}</Typography>
+                <Typography variant="lead" className="text-slate-600 max-w-xl">{t('composersPageDesc')}</Typography>
+            </div>
             
             {/* Archive Stats */}
-            <div className="flex justify-center gap-12 pt-8 text-sm font-bold text-slate-500 tracking-widest border-t border-slate-100 mt-8 pt-8">
-                <div>{stats.composers.toLocaleString()}+ <span className="block text-slate-400 text-[10px] uppercase">{t('statsHaridasas')}</span></div>
-                <div>{stats.compositions.toLocaleString()}+ <span className="block text-slate-400 text-[10px] uppercase">{t('statsCompositions')}</span></div>
-                <div>8 <span className="block text-slate-400 text-[10px] uppercase">Centuries</span></div>
-            </div>
-        </div>
-
-        {/* 2. Featured Haridasa */}
-        {featured && !searchQuery && (
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white p-6 md:p-8 border border-slate-100 rounded-[2.5rem] shadow-sm mb-16 flex flex-col md:flex-row gap-8 items-center max-w-4xl mx-auto">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-slate-100 overflow-hidden shrink-0 shadow-inner">
-                    <img src={featured.imageUrl || null} alt={t(featured.name)} className="w-full h-full object-cover" />
+            <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex gap-8 items-center text-sm"
+            >
+                <div className="flex items-baseline gap-1.5">
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">{stats.composers.toLocaleString()}</span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{t('statsHaridasas')}</span>
                 </div>
-                <div className="flex-1 space-y-3 text-center md:text-left">
-                    <Typography variant="small" className="text-primary font-bold tracking-widest text-[10px]">FEATURED HARIDASA</Typography>
-                    <Typography variant="h2" className="text-2xl font-bold tracking-tight">{t(featured.name)}</Typography>
-                    <Typography variant="p" className="text-slate-500 text-sm italic">"{t(featured.biography?.slice(0, 100) || '')}..."</Typography>
-                    <Button asChild className="rounded-full px-6 h-10 font-bold text-xs"><Link href={`/haridasaru/${featured.id}`}>{t('viewProfile')} →</Link></Button>
+                <div className="w-px h-4 bg-slate-200" />
+                <div className="flex items-baseline gap-1.5">
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">{stats.compositions.toLocaleString()}</span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{t('statsCompositions')}</span>
+                </div>
+                <div className="w-px h-4 bg-slate-200" />
+                <div className="flex items-baseline gap-1.5">
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">8</span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{t('yearsOfHistory')}</span>
                 </div>
             </motion.div>
-        )}
+        </div>
 
-        {/* 3. Search & Toolbar */}
+        {/* 2. Search & Toolbar */}
         <div className="flex justify-between items-center mb-8 gap-4 flex-wrap">
-          <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+          <div className="flex-1 relative max-w-sm">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
             <input 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-11 py-4 rounded-[1.5rem] bg-white border border-slate-100 shadow-sm outline-none text-sm focus:ring-2 focus:ring-primary/20 transition-all" 
+              className="w-full pl-9 pr-9 py-2 rounded-xl bg-white border border-slate-200 shadow-sm outline-none text-xs focus:ring-1 focus:ring-primary/20 transition-all" 
               placeholder={t('searchComposers')} 
             />
             {searchQuery && (
-              <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 hover:text-slate-600">
-                <X className="h-4 w-4" />
+              <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400 hover:text-slate-600">
+                <X className="h-3.5 w-3.5" />
               </button>
             )}
           </div>
@@ -92,7 +92,7 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
                             </div>
                             <Typography variant="h4" className="font-bold mb-1">{t(c.name)}</Typography>
                             <Typography variant="p" className="text-xs text-slate-500 mb-4">{t(c.ankita?.name || '')} • {c.timeline}</Typography>
-                            <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{t(c.biography || '')}</Typography>
+                            <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{t(c.biography === 'A revered Haridasa.' ? 'reveredHaridasa' : c.biography)}</Typography>
                             <Link href={`/haridasaru/${c.id}`} className="text-sm font-bold text-primary flex items-center gap-2 transition-all duration-300 group-hover:gap-4">
                                 {t('viewProfile')} <ArrowRight className="w-4 h-4"/>
                             </Link>

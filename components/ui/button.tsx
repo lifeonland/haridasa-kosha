@@ -23,10 +23,10 @@ const buttonVariants = cva(
         royal: "bg-slate-950 text-white hover:bg-slate-900 shadow-lg shadow-slate-950/15",
       },
       size: {
-        default: "h-12 px-6 py-3",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-14 rounded-2xl px-10 s",
-        icon: "h-10 w-10",
+        default: "h-[44px] px-6 py-3",
+        sm: "h-[44px] px-4",
+        lg: "h-[56px] rounded-2xl px-10 s",
+        icon: "h-[44px] w-[44px]",
       },
     },
     defaultVariants: {

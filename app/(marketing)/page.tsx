@@ -139,24 +139,24 @@ export default function Home() {
 
             <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] items-stretch">
               <div className="h-full rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-8 sm:p-10 shadow-xl backdrop-blur-xl">
-                <div className="flex items-center gap-3">
-                    <div className="rounded-2xl bg-primary/10 p-3 text-primary">
+                <div className="flex items-center gap-4">
+                    <div className="rounded-2xl bg-primary/10 p-4 text-primary">
                         <Feather className="h-6 w-6" />
                     </div>
                     <Typography variant="h3" className="font-bold">{t('livingTradition')}</Typography>
                 </div>
-                <Typography variant="lead" className="mt-6 max-w-2xl text-slate-600 leading-relaxed">
+                <Typography variant="lead" className="mt-8 max-w-2xl text-slate-600 leading-relaxed">
                   {t('livingTraditionDesc')}
                 </Typography>
 
-                <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
                   {[
                     { text: 'foundations', icon: <Sparkles className="h-4 w-4 text-primary" /> },
                     { text: 'verifiedKeertanas', icon: <Quote className="h-4 w-4 text-primary" /> },
                     { text: 'discoverStories', icon: <Heart className="h-4 w-4 text-primary" /> },
                     { text: 'studyStructures', icon: <Music className="h-4 w-4 text-primary" /> },
                   ].map((item) => (
-                    <div key={item.text} className="flex items-start gap-3 rounded-3xl border border-slate-100/50 bg-white/80 p-5 text-sm leading-relaxed text-slate-700 shadow-sm transition hover:bg-white">
+                    <div key={item.text} className="flex items-start gap-4 rounded-3xl border border-slate-100/50 bg-white/80 p-6 text-sm leading-relaxed text-slate-700 shadow-sm transition hover:bg-white">
                       <div className="mt-0.5">{item.icon}</div>
                       {t(item.text)}
                     </div>
@@ -164,14 +164,14 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="grid gap-5 sm:grid-cols-3 lg:grid-cols-1 lg:content-start">
+              <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-1 lg:content-start">
                 {shuffledItems.map((item) => (
                   <div key={item.title} className="group h-full rounded-[2rem] border border-slate-100/50 bg-white/90 p-8 shadow-xl backdrop-blur-xl transition hover:border-primary/20">
-                    <div className="mb-4 inline-flex rounded-2xl bg-slate-50 p-3 shadow-sm ring-1 ring-slate-100 transition group-hover:bg-primary/5">
+                    <div className="mb-6 inline-flex rounded-2xl bg-slate-50 p-4 shadow-sm ring-1 ring-slate-100 transition group-hover:bg-primary/5">
                         {item.icon}
                     </div>
                     <Typography variant="h4" className="font-bold">{t(item.title)}</Typography>
-                    <Typography variant="p" className="mt-3 text-sm leading-relaxed text-slate-600">
+                    <Typography variant="p" className="mt-4 text-sm leading-relaxed text-slate-600">
                       {t(item.text)}
                     </Typography>
                   </div>
@@ -179,9 +179,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               {['Vyasa Kuta', 'Dasa Kuta', 'Udupi Krishna', 'Vittala Keertana', 'Haridasa Namavali'].map((item) => (
-                <span key={item} className="rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm px-5 py-2.5 text-[11px] font-bold text-slate-600 shadow-sm transition hover:border-primary/30 hover:text-primary">
+                <span key={item} className="rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm px-6 py-3 text-[11px] font-bold text-slate-600 shadow-sm transition hover:border-primary/30 hover:text-primary">
                   {t(item)}
                 </span>
               ))}
@@ -193,10 +193,10 @@ export default function Home() {
       {/* Dynamic Statistics Bar */}
       <section className="bg-white/90 backdrop-blur-xl border-y border-slate-100/50 py-10 relative z-10">
             <Container className="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats.compositions.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsCompositions')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats.composers.toLocaleString()}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsHaridasas')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats.ragas.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsRagas')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats.ankitas.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsAnkitas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.compositions?.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsCompositions')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.composers?.toLocaleString()}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsHaridasas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ragas?.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsRagas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ankitas?.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsAnkitas')}</div></div>
             </Container>
       </section>
 

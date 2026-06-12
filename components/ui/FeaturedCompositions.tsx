@@ -39,7 +39,7 @@ export default function FeaturedCompositions({ compositions }: FeaturedCompositi
               {t('featuredDesc')}
             </Typography>
           </div>
-          <Button variant="outline" className="hidden md:flex rounded-full h-14 px-10 border-primary/20 font-bold  tracking-widest text-xs hover:bg-primary hover:text-white transition-all duration-500" asChild>
+          <Button variant="outline" className="hidden md:flex rounded-full px-10 border-primary/20 font-bold tracking-widest text-xs hover:bg-primary hover:text-white transition-all duration-500" asChild>
             <Link href="/library" className="flex items-center gap-2">
               {t('viewEntireCollection')}
               <ArrowRight className="h-4 w-4" />
@@ -47,9 +47,9 @@ export default function FeaturedCompositions({ compositions }: FeaturedCompositi
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {compositions.map((comp) => (
-            <div key={comp.id} className="transition-transform duration-500 hover:-translate-y-2">
+            <div key={comp.id} className="transition-transform duration-500 hover:-translate-y-2 h-full">
                 <CompositionCard
                 id={comp.id}
                 title={comp.title}
@@ -63,7 +63,7 @@ export default function FeaturedCompositions({ compositions }: FeaturedCompositi
         </div>
 
         <div className="md:hidden text-center mt-12">
-            <Button size="lg" variant="outline" className="rounded-full h-14 px-10 border-primary/20 font-bold  tracking-widest text-xs" asChild>
+            <Button size="lg" variant="outline" className="rounded-full px-10 border-primary/20 font-bold tracking-widest text-xs" asChild>
                 <Link href="/library" className="flex items-center gap-2">
                     {t('viewEntireCollection')}
                     <ArrowRight className="h-4 w-4" />
