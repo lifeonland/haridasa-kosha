@@ -115,3 +115,7 @@
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+.font-kannada {
+  font-family: 'Noto Sans Kannada', sans-serif;
+}
