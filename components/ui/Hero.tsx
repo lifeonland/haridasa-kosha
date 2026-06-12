@@ -12,8 +12,8 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden pt-8 md:pt-16">
-      <div className="relative z-10 mx-auto min-h-[70svh] flex items-start max-w-7xl px-6 py-6 lg:py-12">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start w-full">
+      <div className="relative z-10 mx-auto min-h-[70svh] flex items-center max-w-7xl px-6 py-6 lg:py-12">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
             
             {/* Left Content Column */}
             <motion.div
