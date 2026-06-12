@@ -15,11 +15,11 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
       h2: "scroll-m-20 text-xl md:text-2xl lg:text-4xl font-bold tracking-tight text-foreground",
       h3: "scroll-m-20 text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-foreground",
       h4: "scroll-m-20 text-base md:text-lg font-bold tracking-tight text-foreground",
-      p: "leading-6 md:leading-7 [&:not(:first-child)]:mt-4 md:[&:not(:first-child)]:mt-6 text-foreground text-sm md:text-base font-medium",
-      lead: "text-sm md:text-base text-muted-foreground font-medium leading-relaxed",
-      large: "text-sm md:text-base font-bold",
-      small: "text-xs md:text-sm font-medium leading-none",
-      muted: "text-xs md:text-sm text-muted-foreground font-medium",
+      p: "leading-6 md:leading-7 [&:not(:first-child)]:mt-4 md:[&:not(:first-child)]:mt-6 text-foreground text-sm md:text-base font-normal",
+      lead: "text-sm md:text-base text-muted-foreground font-normal leading-relaxed",
+      large: "text-sm md:text-base font-semibold",
+      small: "text-xs md:text-sm font-normal leading-none",
+      muted: "text-xs md:text-sm text-muted-foreground font-normal",
     };
 
     return (
