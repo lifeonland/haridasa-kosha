@@ -11,7 +11,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden pt-2">
+    <section className="relative overflow-hidden pt-16 md:pt-24">
       <div className="relative z-10 mx-auto min-h-[80svh] flex items-center max-w-7xl px-6 py-6 lg:py-12">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
             
