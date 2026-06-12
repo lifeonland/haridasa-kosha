@@ -130,18 +130,18 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
         {/* 5. Pagination Controls */}
         <div className="mt-12 flex justify-center items-center gap-2">
             <Link 
-                href={`/haridasaru?page=${Math.max(1, currentPage - 1)}`} 
-                className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${currentPage === 1 ? 'opacity-50 pointer-events-none' : ''}`}
+                href={`/haridasaru?page=${Math.max(1, Number(currentPage) - 1)}`} 
+                className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${Number(currentPage) === 1 ? 'opacity-50 pointer-events-none' : ''}`}
             >
                 {t('previous')}
             </Link>
             
             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold text-sm shadow-md">
-                {currentPage}
+                {Number(currentPage)}
             </div>
 
             <Link 
-                href={`/haridasaru?page=${currentPage + 1}`} 
+                href={`/haridasaru?page=${Number(currentPage) + 1}`} 
                 className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${composers.length < 20 ? 'opacity-50 pointer-events-none' : ''}`}
             >
                 {t('next')}
