@@ -35,10 +35,10 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
             
             {/* Archive Stats */}
             <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex gap-8 items-center text-sm"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap gap-4 md:gap-8 items-center text-sm"
             >
                 <div className="flex items-baseline gap-1.5">
                     <span className="text-2xl font-bold text-slate-900 tracking-tight">{stats.composers.toLocaleString()}</span>
