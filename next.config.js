@@ -30,6 +30,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.umath.in',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.sripadarajamutt.org',
+      },
     ],
   },
 }
