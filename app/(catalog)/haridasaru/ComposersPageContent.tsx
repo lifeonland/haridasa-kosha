@@ -13,10 +13,49 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
 
+    // Map composer ID to translation key
+    const getComposerTranslationKey = (id: string) => {
+        const map: Record<string, string> = {
+            'purandara-dasa': 'purandaraDasaru',
+            'kanaka-dasa': 'kanakaDasaru',
+            'vijaya-dasa': 'vijayaDasaru',
+            'gopala-dasa': 'gopalaDasaru',
+            'jagannatha-dasa': 'jagannathaDasaru',
+            'sripadaraja': 'sripadarajaru',
+            'vyasatirtha': 'vyasatirthaName',
+            'vadiraja-tirtha': 'vadirajaTirtharu',
+            'narahari-tirtha': 'narahariTirtharu',
+        };
+        return map[id];
+    };
+
+    const getBioTranslationKey = (id: string) => {
+        const map: Record<string, string> = {
+            'purandara-dasa': 'purandaraDasaDesc',
+            'kanaka-dasa': 'kanakaDasaDesc',
+            'vijaya-dasa': 'vijayaDasaDesc',
+            'jagannatha-dasa': 'jagannathaDasaDesc',
+            'sripadaraja': 'sripadarajaDesc',
+            'vyasatirtha': 'vyasatirthaDesc',
+            'narahari-tirtha': 'narahariTirthaDesc',
+        };
+        return map[id] || 'reveredHaridasa';
+    };
+
+    const getName = (c: any) => {
+        const key = getComposerTranslationKey(c.id);
+        return key ? t(key) : t(c.name);
+    };
+
+    const getBio = (c: any) => {
+        const key = getBioTranslationKey(c.id);
+        return t(key);
+    };
+
   // Note: Filtering is now limited to the current page due to server-side pagination.
   const filteredComposers = composers.filter((c: any) => 
-    t(c.name).toLowerCase().includes(searchQuery.toLowerCase()) ||
-    t(c.biography || '').toLowerCase().includes(searchQuery.toLowerCase())
+    getName(c).toLowerCase().includes(searchQuery.toLowerCase()) ||
+    getBio(c).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
