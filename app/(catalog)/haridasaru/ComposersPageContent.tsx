@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Typography } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
@@ -85,7 +86,7 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
                         <div key={c.id} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 group">
                             <div className="w-16 h-16 mb-4 rounded-2xl bg-slate-100 overflow-hidden shrink-0 transition-transform duration-500 group-hover:scale-105 shadow-inner">
                                 {c.imageUrl ? (
-                                    <img src={c.imageUrl} alt={t(c.name)} className="w-full h-full object-cover" />
+                                    <Image src={c.imageUrl} alt={t(c.name)} width={64} height={64} className="w-full h-full object-cover" />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-2xl opacity-50">🙏</div>
                                 )}
