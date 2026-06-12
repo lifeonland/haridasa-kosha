@@ -23,7 +23,7 @@ export default function Hero() {
                 className="lg:col-span-7 space-y-8"
             >
                 <div className="space-y-6">
-                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-slate-950 leading-[0.95] lg:-ml-1">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-slate-950 leading-[1.1] lg:-ml-1">
                         {t('heroTitle').split(t('haridasa')).map((part, i, arr) => (
                         <span key={i}>
                             {part}
