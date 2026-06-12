@@ -67,15 +67,18 @@ export default function CompositionDetailPageContent({ composition }: any) {
         </div>
 
         {/* Right Column: Translations */}
-        <div className="space-y-12 h-full">
+        <div className="space-y-12">
           {composition.translations.length > 0 && (
-            <section className="h-full">
-              <h2 className="text-2xl font-bold text-foreground mb-8 tracking-tight">
-                {t('translation')}
-              </h2>
+            <section>
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-foreground tracking-tight">
+                  {t('translation')}
+                </h2>
+                <div className="h-8"></div> {/* Alignment spacer */}
+              </div>
               <div className="space-y-8">
                 {composition.translations.map((translation: any) => (
-                  <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300 h-full">
+                  <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
                     <div>
                         <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
                             {t('englishTranslation')}
