@@ -26,7 +26,7 @@ export function MobileNavigation() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute left-0 top-full w-full bg-background border-b border-border p-6 flex flex-col gap-6 text-lg font-bold shadow-2xl z-50"
+            className="absolute left-0 top-full w-full bg-white border-b border-border p-6 flex flex-col gap-6 text-lg font-bold shadow-2xl z-50"
           >
             {[
               { href: '/library', label: t('navLibrary') },
