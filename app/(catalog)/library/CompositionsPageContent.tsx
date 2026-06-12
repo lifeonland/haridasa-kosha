@@ -139,6 +139,8 @@ export default function CompositionsPageContent({ composerCount, ragaCount, anki
                         firstLine={comp.firstLine}
                         composerName={comp.composer.name}
                         deityName={comp.deity.name}
+                        raga={comp.raga?.name}
+                        tala={comp.tala?.name}
                         hasLyrics={comp.lyrics && comp.lyrics.trim() !== comp.title.trim() && comp.lyrics.length > comp.title.length + 5}
                     />
                     ))}
