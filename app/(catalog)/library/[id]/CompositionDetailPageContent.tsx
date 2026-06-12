@@ -27,16 +27,16 @@ export default function CompositionDetailPageContent({ composition }: any) {
         {/* Metadata Tags */}
         <div className="flex flex-wrap gap-3">
           {[
-            { label: 'composerLabel', value: t(composition.composer.name), link: `/haridasaru/${composition.composer.id}` },
-            { label: 'deityLabel', value: t(composition.deity.name) },
-            { label: 'ankitaLabel', value: t(composition.ankita.name) },
-            { label: 'ragaLabel', value: composition.raga ? t(composition.raga.name) : 'N/A' },
-            { label: 'talaLabel', value: composition.tala ? t(composition.tala.name) : 'N/A' },
+            { label: 'composerLabel', value: t(composition.composer.name), link: `/haridasaru/${composition.composer.id}`, color: "bg-slate-100 text-slate-700 border-slate-200" },
+            { label: 'deityLabel', value: t(composition.deity.name), color: "bg-amber-50 text-amber-700 border-amber-100" },
+            { label: 'ankitaLabel', value: t(composition.ankita.name), color: "bg-rose-50 text-rose-700 border-rose-100" },
+            { label: 'ragaLabel', value: composition.raga ? t(composition.raga.name) : 'N/A', color: "bg-indigo-50 text-indigo-700 border-indigo-100" },
+            { label: 'talaLabel', value: composition.tala ? t(composition.tala.name) : 'N/A', color: "bg-emerald-50 text-emerald-700 border-emerald-100" },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-2 px-5 py-2 rounded-full bg-secondary/50 text-foreground text-xs font-bold border border-border/50 backdrop-blur-sm">
-              <span className="text-muted-foreground font-normal">{t(item.label)}:</span>
+            <div key={item.label} className={`flex items-center gap-2 px-5 py-2 rounded-full border ${item.color} text-xs font-bold shadow-sm backdrop-blur-sm`}>
+              <span className="opacity-70 font-normal">{t(item.label)}:</span>
               {item.link ? (
-                <Link href={item.link} className="text-primary hover:text-primary/80 transition-colors">
+                <Link href={item.link} className="hover:underline transition-all">
                   {item.value}
                 </Link>
               ) : (
