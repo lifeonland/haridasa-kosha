@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Composer } from '@prisma/client';
 import { Typography } from '@/components/ui/typography';
 import { useLanguage } from '@/components/shared/LanguageContext';
@@ -17,10 +18,12 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
       <div className="flex flex-col h-full gap-4 p-4 rounded-3xl border border-border/50 bg-white transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
         <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-secondary/50 relative">
           {composer.imageUrl ? (
-            <img
+            <Image
               src={composer.imageUrl}
               alt={t(composer.name)}
-              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-4xl opacity-20">🙏</div>
