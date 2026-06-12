@@ -8,12 +8,13 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import { Search, LayoutGrid, List, Sparkles, ArrowRight, User, X } from 'lucide-react';
 
-export default function ComposersPageContent({ composers: allComposers, stats, totalComposers }: any) {
+export default function ComposersPageContent({ composers, stats, totalComposers, currentPage }: any) {
   const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredComposers = allComposers.filter((c: any) => 
+  // Note: Filtering is now limited to the current page due to server-side pagination.
+  const filteredComposers = composers.filter((c: any) => 
     t(c.name).toLowerCase().includes(searchQuery.toLowerCase()) ||
     t(c.biography || '').toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -125,6 +126,17 @@ export default function ComposersPageContent({ composers: allComposers, stats, t
                 </motion.div>
             )}
         </AnimatePresence>
+
+        {/* 5. Pagination Controls */}
+        <div className="mt-12 flex justify-center items-center gap-4">
+            <Link href={`/haridasaru?page=${Math.max(1, currentPage - 1)}`} className={`px-6 py-3 rounded-full border bg-white font-bold text-sm ${currentPage === 1 ? 'opacity-50 pointer-events-none' : 'hover:border-primary'}`}>
+                {t('previous')}
+            </Link>
+            <span className="font-bold text-lg">{currentPage}</span>
+            <Link href={`/haridasaru?page=${currentPage + 1}`} className={`px-6 py-3 rounded-full border bg-white font-bold text-sm ${composers.length < 20 ? 'opacity-50 pointer-events-none' : 'hover:border-primary'}`}>
+                {t('next')}
+            </Link>
+        </div>
       </div>
     </main>
   );

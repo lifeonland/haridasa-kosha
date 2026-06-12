@@ -46,20 +46,18 @@ export default async function ComposersPage(props: {
     'ugabhoga-narayana-dasa'
   ];
 
-  // Fetch all composers
-  const allComposers = await prisma.composer.findMany({
+  // Fetch paginated composers
+  const composers = await prisma.composer.findMany({
     where: searchFilter,
     include: { _count: { select: { compositions: true } }, ankita: true },
+    take: COMPOSERS_PER_PAGE,
+    skip: (currentPage - 1) * COMPOSERS_PER_PAGE,
   });
 
-  console.log("DEBUG: totalComposers (DB count):", totalComposers);
-  console.log("DEBUG: allComposers.length (Fetched):", allComposers.length);
-
-  // Custom sort: Use historical order, then alphabetical for any remaining
-  const composers = allComposers.sort((a, b) => {
+  // Sort the paginated result
+  composers.sort((a, b) => {
     const indexA = historicalOrder.indexOf(a.id);
     const indexB = historicalOrder.indexOf(b.id);
-
     if (indexA !== -1 && indexB !== -1) return indexA - indexB;
     if (indexA !== -1) return -1;
     if (indexB !== -1) return 1;
@@ -78,6 +76,7 @@ export default async function ComposersPage(props: {
         composers={composers} 
         totalComposers={totalComposers} 
         stats={stats}
+        currentPage={currentPage}
     />
   );
 }
