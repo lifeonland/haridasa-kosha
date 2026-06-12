@@ -3,6 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function POST(request: Request) {
   const apiKey = process.env.GEMINI_API_KEY;
+  console.log("Using API Key starting with:", apiKey ? apiKey.substring(0, 5) : "undefined");
   if (!apiKey) {
     console.error("GEMINI_API_KEY is not defined in environment variables.");
     return NextResponse.json({ error: 'Configuration error' }, { status: 500 });
@@ -14,35 +15,35 @@ export async function POST(request: Request) {
     console.log("Received messages:", messages);
 
     const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        systemInstruction: "You are a knowledgeable assistant specializing in Dasa Sahitya, the devotional literature of the Haridasaru of Karnataka. Provide accurate, insightful, and respectful answers based on Dvaita philosophy and the works of saints like Purandara Dasa and Kanaka Dasa. Keep your responses concise, focused on the query, and include relevant emojis to make the content feel more engaging and devotional."
+        model: "gemini-3.1-flash-lite",
+        systemInstruction: "You are a knowledgeable assistant specializing in Dasa Sahitya. Provide accurate, highly concise, and clear answers. Use bullet points for readability. Avoid lengthy introductions or conclusions. Maximum 3-4 sentences."
     });
 
     // Format messages for Gemini and ensure alternating roles
     const history: any[] = [];
-    let expectedRole = 'user';
-
+    
+    // Filter to only include user and assistant messages, mapping to 'user'/'model'
     for (const m of messages.slice(0, -1)) {
         const role = m.role === 'user' ? 'user' : 'model';
-        if (role === expectedRole) {
-            history.push({
-                role: role,
-                parts: [{ text: m.content }],
-            });
-            expectedRole = role === 'user' ? 'model' : 'user';
-        }
-    }
-
-    // Ensure the history ends with 'model' so the next message can be 'user'
-    if (history.length > 0 && history[history.length - 1].role !== 'model') {
-        history.pop();
+        const text = typeof m.content === 'string' ? m.content : JSON.stringify(m.content);
+        
+        // Ensure history starts with 'user'
+        if (history.length === 0 && role === 'model') continue;
+        
+        history.push({
+            role: role,
+            parts: [{ text: text }],
+        });
     }
 
     const chat = model.startChat({
       history: history,
     });
 
-    const userContent = messages[messages.length - 1].content;
+    const userContent = typeof messages[messages.length - 1].content === 'string' 
+        ? messages[messages.length - 1].content 
+        : JSON.stringify(messages[messages.length - 1].content);
+        
     const result = await chat.sendMessage(userContent);
     const response = await result.response;
     const text = response.text();
