@@ -39,6 +39,7 @@ export default async function ComposerDetailPage(props: {
           raga: true,
           tala: true,
         },
+        orderBy: { title: 'asc' },
       },
     },
   });
