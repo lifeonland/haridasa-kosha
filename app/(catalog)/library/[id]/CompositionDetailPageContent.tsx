@@ -32,7 +32,6 @@ export default function CompositionDetailPageContent({ composition }: any) {
             { label: 'ankitaLabel', value: t(composition.ankita.name) },
             { label: 'ragaLabel', value: composition.raga ? t(composition.raga.name) : 'N/A' },
             { label: 'talaLabel', value: composition.tala ? t(composition.tala.name) : 'N/A' },
-            { label: 'tagLabel', value: composition.tags?.length > 0 ? composition.tags.map((tag: any) => t(tag.name)).join(', ') : 'N/A' },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-2 px-5 py-2 rounded-full bg-secondary/50 text-foreground text-xs font-bold border border-border/50 backdrop-blur-sm">
               <span className="text-muted-foreground font-normal">{t(item.label)}:</span>
@@ -48,7 +47,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left Column: Lyrics & Transliteration */}
         <div className="space-y-12">
           {/* Lyrics Section */}
@@ -68,15 +67,15 @@ export default function CompositionDetailPageContent({ composition }: any) {
         </div>
 
         {/* Right Column: Translations */}
-        <div className="space-y-12">
+        <div className="space-y-12 h-full">
           {composition.translations.length > 0 && (
-            <section>
+            <section className="h-full">
               <h2 className="text-2xl font-bold text-foreground mb-8 tracking-tight">
                 {t('translation')}
               </h2>
               <div className="space-y-8">
                 {composition.translations.map((translation: any) => (
-                  <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                  <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300 h-full">
                     <div>
                         <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
                             {t('englishTranslation')}
