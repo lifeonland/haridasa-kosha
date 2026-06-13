@@ -123,7 +123,11 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
             {viewMode === 'grid' ? (
                 <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredComposers.map((c: any) => (
-                        <div key={c.id} className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 group">
+                        <Link 
+                            key={c.id} 
+                            href={`/haridasaru/${c.id}`}
+                            className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 group block"
+                        >
                             <div className="w-16 h-16 mb-4 rounded-2xl bg-slate-100 overflow-hidden shrink-0 transition-transform duration-500 group-hover:scale-105 shadow-inner">
                                 {c.imageUrl ? (
                                     <Image src={c.imageUrl} alt={t(c.name)} width={64} height={64} className="w-full h-full object-cover" />
@@ -134,10 +138,10 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                             <Typography variant="h4" className="font-bold mb-1">{t(c.name)}</Typography>
                             <Typography variant="p" className="text-xs text-slate-500 mb-4">{t(c.ankita?.name || '')} • {c.timeline}</Typography>
                             <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{t(c.biography === 'A revered Haridasa.' ? 'reveredHaridasa' : c.biography)}</Typography>
-                            <Link href={`/haridasaru/${c.id}`} className="text-sm font-bold text-primary flex items-center gap-2 transition-all duration-300 group-hover:gap-4">
+                            <div className="text-sm font-bold text-primary flex items-center gap-2 transition-all duration-300 group-hover:gap-4">
                                 {t('viewProfile')} <ArrowRight className="w-4 h-4"/>
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
                     ))}
                 </motion.div>
             ) : (
