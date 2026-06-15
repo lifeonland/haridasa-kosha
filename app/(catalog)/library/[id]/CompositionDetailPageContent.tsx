@@ -24,7 +24,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
           {t(composition.title)}
         </h1>
 
-        {/* Metadata Tags */}
+            {/* Metadata Tags */}
         <div className="flex flex-wrap gap-3">
           {[
             { label: 'composerLabel', value: t(composition.composer.name), link: `/haridasaru/${composition.composer.id}`, color: "bg-slate-100 text-slate-700 border-slate-200" },
@@ -42,6 +42,13 @@ export default function CompositionDetailPageContent({ composition }: any) {
               ) : (
                 <span>{item.value}</span>
               )}
+            </div>
+          ))}
+          {/* Render Tags */}
+          {composition.tags.map((tag: any) => (
+            <div key={tag.id} className="flex items-center gap-2 px-5 py-2 rounded-full border bg-violet-50 text-violet-700 border-violet-100 text-xs font-bold shadow-sm backdrop-blur-sm">
+                <span className="opacity-70 font-normal">{t('tag')}:</span>
+                <span>{t(tag.name)}</span>
             </div>
           ))}
         </div>
