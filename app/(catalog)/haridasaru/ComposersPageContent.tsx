@@ -90,7 +90,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                 </div>
                 <div className="w-px h-4 bg-slate-200" />
                 <div className="flex items-baseline gap-1.5">
-                    <span className="text-2xl font-bold text-slate-900 tracking-tight">8</span>
+                    <span className="text-2xl font-bold text-slate-900 tracking-tight">800+</span>
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{t('yearsOfHistory')}</span>
                 </div>
             </motion.div>
