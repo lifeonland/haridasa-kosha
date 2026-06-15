@@ -28,7 +28,22 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
     return map[id];
   };
 
+  const getBioTranslationKey = (id: string) => {
+    const map: Record<string, string> = {
+        'purandara-dasa': 'purandaraDasaDesc',
+        'kanaka-dasa': 'kanakaDasaDesc',
+        'vijaya-dasa': 'vijayaDasaDesc',
+        'jagannatha-dasa': 'jagannathaDasaDesc',
+        'sripadaraja': 'sripadarajaDesc',
+        'vyasatirtha': 'vyasatirthaDesc',
+        'vadiraja-tirtha': 'vadirajaTirthaDesc',
+        'narahari-tirtha': 'narahariTirthaDesc',
+    };
+    return map[id] || 'reveredHaridasa';
+  };
+
   const name = t(getComposerTranslationKey(composer.id) || composer.name);
+  const bio = t(getBioTranslationKey(composer.id));
 
   return (
     <Link href={`/haridasaru/${composer.id}`} className="group block h-full">
@@ -53,6 +68,9 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
           </Typography>
           <Typography variant="h3" className="text-lg md:text-2xl font-bold group-hover:text-primary transition-colors duration-300 break-words hyphens-auto">
             {name}
+          </Typography>
+          <Typography variant="p" className="text-sm text-slate-600 line-clamp-3">
+              {bio}
           </Typography>
 
           <div className="mt-auto pt-4 border-t border-border/40 flex items-center justify-between">
