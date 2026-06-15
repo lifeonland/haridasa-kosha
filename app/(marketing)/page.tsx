@@ -97,7 +97,12 @@ function GlassSectionHeader({
 
 export default function Home() {
   const { t } = useLanguage();
-  const [stats, setStats] = useState({ compositions: null, composers: null, ragas: null, ankitas: null });
+  const [stats, setStats] = useState<{
+      compositions: number | null,
+      composers: number | null,
+      ragas: number | null,
+      ankitas: number | null
+  }>({ compositions: null, composers: null, ragas: null, ankitas: null });
   const [shuffledItems, setShuffledItems] = useState(quickStartItems);
 
   useEffect(() => {
