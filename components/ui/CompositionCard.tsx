@@ -30,9 +30,18 @@ export default function CompositionCard({
   hasLyrics = true,
   featured = false,
 }: CompositionCardProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { toggleBookmark, isBookmarked } = useBookmarks();
   const saved = isBookmarked(id);
+
+  const getDisplayTitle = (title: string) => {
+    if (lang === 'EN') {
+        // Extract content inside parenthesis if exists, otherwise return title
+        const match = title.match(/\(([^)]+)\)/);
+        return match ? match[1] : title;
+    }
+    return t(title);
+  };
 
   return (
     <motion.div
@@ -42,7 +51,7 @@ export default function CompositionCard({
         <Link href={`/library/${id}`} className="block flex-grow">
             <div className="flex justify-between items-start mb-2">
               <Typography variant="h3" className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-2">
-                  {t(title)}
+                  {getDisplayTitle(title)}
               </Typography>
               {!hasLyrics && (
                 <span className="shrink-0 ml-2 px-2 py-1 rounded-md bg-amber-50 text-[10px] font-bold text-amber-600 border border-amber-100 uppercase tracking-tighter">
