@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/components/shared/LanguageContext';
 
 export default function CompositionDetailPageContent({ composition }: any) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12">
@@ -74,14 +74,26 @@ export default function CompositionDetailPageContent({ composition }: any) {
               <div className="space-y-8">
                 {composition.translations.map((translation: any) => (
                   <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div>
-                        <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
-                            {t('englishTranslation')}
-                        </h3>
-                        <p className="text-base text-slate-600 leading-relaxed whitespace-pre-line">
-                            {translation.english}
-                        </p>
-                    </div>
+                    {lang === 'EN' && (
+                      <div>
+                          <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
+                              {t('englishTranslation')}
+                          </h3>
+                          <p className="text-base text-slate-600 leading-relaxed whitespace-pre-line">
+                              {translation.english}
+                          </p>
+                      </div>
+                    )}
+                    {lang === 'KN' && (
+                      <div>
+                          <h3 className="text-xs font-bold text-primary tracking-[0.2em] mb-3 uppercase">
+                              {t('kannadaMeaning')}
+                          </h3>
+                          <p className="text-base text-slate-600 leading-relaxed whitespace-pre-line">
+                              {translation.kannadaMeaning || 'ಅನುವಾದ ಲಭ್ಯವಿಲ್ಲ'}
+                          </p>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
