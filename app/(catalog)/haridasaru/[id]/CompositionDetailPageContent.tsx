@@ -133,7 +133,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                             <tr key={comp.id} className="hover:bg-slate-50/50">
                                                 <td className="px-6 py-4 font-bold">{t(comp.title)}</td>
                                                 <td className="px-6 py-4 text-slate-600">
-                                                  {(comp.translations?.[0]?.english?.length > 100) ? (comp.translations[0].english.substring(0, 100) + '...') : (comp.translations?.[0]?.english || 'No translation')}
+                                                  {comp.translations?.[0] ? t('yes') : t('no')}
                                                 </td>
                                                 <td className="px-6 py-4 text-slate-600">{comp.raga?.name ? t(comp.raga.name) : '-'}</td>
                                                 <td className="px-6 py-4 text-slate-600">{comp.tala?.name ? t(comp.tala.name) : '-'}</td>
