@@ -38,6 +38,7 @@ export default async function ComposerDetailPage(props: {
           deity: true,
           raga: true,
           tala: true,
+          translations: true,
         },
         orderBy: { title: 'asc' },
       },
