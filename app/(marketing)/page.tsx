@@ -97,7 +97,7 @@ function GlassSectionHeader({
 
 export default function Home() {
   const { t } = useLanguage();
-  const [stats, setStats] = useState({ compositions: 0, composers: 0, ragas: 0, ankitas: 0 });
+  const [stats, setStats] = useState({ compositions: null, composers: null, ragas: null, ankitas: null });
   const [shuffledItems, setShuffledItems] = useState(quickStartItems);
 
   useEffect(() => {
@@ -193,10 +193,10 @@ export default function Home() {
       {/* Dynamic Statistics Bar */}
       <section className="bg-white/90 backdrop-blur-xl border-y border-slate-100/50 py-10 relative z-10">
             <Container className="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.compositions?.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsCompositions')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.composers?.toLocaleString()}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsHaridasas')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ragas?.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsRagas')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ankitas?.toLocaleString()}+</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsAnkitas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.compositions !== null ? stats.compositions.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsCompositions')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.composers !== null ? stats.composers.toLocaleString() : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsHaridasas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ragas !== null ? stats.ragas.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsRagas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ankitas !== null ? stats.ankitas.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsAnkitas')}</div></div>
             </Container>
       </section>
 
