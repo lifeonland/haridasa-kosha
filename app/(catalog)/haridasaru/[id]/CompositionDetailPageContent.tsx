@@ -38,6 +38,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
             'sripadaraja': 'sripadarajaDesc',
             'vyasatirtha': 'vyasatirthaDesc',
             'narahari-tirtha': 'narahariTirthaDesc',
+            'vadiraja-tirtha': 'vadirajaTirthaDesc',
         };
         return map[id] || 'reveredHaridasa';
     };
