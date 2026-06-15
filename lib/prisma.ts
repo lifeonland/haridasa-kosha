@@ -5,8 +5,11 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 // Force re-initialization if models are missing
 const createPrismaClient = () => {
+  console.log('--- PRISMA INITIALIZATION ---');
+  console.log('CWD:', process.cwd());
+  console.log('DATABASE_URL:', process.env.DATABASE_URL);
   const client = new PrismaClient({
-    log: ['query'],
+    log: ['query', 'error', 'warn'],
   });
   return client;
 };
