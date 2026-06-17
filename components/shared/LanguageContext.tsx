@@ -152,6 +152,12 @@ const translations = {
     whyWeExistDesc: "The Dasa Sahitya is not just literature; it is a profound spiritual, musical, and philosophical heritage that has sustained communities for centuries. We exist to ensure this wisdom remains vibrant.",
     wisdomQuote: "Wisdom Quote",
     yearsOfHistory: "Years of History",
+    paramparaTitle: "Parampara",
+    paramparaDesc: "The Haridasa Lineage",
+    archivalIntegrity: "Archival Integrity",
+    archivalIntegrityDesc: "Ensuring the sanctity and accuracy of the compositions.",
+    scholarlyVetting: "Scholarly Vetting",
+    scholarlyVettingDesc: "Scholarly research and vetting of compositions.",
 
     // Missing Keys
     Compositions: "Compositions",
@@ -208,6 +214,7 @@ const translations = {
     narahariTirtha: "Sri Narahari Tirtha",
     narahariTirthaDesc: "First Haridasa, established the roots of the tradition.",
     sripadarajaru: "Sri Sripadaraja",
+    sripadarajaDesc: "Sri Sripadarajaru (1404–1502) was a great Haridasa and the pontiff of the Sripadaraja Matha at Mulbagal. He is considered the pioneer of the Dasa Sahitya movement in Karnataka, laying the foundation for the devotional tradition. A prolific composer, he introduced the Suladi and Ugabhoga forms of compositions, which greatly enriched the devotional music of the Dasa tradition. He was a profound scholar, a philosopher, and a direct disciple of Sri Brahmanya Tirtha, known for his deep spiritual insights and intense devotion to Lord Ranga Vittala.",
     vyasatirtha: "Sri Vyasatirtha",
     vyasatirthaDesc: "Philosopher, royal preceptor, and master composer.",
     purandaraDasa: "Sri Purandara Dasa",
@@ -323,6 +330,8 @@ const translations = {
     navComposers: "ಹರಿದಾಸರು",
     navDailyWisdom: "ದೈನಂದಿನ ಜ್ಞಾನ",
     navLibrary: "ಗ್ರಂಥಾಲಯ",
+    sripadarajaru: "ಶ್ರೀ ಶ್ರೀಪಾದರಾಜರು",
+    sripadarajaDesc: "ಶ್ರೀ ಶ್ರೀಪಾದರಾಜರು (1404–1502) ಅವರು ಮಹಾನ್ ಹರಿದಾಸರು ಮತ್ತು ಮುಳಬಾಗಿಲಿನ ಶ್ರೀಪಾದರಾಜ ಮಠದ ಪೀಠಾಧಿಪತಿಗಳಾಗಿದ್ದರು. ಇವರನ್ನು ಕರ್ನಾಟಕದಲ್ಲಿ ದಾಸ ಸಾಹಿತ್ಯ ಚಳುವಳಿಯ ಪ್ರವರ್ತಕರೆಂದು ಪರಿಗಣಿಸಲಾಗಿದೆ, ಇದು ಭಕ್ತಿ ಸಂಪ್ರದಾಯಕ್ಕೆ ಅಡಿಪಾಯವನ್ನು ಹಾಕಿತು. ಇವರು ಸುಳಾದಿ ಮತ್ತು ಉಗಾಭೋಗ ಎಂಬ ಕೀರ್ತನಾ ರೂಪಗಳನ್ನು ಪರಿಚಯಿಸಿದರು, ಇದು ದಾಸ ಪರಂಪರೆಯ ಭಕ್ತಿ ಸಂಗೀತವನ್ನು ಬಹಳವಾಗಿ ಶ್ರೀಮಂತಗೊಳಿಸಿತು. ಇವರು ಆಳವಾದ ವಿದ್ವಾಂಸರು, ತತ್ವಜ್ಞಾನಿಗಳು ಮತ್ತು ಶ್ರೀ ಬ್ರಹ್ಮಣ್ಯ ತೀರ್ಥರ ನೇರ ಶಿಷ್ಯರಾಗಿದ್ದರು, ತಮ್ಮ ಆಳವಾದ ಆಧ್ಯಾತ್ಮಿಕ ಒಳನೋಟಗಳಿಗೆ ಮತ್ತು ರಂಗವಿಠಲನ ಮೇಲಿನ ತೀವ್ರ ಭಕ್ತಿಗೆ ಹೆಸರುವಾಸಿಯಾಗಿದ್ದರು.",
     offset: "ಆಫ್‌ಸೆಟ್",
     open: "ತೆರೆಯಿರಿ",
     ourVision: "ನಮ್ಮ ದೃಷ್ಟಿಕೋನ",
@@ -363,7 +372,14 @@ const translations = {
     "Bajare Hanumantam": "ಭಜರೇ ಹನುಮಂತಂ",
     "Bandevaya govinda setti": "ಬಂದೆವಯ್ಯ ಗೋವಿಂದಶೆಟ್ಟಿ",
     "Bandhu trijagake sri hariyallade mikka": "ಬಂಧು ತ್ರಿಜಗಕೆ ಶ್ರೀ ಹರಿ",
-    "Beda beda elele": "ಬೇಡ ಬೇಡ ಎಲೆಲೆ"
+    "Beda beda elele": "ಬೇಡ ಬೇಡ ಎಲೆಲೆ",
+    yearsOfHistory: "ಇತಿಹಾಸದ ವರ್ಷಗಳು",
+    paramparaTitle: "ಪರಂಪರೆ",
+    paramparaDesc: "ಹರಿದಾಸ ಪರಂಪರೆ",
+    archivalIntegrity: "ದಾಖಲೆಗಳ ಸಮಗ್ರತೆ",
+    archivalIntegrityDesc: "ರಚನೆಗಳ ಪವಿತ್ರತೆ ಮತ್ತು ನಿಖರತೆಯನ್ನು ಖಚಿತಪಡಿಸುವುದು.",
+    scholarlyVetting: "ವಿದ್ವತ್ಪೂರ್ಣ ಪರಿಶೀಲನೆ",
+    scholarlyVettingDesc: "ರಚನೆಗಳ ವಿದ್ವತ್ಪೂರ್ಣ ಸಂಶೋಧನೆ ಮತ್ತು ಪರಿಶೀಲನೆ."
   }
 };
 
