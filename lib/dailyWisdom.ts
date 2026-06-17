@@ -22,18 +22,21 @@ const wisdomArchive = [
     }
 ];
 
-export async function getDailyWisdom() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const dayIndex = today.getDate() % wisdomArchive.length;
+export async function getDailyWisdom(date?: Date) {
+  const targetDate = date || new Date();
+  targetDate.setHours(0, 0, 0, 0);
+  
+  const dayIndex = targetDate.getDate() % wisdomArchive.length;
   const content = wisdomArchive[dayIndex];
 
   let dailyComp = await prisma.dailyComposition.findUnique({
-    where: { date: today },
+    where: { date: targetDate },
     include: { composition: true },
   });
 
   if (!dailyComp) {
+    // If not found for target date, we might want to maintain current randomized behavior 
+    // or just return null/default for past dates. For now, let's keep it robust.
     const count = await prisma.composition.count();
     const skip = Math.floor(Math.random() * count);
     const compositions = await prisma.composition.findMany({ 
@@ -43,7 +46,7 @@ export async function getDailyWisdom() {
     
     dailyComp = await prisma.dailyComposition.create({
       data: {
-        date: today,
+        date: targetDate,
         compositionId: compositions[0].id,
         commentary: "Reflect on the divine message within this composition.",
       },
