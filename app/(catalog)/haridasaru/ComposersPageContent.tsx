@@ -7,6 +7,7 @@ import { Typography } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import { Search, LayoutGrid, List, Sparkles, ArrowRight, User, X } from 'lucide-react';
+import Pagination from '@/components/ui/Pagination';
 
 export default function ComposersPageContent({ composers, stats, totalComposers, currentPage }: any) {
   const { t } = useLanguage();
@@ -170,26 +171,15 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
             )}
         </AnimatePresence>
 
+...
         {/* 5. Pagination Controls */}
-        <div className="mt-12 flex justify-center items-center gap-2">
-            <Link 
-                href={`/haridasaru?page=${Math.max(1, Number(currentPage) - 1)}`} 
-                className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${Number(currentPage) === 1 ? 'opacity-50 pointer-events-none' : ''}`}
-            >
-                {t('previous')}
-            </Link>
-            
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold text-sm shadow-md">
-                {Number(currentPage)}
-            </div>
-
-            <Link 
-                href={`/haridasaru?page=${Number(currentPage) + 1}`} 
-                className={`flex items-center gap-1 px-4 py-2 rounded-full border border-slate-200 bg-white font-bold text-xs transition-all hover:border-primary ${composers.length < 20 ? 'opacity-50 pointer-events-none' : ''}`}
-            >
-                {t('next')}
-            </Link>
-        </div>
+        {totalComposers > 50 && (
+            <Pagination
+                currentPage={currentPage}
+                totalPages={Math.ceil(totalComposers / 50)}
+                baseUrl="/haridasaru"
+            />
+        )}
       </div>
     </main>
   );

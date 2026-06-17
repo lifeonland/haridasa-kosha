@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface PaginationProps {
   currentPage: number;
@@ -41,27 +42,21 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex items-center justify-center gap-2 mt-8">
+    <nav className="flex items-center justify-center gap-1 mt-12" aria-label="Pagination">
       {/* Previous button */}
-      {currentPage > 1 && (
-        <Link
-          href={getPageUrl(currentPage - 1)}
-          className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
-        >
-          Previous
-        </Link>
-      )}
+      <Link
+        href={getPageUrl(Math.max(1, currentPage - 1))}
+        className={`p-2 rounded-full border border-slate-200 bg-white text-slate-600 transition-all hover:border-primary hover:text-primary ${currentPage === 1 ? 'pointer-events-none opacity-50' : ''}`}
+        aria-label="Previous page"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </Link>
 
       {/* Page numbers */}
       {startPage > 1 && (
         <>
-          <Link
-            href={getPageUrl(1)}
-            className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
-          >
-            1
-          </Link>
-          {startPage > 2 && <span className="text-muted-foreground px-2 font-bold">...</span>}
+          <Link href={getPageUrl(1)} className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 bg-white font-bold text-sm text-slate-600 hover:border-primary hover:text-primary">1</Link>
+          {startPage > 2 && <span className="px-2 text-slate-400">...</span>}
         </>
       )}
 
@@ -69,37 +64,31 @@ export default function Pagination({
         <Link
           key={page}
           href={getPageUrl(page)}
-          className={`px-5 py-2 rounded-xl transition-all duration-300 border font-bold shadow-sm ${
+          className={`w-10 h-10 flex items-center justify-center rounded-full border transition-all font-bold text-sm ${
             page === currentPage
               ? 'bg-primary border-primary text-white shadow-md'
-              : 'text-primary bg-white border-primary/30 hover:border-primary hover:bg-accent'
+              : 'border-slate-200 bg-white text-slate-600 hover:border-primary hover:text-primary'
           }`}
         >
           {page}
         </Link>
       ))}
 
-      {/* Next button */}
       {endPage < totalPages && (
         <>
-          {endPage < totalPages - 1 && <span className="text-muted-foreground px-2 font-bold">...</span>}
-          <Link
-            href={getPageUrl(totalPages)}
-            className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
-          >
-            {totalPages}
-          </Link>
+          {endPage < totalPages - 1 && <span className="px-2 text-slate-400">...</span>}
+          <Link href={getPageUrl(totalPages)} className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 bg-white font-bold text-sm text-slate-600 hover:border-primary hover:text-primary">{totalPages}</Link>
         </>
       )}
 
-      {currentPage < totalPages && (
-        <Link
-          href={getPageUrl(currentPage + 1)}
-          className="px-4 py-2 rounded-xl text-primary font-bold bg-white border border-primary/30 hover:border-primary hover:bg-accent transition-all duration-300 shadow-sm"
-        >
-          Next
-        </Link>
-      )}
-    </div>
+      {/* Next button */}
+      <Link
+        href={getPageUrl(Math.min(totalPages, currentPage + 1))}
+        className={`p-2 rounded-full border border-slate-200 bg-white text-slate-600 transition-all hover:border-primary hover:text-primary ${currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}`}
+        aria-label="Next page"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </Link>
+    </nav>
   );
 }
