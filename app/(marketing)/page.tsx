@@ -28,6 +28,7 @@ import { Section } from '@/components/ui/section';
 import { Typography } from '@/components/ui/typography';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import { useState, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 
 const quickStartItems = [
   {
@@ -118,12 +119,16 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#fcfaf7] selection:bg-primary/20 selection:text-primary relative pb-24">
+...
       {/* Universal Page Background Theme */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-          <img 
+          <Image 
             src="/assets/webp/hero-bg.webp" 
             alt="Page Background" 
-            className="w-full h-full object-cover opacity-[0.4]" 
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.4]" 
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fcfaf7]/10 to-[#fcfaf7]/80" />
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-30" />

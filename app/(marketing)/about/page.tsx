@@ -15,12 +15,17 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-[#fcfaf7] selection:bg-primary/20 selection:text-primary relative overflow-y-auto pb-32">
+import Image from 'next/image';
+...
       {/* Universal Page Background Theme */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-          <img 
+          <Image 
             src="/assets/webp/hero-bg.webp" 
             alt="Page Background" 
-            className="w-full h-full object-cover opacity-[0.08]" 
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.08]" 
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fcfaf7]/40 to-[#fcfaf7]" />
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-10" />

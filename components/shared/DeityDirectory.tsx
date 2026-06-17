@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Typography } from "@/components/ui/typography";
 import { Search } from 'lucide-react';
@@ -26,10 +27,12 @@ export default function DeityDirectory() {
           href={`/library?deity=${deity.name.toLowerCase()}`} 
           className="group relative overflow-hidden rounded-[2rem] aspect-[4/3] block"
         >
-          <img 
+          <Image 
             src={deity.image} 
             alt={t(deity.name)} 
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110" 
           />
           <div className="absolute inset-0 bg-slate-950/40 transition-opacity duration-500 group-hover:bg-slate-950/60" />
           <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
