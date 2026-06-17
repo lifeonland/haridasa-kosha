@@ -9,17 +9,17 @@ import { useLanguage } from '@/components/shared/LanguageContext';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import NextImage from "next/image";
 
 export default function AboutPage() {
   const { t } = useLanguage();
 
   return (
     <main className="min-h-screen bg-[#fcfaf7] selection:bg-primary/20 selection:text-primary relative overflow-y-auto pb-32">
-import Image from 'next/image';
 ...
       {/* Universal Page Background Theme */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-          <Image 
+          <NextImage 
             src="/assets/webp/hero-bg.webp" 
             alt="Page Background" 
             fill
