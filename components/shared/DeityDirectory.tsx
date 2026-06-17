@@ -8,14 +8,14 @@ export default function DeityDirectory() {
   const { t } = useLanguage();
 
   const deities = [
-    { name: 'vittala', image: '/assets/vittala.png' },
-    { name: 'krishna', image: '/assets/krishna.png' },
-    { name: 'rama', image: '/assets/rama.png' },
-    { name: 'lakshmi', image: '/assets/lakshmi.png' },
-    { name: 'narasimha', image: '/assets/narasimha.png' },
-    { name: 'hanuman', image: '/assets/hanuman.png' },
-    { name: 'srinivasa', image: '/assets/srinivasa.png' },
-    { name: 'shiva', image: '/assets/shiva.png' }
+    { name: 'vittala', image: '/assets/webp/vittala.webp' },
+    { name: 'krishna', image: '/assets/webp/krishna.webp' },
+    { name: 'rama', image: '/assets/webp/rama.webp' },
+    { name: 'lakshmi', image: '/assets/webp/lakshmi.webp' },
+    { name: 'narasimha', image: '/assets/webp/narasimha.webp' },
+    { name: 'hanuman', image: '/assets/webp/hanuman.webp' },
+    { name: 'srinivasa', image: '/assets/webp/srinivasa.webp' },
+    { name: 'shiva', image: '/assets/webp/shiva.webp' }
   ];
 
   return (

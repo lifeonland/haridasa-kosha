@@ -18,7 +18,7 @@ export default function AboutPage() {
       {/* Universal Page Background Theme */}
       <div className="fixed inset-0 z-0 pointer-events-none">
           <img 
-            src="/assets/hero-bg.png" 
+            src="/assets/webp/hero-bg.webp" 
             alt="Page Background" 
             className="w-full h-full object-cover opacity-[0.08]" 
           />

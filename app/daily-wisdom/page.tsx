@@ -23,21 +23,24 @@ export default function DailyWisdomPage() {
       .catch((err) => console.error("Error fetching daily wisdom:", err));
   }, []);
 
-  const today = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const [today, setToday] = useState<string>('');
+
+  useEffect(() => {
+    setToday(new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#fcfaf7] py-12 px-6">
-        <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]" 
+        <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03]"
              style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }} />
-      
+
       <Section spacing="sm" className="relative z-10 max-w-4xl mx-auto">
         <Container>
           <div className="text-center mb-12">
             <Typography variant="h1" className="text-4xl font-bold mb-4">{t('dailyWisdom')}</Typography>
             <Typography variant="lead" className="text-slate-600 mb-2">{t('dailyWisdomDesc')}</Typography>
-            <Typography variant="small" className="text-primary font-bold tracking-widest">{today}</Typography>
+            {today && <Typography variant="small" className="text-primary font-bold tracking-widest">{today}</Typography>}
           </div>
-          
           {!data ? (
             <div className="text-center py-20">
                 <Typography>{t('loading')}</Typography>
