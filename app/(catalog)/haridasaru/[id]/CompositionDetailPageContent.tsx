@@ -25,6 +25,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
             'vyasatirtha': 'vyasatirthaName',
             'vadiraja-tirtha': 'vadirajaTirtharu',
             'narahari-tirtha': 'narahariTirtharu',
+            'madhwacharya': 'madhwacharya',
         };
         return map[id] || id;
     };
@@ -39,6 +40,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
             'vyasatirtha': 'vyasatirthaDesc',
             'narahari-tirtha': 'narahariTirthaDesc',
             'vadiraja-tirtha': 'vadirajaTirthaDesc',
+            'madhwacharya': 'madhwacharyaBio',
         };
         return map[id] || 'reveredHaridasa';
     };
@@ -66,7 +68,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
 
                 <div className="flex-1 space-y-10 min-w-0">
                     <div>
-                        <Typography variant="h1" className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+                        <Typography variant="h1" className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 capitalize">
                             {t(getComposerTranslationKey(composer.id))}
                         </Typography>
                         <div className="flex items-center gap-4 text-sm font-bold text-slate-500 tracking-widest">
