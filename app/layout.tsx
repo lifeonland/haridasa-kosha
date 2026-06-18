@@ -22,11 +22,13 @@ function Header() {
       </div>
       <div className="bg-white/60 backdrop-blur-3xl border-b border-white/40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16 sm:h-20 gap-3">
-          <Link href="/" className="s font-bold tracking-tighter text-primary sm:s lg:s">
-            {t('brand')}
-          </Link>
+          <div className="flex items-center gap-2">
+            <MobileNavigation />
+            <Link href="/" className="s font-bold tracking-tighter text-primary sm:s lg:s">
+              {t('brand')}
+            </Link>
+          </div>
           <div className="flex items-center gap-6">
-              <MobileNavigation />
               <Navigation />
               <div className="scale-75">
                 <LanguageSwitcher />

@@ -9,8 +9,9 @@ import { useLanguage } from '@/components/shared/LanguageContext';
 import { Search, LayoutGrid, List, Sparkles, ArrowRight, User, X } from 'lucide-react';
 import Pagination from '@/components/ui/Pagination';
 
-export default function ComposersPageContent({ composers, stats, totalComposers, currentPage }: any) {
+export default function ComposersPageContent({ composers, stats, totalComposers, totalPages, currentPage }: any) {
   const { t } = useLanguage();
+  console.log("DEBUG: totalComposers:", totalComposers); console.log("DEBUG: totalPages:", totalPages); console.log("DEBUG: currentPage:", currentPage);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -138,7 +139,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                             </div>
                             <Typography variant="h4" className="font-bold mb-1">{t(c.name)}</Typography>
                             <Typography variant="p" className="text-xs text-slate-500 mb-4">{t(c.ankita?.name || '')} • {c.timeline}</Typography>
-                            <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{t(c.biography === 'A revered Haridasa.' ? 'reveredHaridasa' : c.biography)}</Typography>
+                            <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{getBio(c)}</Typography>
                             <div className="text-sm font-bold text-primary flex items-center gap-2 transition-all duration-300 group-hover:gap-4">
                                 {t('viewProfile')} <ArrowRight className="w-4 h-4"/>
                             </div>
@@ -173,10 +174,10 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
 
 ...
         {/* 5. Pagination Controls */}
-        {totalComposers > 50 && (
+        {totalPages > 1 && (
             <Pagination
                 currentPage={currentPage}
-                totalPages={Math.ceil(totalComposers / 50)}
+                totalPages={totalPages}
                 baseUrl="/haridasaru"
             />
         )}
