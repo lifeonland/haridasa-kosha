@@ -40,6 +40,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
             'sripadaraja': 'sripadarajaDesc',
             'vyasatirtha': 'vyasatirthaDesc',
             'narahari-tirtha': 'narahariTirthaDesc',
+            'madhwacharya': 'madhwacharyaBio',
         };
         return map[id] || 'reveredHaridasa';
     };
@@ -51,7 +52,9 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
 
     const getBio = (c: any) => {
         const key = getBioTranslationKey(c.id);
-        return t(key);
+        const translated = t(key);
+        console.log("DEBUG: ComposerID:", c.id, "BioKey:", key, "TranslatedBio:", translated);
+        return translated;
     };
 
   // Note: Filtering is now limited to the current page due to server-side pagination.
@@ -137,7 +140,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                                     <div className="w-full h-full flex items-center justify-center text-2xl opacity-50">🙏</div>
                                 )}
                             </div>
-                            <Typography variant="h4" className="font-bold mb-1">{t(c.name)}</Typography>
+                            <Typography variant="h4" className="font-bold mb-1 capitalize">{t(c.name)}</Typography>
                             <Typography variant="p" className="text-xs text-slate-500 mb-4">{t(c.ankita?.name || '')} • {c.timeline}</Typography>
                             <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{getBio(c)}</Typography>
                             <div className="text-sm font-bold text-primary flex items-center gap-2 transition-all duration-300 group-hover:gap-4">
@@ -160,7 +163,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                         <tbody className="divide-y divide-slate-100">
                             {filteredComposers.map((c: any) => (
                                 <tr key={c.id} className="hover:bg-slate-50/50">
-                                    <td className="px-6 py-4 font-bold">{t(c.name)}</td>
+                                    <td className="px-6 py-4 font-bold capitalize">{t(c.name)}</td>
                                     <td className="px-6 py-4 text-slate-600">{t(c.ankita?.name || '')}</td>
                                     <td className="px-6 py-4 text-slate-600">{c.timeline}</td>
                                     <td className="px-6 py-4 text-right"><Link href={`/haridasaru/${c.id}`} className="text-primary font-bold">{t('viewProfile')}</Link></td>

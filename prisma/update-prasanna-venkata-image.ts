@@ -3,14 +3,17 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Updating Prasanna Venkata Dasaru image...');
+  const composerId = 'prasanna-venkata-dasa';
+  const newImageUrl = '/assets/webp/prasanna-venkata-dasaru.webp';
+  
+  console.log(`Updating image for: ${composerId}`);
 
   await prisma.composer.update({
-    where: { id: 'prasanna-venkata-dasa' },
-    data: { imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Prasanna_venkata_dasaru.jpg/250px-Prasanna_venkata_dasaru.jpg' },
+    where: { id: composerId },
+    data: { imageUrl: newImageUrl },
   });
 
-  console.log('✅ Prasanna Venkata Dasaru image updated successfully!');
+  console.log(`✅ Updated image to ${newImageUrl}`);
 }
 
 main()

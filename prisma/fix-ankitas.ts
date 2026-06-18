@@ -9,9 +9,11 @@ const ankitaMap: { [key: string]: string } = {
   'gopala-dasa': 'Gopala Vittala',
   'jagannatha-dasa': 'Jagannatha Vittala',
   'sripadaraja': 'Ranga Vittala',
-  'vyasatirtha': 'Sri Krishna',
+  'vyasatirtha': 'Vyasa Vittala',
+  'pranesha-dasa': 'Pranesha Vittala',
+  'helavanakatte-giriyamma': 'Giriyamma Vittala',
   'vadiraja-tirtha': 'Hayavadana',
-  'narahari-tirtha': 'Ranga Vittala',
+  'narahari-tirtha': 'Narahari Vittala',
   'mahipati-dasa': 'Mahipati Vittala',
   'raghavendra-dasa': 'Raghavendra',
   // ... other mappings would follow
