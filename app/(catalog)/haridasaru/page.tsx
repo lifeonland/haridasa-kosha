@@ -28,12 +28,24 @@ export default async function ComposersPage(props: {
       }
     : {};
 
+  console.time('PrismaQueries');
   const [totalComposers, compositionsCount, ragaCount, ankitaCount] = await Promise.all([
       prisma.composer.count({ where: searchFilter }),
       prisma.composition.count(),
       prisma.raga.count(),
       prisma.ankita.count()
   ]);
+  console.timeEnd('PrismaQueries');
+
+  console.time('ComposerFetch');
+  // Fetch paginated composers
+  const composers = await prisma.composer.findMany({
+    where: searchFilter,
+    include: { _count: { select: { compositions: true } }, ankita: true },
+    take: COMPOSERS_PER_PAGE,
+    skip: (currentPage - 1) * COMPOSERS_PER_PAGE,
+  });
+  console.timeEnd('ComposerFetch');
 
   // Define custom historical order
   const historicalOrder = [
@@ -45,14 +57,6 @@ export default async function ComposersPage(props: {
     'achyuta-dasa', 'govinda-dasa', 'harapanahalli-bhimavva', 'helavanakatte-giriyamma',
     'ugabhoga-narayana-dasa'
   ];
-
-  // Fetch paginated composers
-  const composers = await prisma.composer.findMany({
-    where: searchFilter,
-    include: { _count: { select: { compositions: true } }, ankita: true },
-    take: COMPOSERS_PER_PAGE,
-    skip: (currentPage - 1) * COMPOSERS_PER_PAGE,
-  });
 
   // Sort the paginated result
   composers.sort((a, b) => {
@@ -75,6 +79,7 @@ export default async function ComposersPage(props: {
     <ComposersPageContent 
         composers={composers} 
         totalComposers={totalComposers} 
+        totalPages={Math.ceil(totalComposers / COMPOSERS_PER_PAGE)}
         stats={stats}
         currentPage={currentPage}
     />
