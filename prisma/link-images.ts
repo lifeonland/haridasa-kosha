@@ -4,15 +4,20 @@ const prisma = new PrismaClient();
 
 // Map of composer ID to available image file in public/assets/
 const imageMapping: { [key: string]: string } = {
-  'purandara-dasa': '/assets/vittala.png',
-  'kanaka-dasa': '/assets/krishna.png',
-  'vijaya-dasa': '/assets/srinivasa.png',
-  'gopala-dasa': '/assets/vittala.png',
-  'jagannatha-dasaru': '/assets/vittala.png',
-  'sripadaraja': '/assets/srinivasa.png',
-  'vyasatirtha': '/assets/vittala.png',
-  'vadiraja-tirtha': '/assets/vittala.png',
-  'narahari-tirtha': '/assets/vittala.png',
+  'purandara-dasa': 'https://i.pinimg.com/736x/29/e5/b0/29e5b084b9d40d29d2532141e0d662b8.jpg',
+  'kanaka-dasa': 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Kanakadasa_art.jpg',
+  'vijaya-dasa': '/assets/webp/vijayadasaru.webp',
+  'gopala-dasa': '/assets/webp/gopaladasaru.webp',
+  'jagannatha-dasaru': 'https://anandsp1.wordpress.com/wp-content/uploads/2018/09/jagannatha-dasaru.jpg?w=315&h=435',
+  'sripadaraja': 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+  'vyasatirtha': '/assets/webp/vyasarajaru.jpeg',
+  'vadiraja-tirtha': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFs8UkKEyXda__AbaWW5sXr9y1_2Fehplcbg&s',
+  'narahari-tirtha': 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
+  'pranesha-dasaru': '/assets/webp/praneshadasaru.webp',
+  'raghavendra-dasa': '/assets/webp/rayaru.webp',
+  'subbanna-dasa': '/assets/webp/kalluru-subbanna-dasaru.webp',
+  'mohana-dasa': '/assets/webp/mohana-dasaru.webp',
+  'helavanakatte-giriyamma': '/assets/webp/helavanakatte-giriyamma.webp',
 };
 
 async function main() {
