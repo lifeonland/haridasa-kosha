@@ -10,7 +10,7 @@ async function main() {
     where: { id: 'subbanna-dasa' },
     data: { 
         name: 'Kalluru Subbanna Dasaru',
-        imageUrl: '/assets/kalluru-subbanna-dasaru.png' 
+        imageUrl: '/assets/webp/kalluru-subbanna-dasaru.webp' 
     },
   });
   console.log('✅ Kalluru Subbanna Dasaru updated.');

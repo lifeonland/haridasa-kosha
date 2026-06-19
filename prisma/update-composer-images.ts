@@ -19,7 +19,7 @@ async function main() {
   // Mohana Dasaru
   await prisma.composer.update({
     where: { id: 'mohana-dasa' },
-    data: { imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVOKSMxV-rUIIBPVP7tsljfc3pivRFLQ3VMQkBTtEFaWHEk7xjaFTRVwVgM-zZVjAQ51J93M7lF9CtNXwJSlO9HZzGWJ0jLJ1nZdt3nwkHYR1YrN-7tV812EWN8HFd1ltsdGWdQ3hGq7Y7c-sJPUQHtpoNns8k3fELuaVCwG4eNAukBZ7n7-TOXnw0Hg/s400/WhatsApp%20Image%202022-06-04%20at%2010.35.00%20PM.jpeg' },
+    data: { imageUrl: '/assets/webp/mohana-dasaru.webp' },
   });
 
   console.log('✅ Venu Gopaladasaru and Mohana Dasaru images updated successfully!');
