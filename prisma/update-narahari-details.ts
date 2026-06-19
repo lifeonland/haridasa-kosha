@@ -8,7 +8,7 @@ async function main() {
   await prisma.composer.update({
     where: { id: 'narahari-tirtha' },
     data: { 
-      imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
+      imageUrl: '/assets/webp/narahari.webp',
       biography: 'Sri Narahari Tirtha (c. 1243 – c. 1333) was a prominent scholar and the second direct disciple of Sri Madhvacharya. He is considered the progenitor of the Haridasa movement. Before taking sanyasa, he served as a regent for the Kalinga Kingdom. He is famously credited with bringing the sacred idols of Moola Rama and Sita from the Kalinga treasury to Sri Madhvacharya. His Kannada compositions are considered the earliest examples of Haridasa Sahitya.',
       timeline: '1243–1333'
     },

@@ -7,7 +7,7 @@ async function main() {
   
   await prisma.composer.update({
     where: { id: 'narahari-tirtha' },
-    data: { imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg' },
+    data: { imageUrl: '/assets/webp/narahari.webp' },
   });
 
   console.log('✅ Narahari Tirtharu image updated successfully!');

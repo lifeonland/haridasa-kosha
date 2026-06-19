@@ -9,14 +9,14 @@ const composerOverrides: Record<string, { displayName: string; id: string; image
   'Achyuta Dasa': {
     displayName: 'Narahari Tirtharu',
     id: 'narahari-tirtha',
-    imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
+    imageUrl: '/assets/webp/narahari.webp',
     biography: 'Sri Narahari Tirtha (c. 1243 – c. 1333) was a prominent scholar and the second direct disciple of Sri Madhvacharya. He is considered the progenitor of the Haridasa movement and an influential devotional poet.',
     timeline: '1243–1333',
   },
   'Achyuta Dasaru': {
     displayName: 'Narahari Tirtharu',
     id: 'narahari-tirtha',
-    imageUrl: 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
+    imageUrl: '/assets/webp/narahari.webp',
     biography: 'Sri Narahari Tirtha (c. 1243 – c. 1333) was a prominent scholar and the second direct disciple of Sri Madhvacharya. He is considered the progenitor of the Haridasa movement and an influential devotional poet.',
     timeline: '1243–1333',
   },
@@ -51,14 +51,14 @@ const composerOverrides: Record<string, { displayName: string; id: string; image
   'Guru Jagannatha Dasa': {
     displayName: 'Vadiraja Tirtharu',
     id: 'vadiraja-tirtha',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFs8UkKEyXda__AbaWW5sXr9y1_2Fehplcbg&s',
+    imageUrl: '/assets/webp/vadiraja.webp',
     biography: 'Sri Vadiraja Tirtha (1480–1600) was a celebrated Dvaita philosopher and devotional saint, known for his poetry, scholarship, and leadership of the Sodhe Matha.',
     timeline: '1480–1600',
   },
   'Guru Jagannatha Dasaru': {
     displayName: 'Vadiraja Tirtharu',
     id: 'vadiraja-tirtha',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFs8UkKEyXda__AbaWW5sXr9y1_2Fehplcbg&s',
+    imageUrl: '/assets/webp/vadiraja.webp',
     biography: 'Sri Vadiraja Tirtha (1480–1600) was a celebrated Dvaita philosopher and devotional saint, known for his poetry, scholarship, and leadership of the Sodhe Matha.',
     timeline: '1480–1600',
   },
