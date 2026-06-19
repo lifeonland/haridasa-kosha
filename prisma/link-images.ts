@@ -11,7 +11,7 @@ const imageMapping: { [key: string]: string } = {
   'jagannatha-dasaru': 'https://anandsp1.wordpress.com/wp-content/uploads/2018/09/jagannatha-dasaru.jpg?w=315&h=435',
   'sripadaraja': '/assets/webp/sripadaraja.webp',
   'vyasatirtha': '/assets/webp/vyasarajaru.webp',
-  'vadiraja-tirtha': '/assets/webp/vadiraja.webp',
+  'vadiraja-tirtha': '/assets/webp/vadirajaru.webp',
   'narahari-tirtha': '/assets/webp/narahari.webp',
   'pranesha-dasaru': '/assets/webp/praneshadasaru.webp',
   'raghavendra-dasa': '/assets/webp/rayaru.webp',

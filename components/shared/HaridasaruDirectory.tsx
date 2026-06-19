@@ -51,14 +51,14 @@ const composerOverrides: Record<string, { displayName: string; id: string; image
   'Guru Jagannatha Dasa': {
     displayName: 'Vadiraja Tirtharu',
     id: 'vadiraja-tirtha',
-    imageUrl: '/assets/webp/vadiraja.webp',
+    imageUrl: '/assets/webp/vadirajaru.webp',
     biography: 'Sri Vadiraja Tirtha (1480–1600) was a celebrated Dvaita philosopher and devotional saint, known for his poetry, scholarship, and leadership of the Sodhe Matha.',
     timeline: '1480–1600',
   },
   'Guru Jagannatha Dasaru': {
     displayName: 'Vadiraja Tirtharu',
     id: 'vadiraja-tirtha',
-    imageUrl: '/assets/webp/vadiraja.webp',
+    imageUrl: '/assets/webp/vadirajaru.webp',
     biography: 'Sri Vadiraja Tirtha (1480–1600) was a celebrated Dvaita philosopher and devotional saint, known for his poetry, scholarship, and leadership of the Sodhe Matha.',
     timeline: '1480–1600',
   },

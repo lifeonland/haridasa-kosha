@@ -7,7 +7,7 @@ async function main() {
 
   await prisma.composer.update({
     where: { id: 'vadiraja-tirtha' },
-    data: { imageUrl: '/assets/webp/vadiraja.webp' },
+    data: { imageUrl: '/assets/webp/vadirajaru.webp' },
   });
 
   console.log('✅ Vadiraja Tirtharu image updated successfully!');
