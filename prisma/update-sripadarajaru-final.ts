@@ -7,7 +7,7 @@ async function main() {
   
   await prisma.composer.update({
     where: { id: 'sripadaraja' },
-    data: { imageUrl: 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png' },
+    data: { imageUrl: '/assets/webp/sripadaraja.webp' },
   });
 
   console.log('✅ Sripadarajaru image updated successfully!');

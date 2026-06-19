@@ -23,14 +23,14 @@ const composerOverrides: Record<string, { displayName: string; id: string; image
   'Gopala Dasa': {
     displayName: 'Sripadarajaru',
     id: 'sripadaraja',
-    imageUrl: 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+    imageUrl: '/assets/webp/sripadaraja.webp',
     biography: 'Sri Sripadarajaru (1404–1502) was a great scholar and saint in the Dvaita Vedantic tradition, regarded as the founder of the Haridasa movement and the respected Rajaguru of the Vijayanagara Empire.',
     timeline: '1404–1502',
   },
   'Gopala Dasaru': {
     displayName: 'Sripadarajaru',
     id: 'sripadaraja',
-    imageUrl: 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+    imageUrl: '/assets/webp/sripadaraja.webp',
     biography: 'Sri Sripadarajaru (1404–1502) was a great scholar and saint in the Dvaita Vedantic tradition, regarded as the founder of the Haridasa movement and the respected Rajaguru of the Vijayanagara Empire.',
     timeline: '1404–1502',
   },

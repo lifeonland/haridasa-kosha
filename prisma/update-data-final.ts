@@ -9,7 +9,7 @@ async function main() {
   await prisma.composer.update({
     where: { id: 'sripadaraja' },
     data: { 
-      imageUrl: 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+      imageUrl: '/assets/webp/sripadaraja.webp',
       biography: 'Sri Sripadarajaru (1404–1502) was a great scholar and saint in the Dvaita Vedantic tradition. He is regarded as the founder of the Haridasa movement and was the Rajaguru of the Vijayanagara Empire. He is well-known for his magnum opus "Vagvajra" and numerous devotional compositions.',
       timeline: '1404–1502'
     },

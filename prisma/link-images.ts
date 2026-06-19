@@ -9,7 +9,7 @@ const imageMapping: { [key: string]: string } = {
   'vijaya-dasa': '/assets/webp/vijayadasaru.webp',
   'gopala-dasa': '/assets/webp/gopaladasaru.webp',
   'jagannatha-dasaru': 'https://anandsp1.wordpress.com/wp-content/uploads/2018/09/jagannatha-dasaru.jpg?w=315&h=435',
-  'sripadaraja': 'https://www.sripadarajamutt.org/images/sri-sripadarajaru-image-3.png',
+  'sripadaraja': '/assets/webp/sripadaraja.webp',
   'vyasatirtha': '/assets/webp/vyasarajaru.webp',
   'vadiraja-tirtha': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFs8UkKEyXda__AbaWW5sXr9y1_2Fehplcbg&s',
   'narahari-tirtha': 'https://cdn.umath.in/um-assets/parampara/images/2.jpg',
