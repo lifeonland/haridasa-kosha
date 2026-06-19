@@ -65,14 +65,14 @@ const composerOverrides: Record<string, { displayName: string; id: string; image
   'Purandara Dasaru': {
     displayName: 'Purandara Dasaru',
     id: 'purandara-dasa',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Purandara_Dasa_1964_stamp_of_India.jpg',
+    imageUrl: '/assets/webp/purandaradasaru.webp',
     biography: 'Purandara Dasaru (1484–1564) is honored as the father of Carnatic music, who systematized devotional practice with accessible compositions and musical pedagogy.',
     timeline: '1484–1564',
   },
   'purandara-dasa': {
     displayName: 'Purandara Dasaru',
     id: 'purandara-dasa',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Purandara_Dasa_1964_stamp_of_India.jpg',
+    imageUrl: '/assets/webp/purandaradasaru.webp',
     biography: 'Purandara Dasaru (1484–1564) is honored as the father of Carnatic music, who systematized devotional practice with accessible compositions and musical pedagogy.',
     timeline: '1484–1564',
   },

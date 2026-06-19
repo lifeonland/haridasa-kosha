@@ -7,7 +7,7 @@ async function main() {
     {
       id: 'purandara-dasa',
       name: 'Purandara Dasaru',
-      imageUrl: 'https://i.pinimg.com/736x/29/e5/b0/29e5b084b9d40d29d2532141e0d662b8.jpg',
+      imageUrl: '/assets/webp/purandaradasaru.webp',
     },
     {
       id: 'gopala-dasa',

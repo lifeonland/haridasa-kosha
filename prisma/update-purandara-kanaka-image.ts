@@ -8,7 +8,7 @@ async function main() {
   // Purandara Dasaru
   await prisma.composer.update({
     where: { id: 'purandara-dasa' },
-    data: { imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Purandara_Dasa_1964_stamp_of_India.jpg' },
+    data: { imageUrl: '/assets/webp/purandaradasaru.webp' },
   });
 
   // Kanaka Dasaru

@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 // Map of composer ID to available image file in public/assets/
 const imageMapping: { [key: string]: string } = {
-  'purandara-dasa': 'https://i.pinimg.com/736x/29/e5/b0/29e5b084b9d40d29d2532141e0d662b8.jpg',
+  'purandara-dasa': '/assets/webp/purandaradasaru.webp',
   'kanaka-dasa': 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Kanakadasa_art.jpg',
   'vijaya-dasa': '/assets/webp/vijayadasaru.webp',
   'gopala-dasa': '/assets/webp/gopaladasaru.webp',

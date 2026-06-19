@@ -7,7 +7,7 @@ async function main() {
 
   await prisma.composer.update({
     where: { id: 'purandara-dasa' },
-    data: { imageUrl: 'https://i.pinimg.com/736x/29/e5/b0/29e5b084b9d40d29d2532141e0d662b8.jpg' },
+    data: { imageUrl: '/assets/webp/purandaradasaru.webp' },
   });
 
   console.log('✅ Purandara Dasaru image restored successfully!');
