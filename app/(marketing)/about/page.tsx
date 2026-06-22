@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import NextImage from "next/image";
 
 export default function AboutPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <main className="min-h-screen bg-[#fcfaf7] selection:bg-primary/20 selection:text-primary relative overflow-y-auto pb-32">
@@ -54,10 +54,10 @@ export default function AboutPage() {
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             {[
-                { label: t('yearsOfHistory'), value: '800+', icon: History, color: 'text-primary' },
-                { label: t('haridasa'), value: '150+', icon: Users, color: 'text-amber-500' },
-                { label: t('compositions'), value: '12K+', icon: BookOpen, color: 'text-primary' },
-                { label: 'Global Access', value: 'Global', icon: Globe, color: 'text-emerald-500' },
+                { label: t('yearsOfHistory'), value: (800).toLocaleString(lang === 'KN' ? 'kn-IN' : 'en-US') + '+', icon: History, color: 'text-primary' },
+                { label: t('haridasa'), value: (150).toLocaleString(lang === 'KN' ? 'kn-IN' : 'en-US') + '+', icon: Users, color: 'text-amber-500' },
+                { label: t('compositions'), value: (12000).toLocaleString(lang === 'KN' ? 'kn-IN' : 'en-US') + '+', icon: BookOpen, color: 'text-primary' },
+                { label: t('globalAccess'), value: t('global'), icon: Globe, color: 'text-emerald-500' },
             ].map((stat) => (
                 <div key={stat.label} className="bg-white/80 backdrop-blur-md p-6 rounded-[1.5rem] border border-white/50 shadow-sm text-center flex flex-col items-center">
                     <stat.icon className={`w-6 h-6 mb-3 ${stat.color}`} />
