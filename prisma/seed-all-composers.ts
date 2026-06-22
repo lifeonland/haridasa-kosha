@@ -16,7 +16,6 @@ const composers = [
   { id: 'mahipati-dasa', name: 'Mahipati Dasaru', timeline: '1611–1681' },
   { id: 'harapanahalli-bhimavva', name: 'Harapanahalli Bhimavva', timeline: '1822–1928' },
   { id: 'helavanakatte-giriyamma', name: 'Helavanakatte Giriyamma', timeline: '18th Century' },
-  { id: 'achyuta-dasa', name: 'Achyuta Dasaru', timeline: '18th Century' },
   { id: 'subbanna-dasa', name: 'Subbanna Dasaru', timeline: '18th Century' },
   { id: 'prasanna-venkata-dasa', name: 'Prasanna Venkata Dasaru', timeline: '1780–1850' },
   { id: 'madhwapati-dasa', name: 'Madhwapati Dasaru', timeline: '18th Century' },

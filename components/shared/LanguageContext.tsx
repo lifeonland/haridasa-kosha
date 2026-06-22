@@ -216,7 +216,9 @@ const translations = {
     sripadarajaru: "Sri Sripadaraja",
     sripadarajaDesc: "Sri Sripadarajaru (1404–1502) was a great Haridasa and the pontiff of the Sripadaraja Matha at Mulbagal. He is considered the pioneer of the Dasa Sahitya movement in Karnataka, laying the foundation for the devotional tradition. A prolific composer, he introduced the Suladi and Ugabhoga forms of compositions, which greatly enriched the devotional music of the Dasa tradition. He was a profound scholar, a philosopher, and a direct disciple of Sri Brahmanya Tirtha, known for his deep spiritual insights and intense devotion to Lord Ranga Vittala.",
     vyasatirtha: "Sri Vyasatirtha",
+    vyasatirthaName: "Sri Vyasatirtha",
     vyasatirthaDesc: "Philosopher, royal preceptor, and master composer.",
+    vadirajaTirthaDesc: "Prolific saint-composer, philosopher and scholar of Sodhe Mutt.",
     purandaraDasa: "Sri Purandara Dasa",
     purandaraDasaDesc: "Father of Carnatic music, systematized devotional pedagogy.",
     kanakaDasa: "Sri Kanaka Dasa",
@@ -380,7 +382,24 @@ const translations = {
     archivalIntegrity: "ದಾಖಲೆಗಳ ಸಮಗ್ರತೆ",
     archivalIntegrityDesc: "ರಚನೆಗಳ ಪವಿತ್ರತೆ ಮತ್ತು ನಿಖರತೆಯನ್ನು ಖಚಿತಪಡಿಸುವುದು.",
     scholarlyVetting: "ವಿದ್ವತ್ಪೂರ್ಣ ಪರಿಶೀಲನೆ",
-    scholarlyVettingDesc: "ರಚನೆಗಳ ವಿದ್ವತ್ಪೂರ್ಣ ಸಂಶೋಧನೆ ಮತ್ತು ಪರಿಶೀಲನೆ."
+    scholarlyVettingDesc: "ರಚನೆಗಳ ವಿದ್ವತ್ಪೂರ್ಣ ಸಂಶೋಧನೆ ಮತ್ತು ಪರಿಶೀಲನೆ.",
+    vyasatirtha: "ಶ್ರೀ ವ್ಯಾಸತೀರ್ಥರು",
+    vyasatirthaName: "ಶ್ರೀ ವ್ಯಾಸತೀರ್ಥರು",
+    vyasatirthaDesc: "ಶ್ರೀ ವ್ಯಾಸತೀರ್ಥರು (೧೪೬೦-೧೫೩೯) ದ್ವೈತ ವೇದಾಂತದ ಮಹಾನ್ ವಿದ್ವಾಂಸರು, ತತ್ವಜ್ಞಾನಿಗಳು ಮತ್ತು ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ರಾಜಗುರುಗಳು. ಇವರು ಪುರಂದರದಾಸರು ಮತ್ತು ಕನಕದಾಸರು ಸೇರಿದಂತೆ ಅನೇಕ ಹರಿದಾಸರ ಗುರುಗಳಾಗಿದ್ದರು.",
+    purandaraDasa: "ಶ್ರೀ ಪುರಂದರದಾಸರು",
+    purandaraDasaru: "ಪುರಂದರ ದಾಸರು",
+    purandaraDasaDesc: "ಕರ್ನಾಟಕ ಸಂಗೀತದ ಪಿತಾಮಹ, ಭಕ್ತಿ ಮಾರ್ಗವನ್ನು ಸರಳ ಕೀರ್ತನೆಗಳ ಮೂಲಕ ಬೋಧಿಸಿದವರು.",
+    kanakaDasa: "ಶ್ರೀ ಕನಕದಾಸರು",
+    kanakaDasaru: "ಕನಕ ದಾಸರು",
+    kanakaDasaDesc: "ಭಕ್ತ ಕವಿ, ಸಮಾಜ ಸುಧಾರಕ, ಜಾತಿ ಪದ್ಧತಿಯನ್ನು ವಿರೋಧಿಸಿ ಭಕ್ತಿ ಮಾರ್ಗವನ್ನು ಜನಸಾಮಾನ್ಯರಿಗೆ ತಲುಪಿಸಿದವರು.",
+    vijayaDasa: "ಶ್ರೀ ವಿಜಯದಾಸರು",
+    vijayaDasaru: "ವಿಜಯ ದಾಸರು",
+    vijayaDasaDesc: "ಹರಿದಾಸ ಸಾಹಿತ್ಯದ ಪ್ರಮುಖ ಕವಿ, ಇವರು ಸುಮಾರು ೨೫,೦೦೦ ದೇವರನಾಮಗಳನ್ನು ರಚಿಸಿದ್ದಾರೆ.",
+    gopalaDasaru: "ಗೋಪಾಲ ದಾಸರು",
+    jagannathaDasaru: "ಜಗನ್ನಾಥ ದಾಸರು",
+    vadirajaTirtharu: "ವಾದಿರಾಜ ತೀರ್ಥರು",
+    vadirajaTirthaDesc: "ಸೋದೆ ಮಠದ ಪ್ರಖ್ಯಾತ ಸಂತ-ಸಂಯೋಜಕರು, ತತ್ವಜ್ಞಾನಿ ಮತ್ತು ವಿದ್ವಾಂಸರು.",
+    narahariTirtharu: "ನರಹರಿ ತೀರ್ಥರು"
   }
 };
 

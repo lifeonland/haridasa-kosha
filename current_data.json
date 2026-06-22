@@ -1,18 +1,5 @@
 [
   {
-    "id": "achyuta-dasa",
-    "name": "Achyuta Dasaru",
-    "biography": "A prominent 18th-century Haridasa known for his devotion.",
-    "imageUrl": null,
-    "ankitaId": "cmqahdbe50001jkgiu7vujadp",
-    "timeline": "18th Century",
-    "compositions": [],
-    "ankita": {
-      "id": "cmqahdbe50001jkgiu7vujadp",
-      "name": "Achyuta Vittala"
-    }
-  },
-  {
     "id": "srinivasa-dasa",
     "name": "Srinivasa Dasaru",
     "biography": "18th-century composer.",

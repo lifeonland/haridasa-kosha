@@ -54,7 +54,7 @@ export default async function ComposersPage(props: {
     'jagannatha-dasa', 'pranesha-dasa', 'venugopala-dasa', 'mohana-dasa',
     'srinivasa-dasa', 'subbanna-dasa', 'lakshmipati-dasa', 'madhwapati-dasa',
     'raghavendra-dasa', 'satyabodha-dasa', 'venkatesha-dasa', 'narahari-dasa',
-    'achyuta-dasa', 'govinda-dasa', 'harapanahalli-bhimavva', 'helavanakatte-giriyamma',
+    'govinda-dasa', 'harapanahalli-bhimavva', 'helavanakatte-giriyamma',
     'ugabhoga-narayana-dasa'
   ];
 
