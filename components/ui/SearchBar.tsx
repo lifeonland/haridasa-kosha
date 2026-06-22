@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -14,6 +14,7 @@ export default function SearchBar({
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +23,11 @@ export default function SearchBar({
     if (type === 'all') {
       router.push(`/ask-ai?q=${encodeURIComponent(query)}`);
     } else {
-      router.push(`/${type}?search=${encodeURIComponent(query)}`);
+      const targetPath = type === 'compositions' ? '/library' : `/${type}`;
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('search', query);
+      params.delete('page'); // Reset to first page
+      router.push(`${targetPath}?${params.toString()}`);
     }
   };
 

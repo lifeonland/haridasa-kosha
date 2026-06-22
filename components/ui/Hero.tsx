@@ -11,8 +11,8 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden pt-4 md:pt-8">
-      <div className="relative z-10 mx-auto min-h-[70svh] flex items-center max-w-7xl px-6 py-6 lg:py-12">
+    <section className="relative overflow-hidden pt-2 md:pt-4">
+      <div className="relative z-10 mx-auto flex items-start max-w-7xl px-6 pt-2 pb-12 md:pt-4 lg:pt-6 lg:pb-16">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
             
             {/* Left Content Column */}

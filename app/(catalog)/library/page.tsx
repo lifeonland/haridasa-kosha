@@ -23,6 +23,7 @@ export default async function CompositionsPage(props: {
   const raga = String(searchParams.raga || '');
   const tala = String(searchParams.tala || '');
   const tag = String(searchParams.tag || '');
+  const category = String(searchParams.category || '');
 
   const skip = (currentPage - 1) * COMPOSITIONS_PER_PAGE;
 
@@ -48,10 +49,33 @@ export default async function CompositionsPage(props: {
     };
   }
 
-  // Fetch data in parallel
+  // Apply category filters
+  if (category === 'ugabhoga') {
+    searchFilter.title = { startsWith: '[Ugabhoga]' };
+  } else if (category === 'suladi') {
+    searchFilter.OR = [
+      ...(searchFilter.OR || []),
+      { title: { startsWith: '[Suladi]' } },
+      { tags: { some: { name: 'Suladi' } } }
+    ];
+  } else if (category === 'mundige') {
+    searchFilter.title = { startsWith: '[Mundige]' };
+  } else if (category === 'dasarapada') {
+    searchFilter.NOT = [
+      { title: { startsWith: '[Ugabhoga]' } },
+      { title: { startsWith: '[Suladi]' } },
+      { title: { startsWith: '[Mundige]' } },
+      { tags: { some: { name: 'Suladi' } } }
+    ];
+  }
+
+  // Fetch counts and lookups
   const [
-    totalCompositions,
-    compositions,
+    dasarapadaCount,
+    suladiCount,
+    ugabhogaCount,
+    mundigeCount,
+    allCount,
     allComposers,
     allDeities,
     allAnkitas,
@@ -62,19 +86,30 @@ export default async function CompositionsPage(props: {
     ragaCount,
     ankitaCount
   ] = await Promise.all([
-    prisma.composition.count({ where: searchFilter }),
-    prisma.composition.findMany({
-      where: searchFilter,
-      include: {
-        composer: { select: { name: true } },
-        deity: { select: { name: true } },
-        raga: { select: { name: true } },
-        tala: { select: { name: true } },
-      },
-      skip,
-      take: COMPOSITIONS_PER_PAGE,
-      orderBy: { title: 'asc' },
+    prisma.composition.count({
+      where: {
+        NOT: [
+          { title: { startsWith: '[Ugabhoga]' } },
+          { title: { startsWith: '[Suladi]' } },
+          { title: { startsWith: '[Mundige]' } }
+        ]
+      }
     }),
+    prisma.composition.count({
+      where: {
+        OR: [
+          { title: { startsWith: '[Suladi]' } },
+          { tags: { some: { name: 'Suladi' } } }
+        ]
+      }
+    }),
+    prisma.composition.count({
+      where: { title: { startsWith: '[Ugabhoga]' } }
+    }),
+    prisma.composition.count({
+      where: { title: { startsWith: '[Mundige]' } }
+    }),
+    prisma.composition.count(),
     prisma.composer.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
     prisma.deity.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
     prisma.ankita.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
@@ -86,9 +121,35 @@ export default async function CompositionsPage(props: {
     prisma.ankita.count()
   ]);
 
-  console.log("DEBUG: totalCompositions:", totalCompositions);
-  console.log("DEBUG: compositions.length:", compositions.length);
-  
+  const categoryCounts = {
+    dasarapada: dasarapadaCount,
+    suladi: suladiCount,
+    ugabhoga: ugabhogaCount,
+    mundige: mundigeCount,
+    all: allCount
+  };
+
+  const showList = !!(category || search || composer || deity || ankita || raga || tala || tag);
+
+  let compositions: any[] = [];
+  let totalCompositions = 0;
+
+  if (showList) {
+    totalCompositions = await prisma.composition.count({ where: searchFilter });
+    compositions = await prisma.composition.findMany({
+      where: searchFilter,
+      include: {
+        composer: { select: { name: true } },
+        deity: { select: { name: true } },
+        raga: { select: { name: true } },
+        tala: { select: { name: true } },
+      },
+      skip,
+      take: COMPOSITIONS_PER_PAGE,
+      orderBy: { title: 'asc' },
+    });
+  }
+
   const uniqueByName = (items: Array<{ id: string; name: string }>) => 
     Array.from(new Map(items.map(item => [item.name.toLowerCase().trim(), item])).values());
 
@@ -96,6 +157,8 @@ export default async function CompositionsPage(props: {
 
   return (
     <CompositionsPageContent 
+        category={category}
+        categoryCounts={categoryCounts}
         compositions={compositions}
         totalCompositions={totalCompositions}
         totalPages={totalPages}

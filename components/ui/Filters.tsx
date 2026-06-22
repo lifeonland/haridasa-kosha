@@ -43,11 +43,18 @@ export default function Filters({
   );
 
   const clearFilters = () => {
-    router.push(window.location.pathname);
+    const params = new URLSearchParams();
+    const category = searchParams.get('category');
+    const search = searchParams.get('search');
+    if (category) params.set('category', category);
+    if (search) params.set('search', search);
+    
+    const queryString = params.toString();
+    router.push(window.location.pathname + (queryString ? `?${queryString}` : ''));
   };
 
   const hasActiveFilters = Array.from(searchParams.entries()).some(
-    ([key]) => !['page', 'search'].includes(key)
+    ([key]) => !['page', 'search', 'category'].includes(key)
   );
 
   return (

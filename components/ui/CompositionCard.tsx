@@ -45,53 +45,53 @@ export default function CompositionCard({
 
   return (
     <motion.div
-        whileHover={{ y: -5 }}
-        className="group relative bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+        whileHover={{ y: -4 }}
+        className="group relative bg-white border border-slate-100 rounded-[1.5rem] p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
     >
         <Link href={`/library/${id}`} className="block flex-grow">
             <div className="flex justify-between items-start mb-2">
-              <Typography variant="h3" className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-2">
+              <Typography variant="h3" className="text-lg font-bold group-hover:text-primary transition-colors line-clamp-2">
                   {getDisplayTitle(title)}
               </Typography>
               {!hasLyrics && (
-                <span className="shrink-0 ml-2 px-2 py-1 rounded-md bg-amber-50 text-[10px] font-bold text-amber-600 border border-amber-100 uppercase tracking-tighter">
+                <span className="shrink-0 ml-2 px-2 py-0.5 rounded-md bg-amber-50 text-[9px] font-bold text-amber-600 border border-amber-100 uppercase tracking-tighter">
                   Coming Soon
                 </span>
               )}
             </div>
             
-            <Typography variant="p" className="text-xs font-bold text-slate-500 mb-4">
+            <Typography variant="p" className="text-[11px] font-bold text-slate-500 mb-3">
                 {t(composerName)} • {t(deityName)}
             </Typography>
 
-            <Typography variant="p" className="text-sm italic text-slate-600 mb-6 font-serif line-clamp-2 leading-relaxed">
+            <Typography variant="p" className="text-xs italic text-slate-600 mb-4 font-serif line-clamp-2 leading-relaxed">
                 "{firstLine}"
             </Typography>
 
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-1.5 mb-4">
                 {raga !== "TBD" && (
-                    <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full">{t(raga)}</span>
+                    <span className="text-[9px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-full">{t(raga)}</span>
                 )}
                 {tala !== "TBD" && (
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full">{t(tala)}</span>
+                    <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full">{t(tala)}</span>
                 )}
             </div>
         </Link>
 
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+        <div className="flex items-center justify-between pt-3 border-t border-slate-100 mt-auto">
             <button 
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     toggleBookmark(id);
                 }}
-                className={`p-2 transition-colors ${saved ? 'text-primary' : 'text-slate-400 hover:text-primary'}`}
+                className={`p-1.5 transition-colors ${saved ? 'text-primary' : 'text-slate-400 hover:text-primary'}`}
                 aria-label={saved ? "Remove bookmark" : "Add bookmark"}
             >
-                {saved ? <BookmarkCheck className="h-6 w-6 fill-current"/> : <Bookmark className="h-6 w-6"/>}
+                {saved ? <BookmarkCheck className="h-5 w-5 fill-current"/> : <Bookmark className="h-5 w-5"/>}
             </button>
-            <Link href={`/library/${id}`} className="flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors p-2">
-                {t('read')} <ArrowRight className="h-4 w-4" />
+            <Link href={`/library/${id}`} className="flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors p-1.5">
+                {t('read')} <ArrowRight className="h-3.5 w-3.5" />
             </Link>
         </div>
     </motion.div>
