@@ -6,20 +6,6 @@ import { Typography } from "@/components/ui/typography";
 import { useLanguage } from './LanguageContext';
 
 const composerOverrides: Record<string, { displayName: string; id: string; imageUrl?: string; biography?: string; timeline?: string }> = {
-  'Achyuta Dasa': {
-    displayName: 'narahariTirtharu',
-    id: 'narahari-tirtha',
-    imageUrl: '/assets/webp/narahari.webp',
-    biography: 'narahariTirthaDesc',
-    timeline: '1243–1333',
-  },
-  'Achyuta Dasaru': {
-    displayName: 'narahariTirtharu',
-    id: 'narahari-tirtha',
-    imageUrl: '/assets/webp/narahari.webp',
-    biography: 'narahariTirthaDesc',
-    timeline: '1243–1333',
-  },
   'Gopala Dasa': {
     displayName: 'sripadarajaru',
     id: 'sripadaraja',

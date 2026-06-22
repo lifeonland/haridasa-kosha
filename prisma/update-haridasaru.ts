@@ -28,7 +28,6 @@ const haridasaruList = [
   { name: 'Vishnu Dasa', ankita: 'Vishnu Vittala', period: '18th Century' },
   { name: 'Krishnapriya Dasa', ankita: 'Krishna Vittala', period: '18th Century' },
   { name: 'Raghavendra Dasa', ankita: 'Raghavendra Vittala', period: '18th Century' },
-  { name: 'Achyuta Dasa', ankita: 'Achyuta Vittala', period: '18th Century' },
   { name: 'Narahari Dasa', ankita: 'Narahari Vittala', period: '18th Century' },
   { name: 'Govinda Dasa', ankita: 'Govinda Vittala', period: '18th Century' },
   { name: 'Lakshmipati Dasa', ankita: 'Lakshmipati Vittala', period: '18th Century' },
