@@ -15,14 +15,30 @@ async function main() {
     'gopala-dasa': 'A disciple of Vijaya Dasa, he was a prolific composer and astrologer. He is famously remembered for "giving" 40 years of his life to his disciple, Jagannatha Dasa, to help him recover from a terminal illness. He composed under the pen name "Gopala Vittala."',
     'jagannatha-dasa': 'Originally a proud Sanskrit scholar named Srinivasacharya, he became a devoted Haridasa after being cured of a severe illness by Gopala Dasa. His magnum opus, Harikathamritasara, is a foundational text of Dvaita theology in Kannada. He used the pen name "Jagannatha Vittala."',
     'harapanahalli-bhimavva': 'A 19th-century saint who composed numerous devotional songs after the death of her husband. Her works, written in simple Kannada, are deeply emotional and focused on Lord Krishna. She used the pen name "Bhimesha Krishna."',
-    'helavanakatte-giriyamma': 'A mystic saint who lived a life of intense devotion to Lord Ranganatha. She is known for her lyrical compositions and is often compared to Akka Mahadevi for her dedication. She composed under the pen name "Helavanakatte Ranga."'
+    'helavanakatte-giriyamma': 'A mystic saint who lived a life of intense devotion to Lord Ranganatha. She is known for her lyrical compositions and is often compared to Akka Mahadevi for her dedication. She composed under the pen name "Helavanakatte Ranga."',
+    'mohana-dasa': 'Born into a wealthy family in Anegondi, his life took a dramatic turn after his father\'s demise when the family fell into severe poverty. Saved from a suicide attempt in the Tungabhadra River by the great saint Sri Vijaya Dasaru, he was raised, educated, and initiated into the Haridasa path by him. He composed under the pen name "Mohana Vittala".'
   };
 
   for (const [id, bio] of Object.entries(bioUpdates)) {
-    await prisma.composer.update({
-      where: { id: id },
-      data: { biography: bio },
-    });
+    try {
+      await prisma.composer.update({
+        where: { id: id },
+        data: { biography: bio },
+      });
+    } catch (e) {
+      if (id === 'jagannatha-dasa') {
+        try {
+          await prisma.composer.update({
+            where: { id: 'jagannatha-dasaru' },
+            data: { biography: bio },
+          });
+          continue;
+        } catch (innerErr) {
+          // ignore
+        }
+      }
+      console.warn(`⚠️ Could not update biography for ID: ${id}`);
+    }
   }
 
   console.log('✅ Composer biographies enriched successfully!');

@@ -68,42 +68,70 @@ export default function CompositionsPageContent({
       id: 'dasarapada',
       titleKey: 'catDasarapada',
       descKey: 'catDasarapadaDesc',
-      gradient: 'from-amber-500 to-orange-600',
+      bgClass: 'bg-gradient-to-br from-amber-50 to-orange-100/80 border-orange-100 shadow-sm',
+      textClass: 'text-amber-950',
+      descClass: 'text-amber-800/90',
+      countClass: 'bg-amber-100/80 text-amber-900 border-amber-200/50',
+      iconClass: 'bg-amber-100/80 text-amber-700 border-amber-200/50',
+      viewClass: 'border-amber-200/50',
       count: categoryCounts.dasarapada || 0,
       icon: Music,
+      illustration: '/assets/webp/dasarapada-card-illustration.webp',
     },
     {
       id: 'mundige',
       titleKey: 'catMundige',
       descKey: 'catMundigeDesc',
-      gradient: 'from-purple-600 to-indigo-700',
+      bgClass: 'bg-gradient-to-br from-purple-50 to-indigo-100/80 border-indigo-100 shadow-sm',
+      textClass: 'text-purple-950',
+      descClass: 'text-purple-800/90',
+      countClass: 'bg-purple-100/80 text-purple-900 border-purple-200/50',
+      iconClass: 'bg-purple-100/80 text-purple-700 border-purple-200/50',
+      viewClass: 'border-indigo-200/50',
       count: categoryCounts.mundige || 0,
       icon: Key,
+      illustration: '/assets/webp/mundige-card-illustration.webp',
     },
     {
       id: 'suladi',
       titleKey: 'catSuladi',
       descKey: 'catSuladiDesc',
-      gradient: 'from-emerald-500 to-teal-700',
+      bgClass: 'bg-gradient-to-br from-emerald-50 to-teal-100/80 border-teal-100 shadow-sm',
+      textClass: 'text-emerald-950',
+      descClass: 'text-emerald-800/90',
+      countClass: 'bg-emerald-100/80 text-emerald-900 border-emerald-200/50',
+      iconClass: 'bg-emerald-100/80 text-emerald-700 border-emerald-200/50',
+      viewClass: 'border-teal-200/50',
       count: categoryCounts.suladi || 0,
       icon: Scroll,
+      illustration: '/assets/webp/suladi-card-illustration.webp',
     },
     {
       id: 'ugabhoga',
       titleKey: 'catUgabhoga',
       descKey: 'catUgabhogaDesc',
-      gradient: 'from-rose-500 to-red-600',
+      bgClass: 'bg-gradient-to-br from-rose-50 to-red-100/80 border-red-100 shadow-sm',
+      textClass: 'text-rose-950',
+      descClass: 'text-rose-800/90',
+      countClass: 'bg-rose-100/80 text-rose-900 border-rose-200/50',
+      iconClass: 'bg-rose-100/80 text-rose-700 border-rose-200/50',
+      viewClass: 'border-red-200/50',
       count: categoryCounts.ugabhoga || 0,
       icon: Wind,
+      illustration: '/assets/webp/ugabhoga-card-illustration.webp',
     },
     {
       id: 'all',
       titleKey: 'catAll',
       descKey: 'catAllDesc',
-      gradient: 'from-slate-700 to-slate-900',
+      bgClass: 'bg-gradient-to-br from-slate-50 to-slate-200/80 border-slate-300 shadow-sm',
+      textClass: 'text-slate-900',
+      descClass: 'text-slate-700',
+      countClass: 'bg-slate-200 text-slate-800 border-slate-300/50',
+      iconClass: 'bg-slate-200 text-slate-700 border-slate-300/50',
+      viewClass: 'border-slate-300/50',
       count: categoryCounts.all || 0,
       icon: BookOpen,
-      spanFull: true,
     }
   ];
 
@@ -179,39 +207,47 @@ export default function CompositionsPageContent({
                 <Link 
                   key={cat.id}
                   href={`/library?category=${cat.id}`}
-                  className={`block ${cat.spanFull ? 'md:col-span-2 lg:col-span-3' : ''}`}
+                  className="block"
                 >
                   <motion.div
                     whileHover={{ y: -4, scale: 1.01 }}
                     transition={{ duration: 0.2 }}
-                    className={`group relative overflow-hidden rounded-[1.75rem] p-6 bg-gradient-to-br ${cat.gradient} text-white shadow-md hover:shadow-xl flex flex-col justify-between min-h-[220px] border border-white/10 h-full cursor-pointer`}
+                    className={`group relative overflow-hidden rounded-[1.75rem] p-6 ${cat.bgClass} border flex flex-col justify-between min-h-[220px] h-full cursor-pointer transition-all duration-300`}
                   >
                     <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-2xl -mr-6 -mt-6" />
                     
-                    <div>
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
-                          <cat.icon className="w-5 h-5" />
-                        </div>
-                        <span className="text-[10px] font-bold bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 uppercase tracking-wider">
-                          {cat.count.toLocaleString(lang === 'KN' ? 'kn-IN' : 'en-US')} {t('compositions')}
-                        </span>
+                    {cat.illustration && (
+                      <img 
+                        src={cat.illustration} 
+                        alt="" 
+                        className="absolute right-3 bottom-2 h-[82%] w-auto object-contain pointer-events-none select-none opacity-95 transition-all duration-500 group-hover:scale-105 mix-blend-multiply" 
+                      />
+                    )}
+
+                    <div className="relative z-10 flex justify-between items-start mb-4">
+                      <div className={`p-2.5 rounded-xl border ${cat.iconClass}`}>
+                        <cat.icon className="w-5 h-5" />
                       </div>
-                      
-                      <Typography variant="h2" className="text-xl font-bold mb-2 text-white">
+                      <span className={`text-[10px] font-bold px-3 py-1 rounded-full border uppercase tracking-wider ${cat.countClass}`}>
+                        {cat.count.toLocaleString(lang === 'KN' ? 'kn-IN' : 'en-US')} {t('compositions')}
+                      </span>
+                    </div>
+
+                    <div className={`relative z-10 ${cat.illustration ? 'max-w-[62%]' : ''} mb-4`}>
+                      <Typography variant="h2" className={`text-xl font-bold mb-2 ${cat.textClass}`}>
                         {t(cat.titleKey)}
                       </Typography>
                       
-                      <Typography variant="p" className="text-white/85 text-xs leading-relaxed max-w-2xl font-medium font-sans">
+                      <Typography variant="p" className={`text-white/85 text-xs leading-relaxed font-medium font-sans ${cat.descClass}`}>
                         {t(cat.descKey)}
                       </Typography>
                     </div>
                     
-                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-2 text-xs font-bold text-white hover:underline transition-all">
+                    <div className={`relative z-10 mt-auto pt-4 border-t ${cat.viewClass} flex items-center justify-between`}>
+                      <span className={`inline-flex items-center gap-2 text-xs font-bold hover:underline transition-all ${cat.textClass}`}>
                         {t('viewCategory')}
                       </span>
-                      <ChevronRight className="w-4 h-4 text-white/80 transition-transform group-hover:translate-x-1" />
+                      <ChevronRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${cat.textClass}`} />
                     </div>
                   </motion.div>
                 </Link>
@@ -295,7 +331,7 @@ export default function CompositionsPageContent({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className={viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" : "space-y-4"}
+                        className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" : "space-y-3"}
                       >
                         {compositions.map((comp: any) => (
                           <CompositionCard
