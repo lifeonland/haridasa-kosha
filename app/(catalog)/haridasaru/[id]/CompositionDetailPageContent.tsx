@@ -8,44 +8,12 @@ import { Section } from '@/components/ui/section';
 import { Container } from '@/components/ui/container';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
+import { getComposerTranslationKey, getBioTranslationKey } from '@/lib/utils';
 
 export default function ComposerDetailPageContent({ composer }: any) {
   const { t, lang } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
-
-    // Map composer ID to translation key
-    const getComposerTranslationKey = (id: string) => {
-        const map: Record<string, string> = {
-            'purandara-dasa': 'purandaraDasaru',
-            'kanaka-dasa': 'kanakaDasaru',
-            'vijaya-dasa': 'vijayaDasaru',
-            'gopala-dasa': 'gopalaDasaru',
-            'jagannatha-dasa': 'jagannathaDasaru',
-            'mohana-dasa': 'mohanaDasaru',
-            'sripadaraja': 'sripadarajaru',
-            'vyasatirtha': 'vyasatirthaName',
-            'vadiraja-tirtha': 'vadirajaTirtharu',
-            'narahari-tirtha': 'narahariTirtharu',
-            'madhwacharya': 'madhwacharya',
-        };
-        return map[id] || id;
-    };
-
-    const getBioTranslationKey = (id: string) => {
-        const map: Record<string, string> = {
-            'purandara-dasa': 'purandaraDasaDesc',
-            'kanaka-dasa': 'kanakaDasaDesc',
-            'vijaya-dasa': 'vijayaDasaDesc',
-            'jagannatha-dasa': 'jagannathaDasaDesc',
-            'mohana-dasa': 'mohanaDasaDesc',
-            'sripadaraja': 'sripadarajaDesc',
-            'vyasatirtha': 'vyasatirthaDesc',
-            'narahari-tirtha': 'narahariTirthaDesc',
-            'vadiraja-tirtha': 'vadirajaTirthaDesc',
-            'madhwacharya': 'madhwacharyaBio',
-        };
-        return map[id] || 'reveredHaridasa';
-    };
 
   if (!composer) return null;
 
@@ -58,14 +26,72 @@ export default function ComposerDetailPageContent({ composer }: any) {
         <Container>
             {/* Hero Section */}
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start mb-20">
-                <div className="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
-                    <div className="w-full max-w-[280px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg shrink-0">
+                <div className="w-full lg:w-1/3 flex flex-col items-center gap-6">
+                    <div className="w-full max-w-[280px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg shrink-0 relative">
                         {composer.imageUrl ? (
-                            <img src={composer.imageUrl} alt={t(getComposerTranslationKey(composer.id))} className="w-full h-full object-cover" />
+                            <Image 
+                              src={composer.imageUrl} 
+                              alt={t(getComposerTranslationKey(composer.id))} 
+                              fill 
+                              className="object-cover" 
+                              priority 
+                              sizes="280px"
+                            />
                         ) : (
                             <div className="w-full h-full bg-slate-100 flex items-center justify-center text-6xl opacity-20">🙏</div>
                         )}
                     </div>
+
+                    {/* Charama Sloka for Madhwacharya / Narahari / Sripadaraja / Vyasatirtha / Vadiraja / Purandara / Kanaka / Vijaya / Gopala / Mohana / Subbanna / Raghavendra / Satyabodha / Bhimavva / Jagannatha / Pranesha / Prasanna Venkata / Mahipati */}
+                    {(composer.id === 'madhwacharya' || 
+                      composer.id === 'narahari-tirtha' || 
+                      composer.id === 'sripadaraja' || 
+                      composer.id === 'vyasatirtha' || 
+                      composer.id === 'vadiraja-tirtha' ||
+                      composer.id === 'purandara-dasa' ||
+                      composer.id === 'kanaka-dasa' ||
+                      composer.id === 'vijaya-dasa' ||
+                      composer.id === 'gopala-dasa' ||
+                      composer.id === 'mohana-dasa' ||
+                      composer.id === 'subbanna-dasa' ||
+                      composer.id === 'raghavendra-dasa' ||
+                      composer.id === 'satyabodha-dasa' ||
+                      composer.id === 'harapanahalli-bhimavva' ||
+                      composer.id === 'jagannatha-dasaru' ||
+                      composer.id === 'pranesha-dasaru' ||
+                      composer.id === 'prasanna-venkata-dasa' ||
+                      composer.id === 'mahipati-dasa') && (
+                        <div className="w-full max-w-[280px] text-center p-3 rounded-2xl bg-amber-50/50 border border-amber-100/30 shadow-sm flex-shrink-0">
+                            <div className="text-amber-800 font-medium italic leading-relaxed font-serif tracking-tighter"
+                                 style={{ fontSize: 'clamp(11.5px, 1.2vw, 13.5px)' }}>
+                                {(() => {
+                                    const sloka = 
+                                        composer.id === 'madhwacharya' ? t('madhwacharyaSloka') :
+                                        composer.id === 'narahari-tirtha' ? t('narahariTirthaSloka') :
+                                        composer.id === 'sripadaraja' ? t('sripadarajaSloka') :
+                                        composer.id === 'vyasatirtha' ? t('vyasatirthaSloka') :
+                                        composer.id === 'vadiraja-tirtha' ? t('vadirajaTirthaSloka') :
+                                        composer.id === 'purandara-dasa' ? t('purandaraDasaSloka') :
+                                        composer.id === 'kanaka-dasa' ? t('kanakaDasaSloka') :
+                                        composer.id === 'vijaya-dasa' ? t('vijayaDasaSloka') :
+                                        composer.id === 'gopala-dasa' ? t('gopalaDasaSloka') :
+                                        composer.id === 'mohana-dasa' ? t('mohanaDasaSloka') :
+                                        composer.id === 'subbanna-dasa' ? t('subbannaDasaSloka') :
+                                        composer.id === 'raghavendra-dasa' ? t('raghavendraDasaSloka') :
+                                        composer.id === 'satyabodha-dasa' ? t('satyabodhaDasaSloka') :
+                                        composer.id === 'harapanahalli-bhimavva' ? t('harapanahalliBhimavvaSloka') :
+                                        composer.id === 'jagannatha-dasaru' ? t('jagannathaDasaSloka') :
+                                        composer.id === 'pranesha-dasaru' ? t('praneshaDasaSloka') :
+                                        composer.id === 'prasanna-venkata-dasa' ? t('prasannaVenkataDasaSloka') :
+                                        composer.id === 'mahipati-dasa' ? t('mahipatiDasaSloka') : '';
+                                    
+                                    return sloka.split('\n').map((line, idx) => (
+                                        <span key={idx} className="block text-center whitespace-nowrap">{line.trim()}</span>
+                                    ));
+                                })()}
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex-1 space-y-10 min-w-0">

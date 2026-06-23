@@ -1,7 +1,7 @@
 'use client';
-
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import SearchBar from '@/components/ui/SearchBar';
 import CompositionCard from '@/components/ui/CompositionCard';
@@ -217,11 +217,15 @@ export default function CompositionsPageContent({
                     <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-2xl -mr-6 -mt-6" />
                     
                     {cat.illustration && (
-                      <img 
-                        src={cat.illustration} 
-                        alt="" 
-                        className="absolute right-3 bottom-2 h-[82%] w-auto object-contain pointer-events-none select-none opacity-95 transition-all duration-500 group-hover:scale-105 mix-blend-multiply" 
-                      />
+                      <div className="absolute right-3 bottom-2 h-[82%] w-[45%] pointer-events-none select-none transition-all duration-500 group-hover:scale-105 mix-blend-multiply">
+                        <Image 
+                          src={cat.illustration} 
+                          alt="" 
+                          fill
+                          className="object-contain object-right-bottom"
+                          sizes="(max-width: 768px) 150px, 200px"
+                        />
+                      </div>
                     )}
 
                     <div className="relative z-10 flex justify-between items-start mb-4">

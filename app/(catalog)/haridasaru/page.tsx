@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import ComposersPageContent from './ComposersPageContent';
 import type { Metadata } from 'next';
+import { HISTORICAL_COMPOSER_ORDER } from '@/lib/utils';
 
 import { COMPOSERS_PER_PAGE } from '@/lib/constants';
 
@@ -47,21 +48,10 @@ export default async function ComposersPage(props: {
   });
   console.timeEnd('ComposerFetch');
 
-  // Define custom historical order
-  const historicalOrder = [
-    'madhwacharya', 'narahari-tirtha', 'sripadaraja', 'vyasatirtha', 'vadiraja-tirtha',
-    'purandara-dasa', 'kanaka-dasa', 'vijaya-dasa', 'gopala-dasa',
-    'jagannatha-dasa', 'pranesha-dasa', 'venugopala-dasa', 'mohana-dasa',
-    'srinivasa-dasa', 'subbanna-dasa', 'lakshmipati-dasa', 'madhwapati-dasa',
-    'raghavendra-dasa', 'satyabodha-dasa', 'venkatesha-dasa', 'narahari-dasa',
-    'govinda-dasa', 'harapanahalli-bhimavva', 'helavanakatte-giriyamma',
-    'ugabhoga-narayana-dasa'
-  ];
-
-  // Sort the paginated result
+  // Sort the paginated result using master historical order
   composers.sort((a, b) => {
-    const indexA = historicalOrder.indexOf(a.id);
-    const indexB = historicalOrder.indexOf(b.id);
+    const indexA = HISTORICAL_COMPOSER_ORDER.indexOf(a.id);
+    const indexB = HISTORICAL_COMPOSER_ORDER.indexOf(b.id);
     if (indexA !== -1 && indexB !== -1) return indexA - indexB;
     if (indexA !== -1) return -1;
     if (indexB !== -1) return 1;

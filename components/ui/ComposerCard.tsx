@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Composer } from '@prisma/client';
 import { Typography } from '@/components/ui/typography';
 import { useLanguage } from '@/components/shared/LanguageContext';
+import { getComposerTranslationKey, getBioTranslationKey } from '@/lib/utils';
 
 interface ComposerCardProps {
   composer: Composer & { _count?: { compositions: number } };
@@ -13,38 +14,7 @@ interface ComposerCardProps {
 export default function ComposerCard({ composer }: ComposerCardProps) {
   const { t } = useLanguage();
 
-  const getComposerTranslationKey = (id: string) => {
-    const map: Record<string, string> = {
-        'purandara-dasa': 'purandaraDasaru',
-        'kanaka-dasa': 'kanakaDasaru',
-        'vijaya-dasa': 'vijayaDasaru',
-        'gopala-dasa': 'gopalaDasaru',
-        'jagannatha-dasa': 'jagannathaDasaru',
-        'mohana-dasa': 'mohanaDasaru',
-        'sripadaraja': 'sripadarajaru',
-        'vyasatirtha': 'vyasatirthaName',
-        'vadiraja-tirtha': 'vadirajaTirtharu',
-        'narahari-tirtha': 'narahariTirtharu',
-    };
-    return map[id];
-  };
-
-  const getBioTranslationKey = (id: string) => {
-    const map: Record<string, string> = {
-        'purandara-dasa': 'purandaraDasaDesc',
-        'kanaka-dasa': 'kanakaDasaDesc',
-        'vijaya-dasa': 'vijayaDasaDesc',
-        'jagannatha-dasa': 'jagannathaDasaDesc',
-        'mohana-dasa': 'mohanaDasaDesc',
-        'sripadaraja': 'sripadarajaDesc',
-        'vyasatirtha': 'vyasatirthaDesc',
-        'vadiraja-tirtha': 'vadirajaTirthaDesc',
-        'narahari-tirtha': 'narahariTirthaDesc',
-    };
-    return map[id] || 'reveredHaridasa';
-  };
-
-  const name = t(getComposerTranslationKey(composer.id) || composer.name);
+  const name = t(getComposerTranslationKey(composer.id));
   const bio = t(getBioTranslationKey(composer.id));
 
   return (

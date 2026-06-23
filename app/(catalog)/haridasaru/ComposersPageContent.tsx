@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import { Search, LayoutGrid, List, Sparkles, ArrowRight, User, X } from 'lucide-react';
 import Pagination from '@/components/ui/Pagination';
+import { getComposerTranslationKey, getBioTranslationKey } from '@/lib/utils';
 
 export default function ComposersPageContent({ composers, stats, totalComposers, totalPages, currentPage }: any) {
   const { t } = useLanguage();
@@ -15,48 +16,12 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
 
-    // Map composer ID to translation key
-    const getComposerTranslationKey = (id: string) => {
-        const map: Record<string, string> = {
-            'purandara-dasa': 'purandaraDasaru',
-            'kanaka-dasa': 'kanakaDasaru',
-            'vijaya-dasa': 'vijayaDasaru',
-            'gopala-dasa': 'gopalaDasaru',
-            'jagannatha-dasa': 'jagannathaDasaru',
-            'mohana-dasa': 'mohanaDasaru',
-            'sripadaraja': 'sripadarajaru',
-            'vyasatirtha': 'vyasatirthaName',
-            'vadiraja-tirtha': 'vadirajaTirtharu',
-            'narahari-tirtha': 'narahariTirtharu',
-        };
-        return map[id];
-    };
-
-    const getBioTranslationKey = (id: string) => {
-        const map: Record<string, string> = {
-            'purandara-dasa': 'purandaraDasaDesc',
-            'kanaka-dasa': 'kanakaDasaDesc',
-            'vijaya-dasa': 'vijayaDasaDesc',
-            'jagannatha-dasa': 'jagannathaDasaDesc',
-            'mohana-dasa': 'mohanaDasaDesc',
-            'sripadaraja': 'sripadarajaDesc',
-            'vyasatirtha': 'vyasatirthaDesc',
-            'narahari-tirtha': 'narahariTirthaDesc',
-            'madhwacharya': 'madhwacharyaBio',
-        };
-        return map[id] || 'reveredHaridasa';
-    };
-
     const getName = (c: any) => {
-        const key = getComposerTranslationKey(c.id);
-        return key ? t(key) : t(c.name);
+        return t(getComposerTranslationKey(c.id));
     };
 
     const getBio = (c: any) => {
-        const key = getBioTranslationKey(c.id);
-        const translated = t(key);
-        console.log("DEBUG: ComposerID:", c.id, "BioKey:", key, "TranslatedBio:", translated);
-        return translated;
+        return t(getBioTranslationKey(c.id));
     };
 
   // Note: Filtering is now limited to the current page due to server-side pagination.

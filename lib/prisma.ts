@@ -18,6 +18,6 @@ export const prisma =
   globalForPrisma.prisma || createPrismaClient();
 
 if (process.env.NODE_ENV !== 'production') {
-  // Always recreate in development to avoid stale client issues
-  globalForPrisma.prisma = createPrismaClient();
+  globalForPrisma.prisma = prisma;
 }
+

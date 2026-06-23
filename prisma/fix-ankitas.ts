@@ -15,7 +15,7 @@ const ankitaMap: { [key: string]: string } = {
   'vadiraja-tirtha': 'Hayavadana',
   'narahari-tirtha': 'Narahari Vittala',
   'mahipati-dasa': 'Mahipati Vittala',
-  'raghavendra-dasa': 'Raghavendra',
+  'raghavendra-dasa': 'Venugopala',
   // ... other mappings would follow
 };
 
