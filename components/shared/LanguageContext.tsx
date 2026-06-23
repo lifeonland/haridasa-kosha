@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useState, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
 
 const translations = {
   EN: {
@@ -504,7 +504,21 @@ const LanguageContext = createContext({
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState('EN');
+  const [lang, setLangState] = useState('EN');
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem('haridasa_lang');
+    if (savedLang === 'EN' || savedLang === 'KN') {
+      setLangState(savedLang);
+    }
+  }, []);
+
+  const setLang = (newLang: string) => {
+    if (newLang === 'EN' || newLang === 'KN') {
+      setLangState(newLang);
+      localStorage.setItem('haridasa_lang', newLang);
+    }
+  };
   
   const t = useMemo(() => (key: string) => {
     const translation = (translations as any)[lang]?.[key];
