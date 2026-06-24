@@ -23,8 +23,11 @@ const getComposition = cache(async (id: string) => {
 });
 
 export async function generateStaticParams() {
+  // Only pre-render the top 20 compositions to keep Vercel build times fast.
+  // The rest will be generated on-demand and cached (ISR).
   const compositions = await prisma.composition.findMany({
     select: { id: true },
+    take: 20,
   });
   return compositions.map((comp) => ({
     id: comp.id,
