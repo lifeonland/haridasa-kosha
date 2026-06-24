@@ -64,33 +64,6 @@ async function main() {
       deityId: rama.id,
       ankitaId: ankitaRaghupathi.id,
     },
-    {
-      id: 'nt-003',
-      title: 'Tiliko Ninnolage Neene',
-      firstLine: 'Tiliko ninnolage neene',
-      lyrics: 'Tiliko ninnolage neene...\nMentioned in traditional and Matha records.',
-      composerId: composerId,
-      deityId: rama.id,
-      ankitaId: ankitaNarahari.id,
-    },
-    {
-      id: 'nt-004',
-      title: 'Vasudeva Vasudeva',
-      firstLine: 'Vasudeva vasudeva',
-      lyrics: 'Vasudeva vasudeva...\nTraditionally attributed; popular in Carnatic circles.',
-      composerId: composerId,
-      deityId: krishna.id,
-      ankitaId: ankitaGopala.id,
-    },
-    {
-      id: 'nt-005',
-      title: 'Daasana Maadiko Enna',
-      firstLine: 'Daasana maadiko enna',
-      lyrics: 'Daasana maadiko enna...\nAttribution uncertain; appears in some lists but requires verification.',
-      composerId: composerId,
-      deityId: rama.id,
-      ankitaId: ankitaNarahari.id,
-    },
   ];
 
   for (const comp of compositions) {
@@ -101,7 +74,7 @@ async function main() {
     });
   }
 
-  console.log('✅ 5 Narahari Tirtharu compositions added/updated successfully!');
+  console.log('✅ 2 Narahari Tirtharu compositions added/updated successfully!');
 }
 
 main()
