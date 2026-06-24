@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import CompositionsPageContent from './CompositionsPageContent';
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 
 import { COMPOSITIONS_PER_PAGE } from '@/lib/constants';
 
@@ -8,6 +9,82 @@ export const metadata: Metadata = {
   title: 'Compositions | Haridasa Kosha',
   description: 'Browse all Haridasa compositions',
 };
+
+const getLibraryMetadata = unstable_cache(
+  async () => {
+    const [
+      dasarapadaCount,
+      suladiCount,
+      ugabhogaCount,
+      mundigeCount,
+      allCount,
+      allComposers,
+      allDeities,
+      allAnkitas,
+      allRagas,
+      allTalas,
+      allTags,
+      composerCount,
+      ragaCount,
+      ankitaCount
+    ] = await Promise.all([
+      prisma.composition.count({
+        where: {
+          NOT: [
+            { title: { startsWith: '[Ugabhoga]' } },
+            { title: { startsWith: '[Suladi]' } },
+            { title: { startsWith: '[Mundige]' } }
+          ]
+        }
+      }),
+      prisma.composition.count({
+        where: {
+          OR: [
+            { title: { startsWith: '[Suladi]' } },
+            { tags: { some: { name: 'Suladi' } } }
+          ]
+        }
+      }),
+      prisma.composition.count({
+        where: { title: { startsWith: '[Ugabhoga]' } }
+      }),
+      prisma.composition.count({
+        where: { title: { startsWith: '[Mundige]' } }
+      }),
+      prisma.composition.count(),
+      prisma.composer.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+      prisma.deity.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+      prisma.ankita.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+      prisma.raga.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+      prisma.tala.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+      prisma.tag.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
+      prisma.composer.count(),
+      prisma.raga.count(),
+      prisma.ankita.count()
+    ]);
+
+    return {
+      categoryCounts: {
+        dasarapada: dasarapadaCount,
+        suladi: suladiCount,
+        ugabhoga: ugabhogaCount,
+        mundige: mundigeCount,
+        all: allCount
+      },
+      allComposers,
+      allDeities,
+      allAnkitas,
+      allRagas,
+      allTalas,
+      allTags,
+      composerCount,
+      ragaCount,
+      ankitaCount
+    };
+  },
+  ['library-metadata-cache-v1'],
+  { revalidate: 3600, tags: ['metadata'] }
+);
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -69,13 +146,9 @@ export default async function CompositionsPage(props: {
     ];
   }
 
-  // Fetch counts and lookups
-  const [
-    dasarapadaCount,
-    suladiCount,
-    ugabhogaCount,
-    mundigeCount,
-    allCount,
+  // Fetch counts and lookups from cache
+  const {
+    categoryCounts,
     allComposers,
     allDeities,
     allAnkitas,
@@ -85,49 +158,7 @@ export default async function CompositionsPage(props: {
     composerCount,
     ragaCount,
     ankitaCount
-  ] = await Promise.all([
-    prisma.composition.count({
-      where: {
-        NOT: [
-          { title: { startsWith: '[Ugabhoga]' } },
-          { title: { startsWith: '[Suladi]' } },
-          { title: { startsWith: '[Mundige]' } }
-        ]
-      }
-    }),
-    prisma.composition.count({
-      where: {
-        OR: [
-          { title: { startsWith: '[Suladi]' } },
-          { tags: { some: { name: 'Suladi' } } }
-        ]
-      }
-    }),
-    prisma.composition.count({
-      where: { title: { startsWith: '[Ugabhoga]' } }
-    }),
-    prisma.composition.count({
-      where: { title: { startsWith: '[Mundige]' } }
-    }),
-    prisma.composition.count(),
-    prisma.composer.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
-    prisma.deity.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
-    prisma.ankita.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
-    prisma.raga.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
-    prisma.tala.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
-    prisma.tag.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
-    prisma.composer.count(),
-    prisma.raga.count(),
-    prisma.ankita.count()
-  ]);
-
-  const categoryCounts = {
-    dasarapada: dasarapadaCount,
-    suladi: suladiCount,
-    ugabhoga: ugabhogaCount,
-    mundige: mundigeCount,
-    all: allCount
-  };
+  } = await getLibraryMetadata();
 
   const showList = !!(category || search || composer || deity || ankita || raga || tala || tag);
 

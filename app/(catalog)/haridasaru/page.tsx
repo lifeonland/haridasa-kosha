@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma';
 import ComposersPageContent from './ComposersPageContent';
 import type { Metadata } from 'next';
 import { HISTORICAL_COMPOSER_ORDER } from '@/lib/utils';
+import { unstable_cache } from 'next/cache';
 
 import { COMPOSERS_PER_PAGE } from '@/lib/constants';
 
@@ -9,6 +10,19 @@ export const metadata: Metadata = {
   title: 'Parampara | The Haridasa Kosha',
   description: 'The lineage of divine wisdom, from Sri Madhvacharya to the modern era.',
 };
+
+const getGlobalStats = unstable_cache(
+  async () => {
+    const [compositionsCount, ragaCount, ankitaCount] = await Promise.all([
+      prisma.composition.count(),
+      prisma.raga.count(),
+      prisma.ankita.count(),
+    ]);
+    return { compositionsCount, ragaCount, ankitaCount };
+  },
+  ['global-archive-stats-v1'],
+  { revalidate: 3600, tags: ['metadata'] }
+);
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -30,12 +44,11 @@ export default async function ComposersPage(props: {
     : {};
 
   console.time('PrismaQueries');
-  const [totalComposers, compositionsCount, ragaCount, ankitaCount] = await Promise.all([
+  const [totalComposers, globalStats] = await Promise.all([
       prisma.composer.count({ where: searchFilter }),
-      prisma.composition.count(),
-      prisma.raga.count(),
-      prisma.ankita.count()
+      getGlobalStats()
   ]);
+  const { compositionsCount, ragaCount, ankitaCount } = globalStats;
   console.timeEnd('PrismaQueries');
 
   console.time('ComposerFetch');
