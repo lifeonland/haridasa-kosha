@@ -24,14 +24,14 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
 
     let variantClass = variants[variant];
     if (className) {
-      const hasCustomSize = /(?:^|\s)(?:[a-z0-9-]+:)?text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl|\[[^\]]+\])(?:\s|$)/.test(className);
-      const hasCustomLeading = /(?:^|\s)(?:[a-z0-9-]+:)?leading-(none|tight|snug|normal|relaxed|loose|[0-9]+|\[[^\]]+\])(?:\s|$)/.test(className);
+      const hasCustomSize = /(?<=^|\s)(?:[a-z0-9-]+:)?text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl|\[[^\]]+\])(?=$|\s)/.test(className);
+      const hasCustomLeading = /(?<=^|\s)(?:[a-z0-9-]+:)?leading-(none|tight|snug|normal|relaxed|loose|[0-9]+|\[[^\]]+\])(?=$|\s)/.test(className);
       
       if (hasCustomSize) {
-        variantClass = variantClass.replace(/(?:^|\s)(?:[a-z0-9-]+:)?text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl|\[[^\]]+\])(?:\s|$)/g, ' ');
+        variantClass = variantClass.replace(/(?<=^|\s)(?:[a-z0-9-]+:)?text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl|\[[^\]]+\])(?=$|\s)/g, '').trim();
       }
       if (hasCustomLeading || hasCustomSize) {
-        variantClass = variantClass.replace(/(?:^|\s)(?:[a-z0-9-]+:)?leading-(none|tight|snug|normal|relaxed|loose|[0-9]+|\[[^\]]+\])(?:\s|$)/g, ' ');
+        variantClass = variantClass.replace(/(?<=^|\s)(?:[a-z0-9-]+:)?leading-(none|tight|snug|normal|relaxed|loose|[0-9]+|\[[^\]]+\])(?=$|\s)/g, '').trim();
       }
     }
 
