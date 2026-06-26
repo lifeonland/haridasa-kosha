@@ -17,6 +17,10 @@ const translations = {
     communityEngagement: "Community Engagement",
     communityEngagementDesc: "Building a platform that invites scholars, students, and devotees to learn, discuss, and contribute to the collective understanding.",
     composer: "Composer",
+    composerLabel: "Composer",
+    deityLabel: "Deity",
+    ankitaLabel: "Ankita",
+    Unknown: "Unknown",
     composersPageDesc: "Meet the great saints who shared God's love through simple songs and stories.",
     composersPageTitle: "The Haridasa Parampara",
     compositions: "Compositions",
@@ -114,6 +118,7 @@ const translations = {
     "Venugopala": "Venugopala",
     "Kaginele Adikeshava": "Kaginele Adikeshava",
     "Bhimesha Krishna": "Bhimesha Krishna",
+    "Hayavadana": "Hayavadana",
     "Prasanna Venkata": "Prasanna Venkata",
     "mahipati": "Mahipati",
     statsAnkitas: "Ankitas",
@@ -297,6 +302,16 @@ const translations = {
     prasannaVenkataDasaru: "Prasanna Venkata Dasaru",
     prasannaVenkataDasaDesc: "A major 18th-century saint-composer from Bagalkot, known for his deep devotional poetry under the pen name 'Prasanna Venkata'.",
     prasannaVenkataDasaSloka: "śrī śātprāpta suvijñānam śrīśaika nirataṁ sadā |\nprasanna vēṅkaṭāryōmē bhūyāt sarvārtha siddhayē||",
+    srinivasaDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    lakshmipatiDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    madhwapatiDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    venkateshaDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    narahariDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    govindaDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    ugabhogaNarayanaDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    venugopalaDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    vishnuDasaDesc: "A revered saint-composer of the Haridasa tradition.",
+    krishnapriyaDasaDesc: "A revered saint-composer of the Haridasa tradition.",
     vadirajaTirtharu: "Vadiraja Tirtharu",
     narahariTirtharu: "Sri Narahari Tirtharu",
     reveredHaridasa: "A revered Haridasa.",
@@ -325,6 +340,7 @@ const translations = {
     "17th Century": "17th Century",
     "18th–19th Century": "18th–19th Century",
     Mukhari: "Mukhari",
+    Kedara: "Kedara",
     Adi: "Adi",
     Bhakti: "Bhakti",
     Philosophy: "Philosophy",
@@ -357,6 +373,10 @@ const translations = {
     communityEngagement: "ಸಮುದಾಯದ ಪಾಲ್ಗೊಳ್ಳುವಿಕೆ",
     communityEngagementDesc: "ವಿದ್ವಾಂಸರು, ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಭಕ್ತರು ಕಲಿಯಲು, ಚರ್ಚಿಸಲು ಮತ್ತು ಸಾಮೂಹಿಕ ತಿಳುವಳಿಕೆಗೆ ಕೊಡುಗೆ ನೀಡಲು ಉತ್ತೇಜಿಸುವ ವೇದಿಕೆಯನ್ನು ನಿರ್ಮಿಸುವುದು.",
     composer: "ಹರಿದಾಸರು",
+    composerLabel: "ಹರಿದಾಸರು",
+    deityLabel: "ಆರಾಧ್ಯ ದೈವ",
+    ankitaLabel: "ಅಂಕಿತ",
+    Unknown: "ಅಜ್ಞಾತ",
     composersPageDesc: "ಸರಳ ಹಾಡು ಮತ್ತು ಕಥೆಗಳ ಮೂಲಕ ಭಗವಂತನ ಪ್ರೀತಿಯನ್ನು ಹಂಚಿದ ಮಹಾನ್ ಸಂತರನ್ನು ಭೇಟಿ ಮಾಡಿ.",
     composersPageTitle: "ಹರಿದಾಸ ಪರಂಪರೆ",
     compositions: "ರಚನೆಗಳು",
@@ -460,8 +480,11 @@ const translations = {
     "Venugopala": "ವೇಣುಗೋಪಾಲ",
     "Kaginele Adikeshava": "ಕಾಗಿನೆಲೆ ಆದಿಕೇಶವ",
     "Bhimesha Krishna": "ಭೀಮೇಶಕೃಷ್ಣ",
+    "Hayavadana": "ಹಯವದನ",
     "Prasanna Venkata": "ಪ್ರಸನ್ನ ವೆಂಕಟ",
     "mahipati": "ಮಹೀಪತಿ",
+    Kedara: "ಕೇದಾರ",
+    Adi: "ಆದಿ",
     statsAnkitas: "ಅಂಕಿತಗಳು",
     statsCompositions: "ರಚನೆಗಳು",
     statsHaridasas: "ಹರಿದಾಸರು",
@@ -683,7 +706,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const t = useMemo(() => (key: string) => {
     const translation = (translations as any)[lang]?.[key];
     if (!translation) {
-      console.warn(`Missing translation for key: ${key}`);
+      // Don't warn for keys that look like raw text/titles (e.g. has spaces, starts with uppercase, or starts with bracket/parenthesis)
+      const isDynamicKey = /\s/.test(key) || /^[A-Z]/.test(key) || /^[\[(]/.test(key);
+      if (!isDynamicKey) {
+        console.warn(`Missing translation for key: ${key}`);
+      }
       return key;
     }
     return translation;

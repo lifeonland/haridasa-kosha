@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import SearchBar from '@/components/ui/SearchBar';
 import CompositionCard from '@/components/ui/CompositionCard';
+import { getComposerTranslationKey } from '@/lib/utils';
 import Pagination from '@/components/ui/Pagination';
 import { Typography } from '@/components/ui/typography';
 import { 
@@ -343,7 +344,7 @@ export default function CompositionsPageContent({
                             id={comp.id}
                             title={comp.title}
                             firstLine={comp.firstLine}
-                            composerName={comp.composer.name}
+                            composerName={getComposerTranslationKey(comp.composer.id)}
                             deityName={comp.deity.name}
                             raga={comp.raga?.name}
                             tala={comp.tala?.name}

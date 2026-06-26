@@ -11,11 +11,202 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getComposerTranslationKey, getBioTranslationKey } from '@/lib/utils';
 
+const COMPOSER_LOCATIONS: Record<string, {
+  nameEN: string;
+  nameKN: string;
+  query: string;
+  embedUrl: string;
+}> = {
+  'madhwacharya': {
+    nameEN: 'Sri Krishna Temple, Udupi',
+    nameKN: 'ಶ್ರೀ ಕೃಷ್ಣ ಮಠ, ಉಡುಪಿ',
+    query: 'Sri Krishna Temple, Udupi, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Sri%20Krishna%20Temple,%20Udupi,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'narahari-tirtha': {
+    nameEN: 'Shri Narahari Teertharu Vrindavana, Hampi',
+    nameKN: 'ಶ್ರೀ ನರಹರಿ ತೀರ್ಥರ ಬೃಂದಾವನ, ಹಂಪಿ',
+    query: 'Shri Narahari Teertharu Moola Brindavan, Hampi',
+    embedUrl: 'https://maps.google.com/maps?q=Shri%20Narahari%20Teertharu%20Moola%20Brindavan,%20Hampi&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'sripadaraja': {
+    nameEN: 'Sripadaraja Mutt, Mulbagal',
+    nameKN: 'ಶ್ರೀಪಾದರಾಜ ಮಠ, ಮುಳಬಾಗಿಲು',
+    query: 'Sripadaraja Mutt, Mulbagal, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Sripadaraja%20Mutt,%20Mulbagal,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'vyasatirtha': {
+    nameEN: 'Nava Brindavana, Anegundi',
+    nameKN: 'ನವ ಬೃಂದಾವನ, ಆನೆಗುಂದಿ',
+    query: 'Navabrindavana, Anegundi, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Navabrindavana,%20Anegundi,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'vadiraja-tirtha': {
+    nameEN: 'Sode Vadiraja Mutt, Sonda',
+    nameKN: 'ಸೋದೆ ವಾದಿರಾಜ ಮಠ, ಸೋಂದಾ',
+    query: 'Sode Vadiraja Mutt, Sonda, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Sode%20Vadiraja%20Mutt,%20Sonda,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'purandara-dasa': {
+    nameEN: 'Purandara Mantapa, Hampi',
+    nameKN: 'ಪುರಂದರ ಮಂಟಪ, ಹಂಪಿ',
+    query: 'Purandara Mantapa, Hampi, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Purandara%20Mantapa,%20Hampi,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'kanaka-dasa': {
+    nameEN: 'Kaginele Kanaka Guru Peetha',
+    nameKN: 'ಕಾಗಿನೆಲೆ ಕನಕ ಗುರು ಪೀಠ',
+    query: 'Kaginele Kanaka Guru Peetha, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Kaginele%20Kanaka%20Guru%20Peetha,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'vijaya-dasa': {
+    nameEN: 'Sri Vijaya Dasara Gavi, Chippagiri',
+    nameKN: 'ಶ್ರೀ ವಿಜಯ ದಾಸರ ಗವಿ, ಚಿಪ್ಪಗಿರಿ',
+    query: 'Sri Vijaya Dasara Gavi, Chippagiri, Andhra Pradesh',
+    embedUrl: 'https://maps.google.com/maps?q=Sri%20Vijaya%20Dasara%20Gavi,%20Chippagiri&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'gopala-dasa': {
+    nameEN: 'Uttanur, Karnataka',
+    nameKN: 'ಉತ್ತನೂರು, ಕರ್ನಾಟಕ',
+    query: 'Uttanur, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Uttanur,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'jagannatha-dasaru': {
+    nameEN: 'Sri Jagannatha Dasara Brindavana, Manvi',
+    nameKN: 'ಶ್ರೀ ಜಗನ್ನಾಥ ದಾಸರ ಬೃಂದಾವನ, ಮಾನ್ವಿ',
+    query: 'Sri Jagannatha Dasara Brindavana, Manvi, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Sri%20Jagannatha%20Dasara%20Brindavana,%20Manvi&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'raghavendra-dasa': {
+    nameEN: 'Sri Raghavendra Swamy Mutt, Mantralayam',
+    nameKN: 'ಶ್ರೀ ರಾಘವೇಂದ್ರ ಸ್ವಾಮಿ ಮಠ, ಮಂತ್ರಾಲಯ',
+    query: 'Mantralayam Sri Raghavendra Swamy Mutt, Andhra Pradesh',
+    embedUrl: 'https://maps.google.com/maps?q=Mantralayam%20Sri%20Raghavendra%20Swamy%20Mutt&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'harapanahalli-bhimavva': {
+    nameEN: 'Harapanahalli, Karnataka',
+    nameKN: 'ಹರಪನಹಳ್ಳಿ, ಕರ್ನಾಟಕ',
+    query: 'Harapanahalli, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Harapanahalli,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'prasanna-venkata-dasa': {
+    nameEN: 'Bagalkot, Karnataka',
+    nameKN: 'ಬಾಗಲಕೋಟೆ, ಕರ್ನಾಟಕ',
+    query: 'Bagalkot, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Bagalkot,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'mahipati-dasa': {
+    nameEN: 'Mahipati Dasara Vrindavana, Kakhandaki',
+    nameKN: 'ಮಹೀಪತಿ ದಾಸರ ಬೃಂದಾವನ, ಕಾಖಂಡಕಿ',
+    query: 'Mahipati Dasara Vrindavana, Kakhandaki, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Mahipati%20Dasara%20Vrindavana,%20Kakhandaki&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'satyabodha-dasa': {
+    nameEN: 'Sri Satyabodha Swamy Swarna Vrindavana, Savanur',
+    nameKN: 'ಶ್ರೀ ಸತ್ಯಬೋಧ ಸ್ವಾಮಿ ಸ್ವರ್ಣ ಬೃಂದಾವನ, ಸವಣೂರು',
+    query: 'Sri Satyabodha Swamy Vrindavana, Savanur, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Sri%20Satyabodha%20Swamy%20Vrindavana,%20Savanur,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'mohana-dasa': {
+    nameEN: 'Manvi, Karnataka',
+    nameKN: 'ಮಾನ್ವಿ, ಕರ್ನಾಟಕ',
+    query: 'Manvi, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Manvi,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'pranesha-dasaru': {
+    nameEN: 'Lingsugur, Karnataka',
+    nameKN: 'ಲಿಂಗಸಗೂರು, ಕರ್ನಾಟಕ',
+    query: 'Lingsugur, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Lingsugur,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'subbanna-dasa': {
+    nameEN: 'Kallur, Raichur',
+    nameKN: 'ಕಲ್ಲೂರು, ರಾಯಚೂರು',
+    query: 'Kallur, Manvi, Raichur, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Kallur,%20Manvi,%20Raichur,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'helavanakatte-giriyamma': {
+    nameEN: 'Helavanakatte (Malebennur), Karnataka',
+    nameKN: 'ಹೆಳವನಕಟ್ಟೆ (ಮಲೆಬೆನ್ನೂರು), ಕರ್ನಾಟಕ',
+    query: 'Malebennur, Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Malebennur,%20Karnataka&t=&z=13&ie=UTF8&iwloc=&output=embed'
+  },
+  'srinivasa-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'lakshmipati-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'madhwapati-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'venkatesha-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'narahari-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'govinda-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'ugabhoga-narayana-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'venugopala-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'vishnu-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  },
+  'krishnapriya-dasa': {
+    nameEN: 'Karnataka',
+    nameKN: 'ಕರ್ನಾಟಕ',
+    query: 'Karnataka',
+    embedUrl: 'https://maps.google.com/maps?q=Karnataka&t=&z=7&ie=UTF8&iwloc=&output=embed'
+  }
+};
+
 export default function ComposerDetailPageContent({ composer }: any) {
   const { t, lang } = useLanguage();
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
+  const [isMapHovered, setIsMapHovered] = useState(false);
 
   if (!composer) return null;
+
+  const locationData = COMPOSER_LOCATIONS[composer.id];
+
+  const handleMapClick = () => {
+    if (locationData) {
+      window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationData.query)}`, '_blank');
+    }
+  };
 
   return (
     <main className="min-h-screen bg-[#fcfaf7] py-12 px-6">
@@ -100,7 +291,69 @@ export default function ComposerDetailPageContent({ composer }: any) {
                             {t(getComposerTranslationKey(composer.id))}
                         </Typography>
                         <div className="flex items-center gap-4 text-sm font-bold text-slate-500 tracking-widest">
-                            <span className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {composer.ankita?.name ? t(composer.ankita.name) : '-'}</span>
+                            {locationData ? (
+                                <div className="relative inline-block">
+                                    <button 
+                                        onClick={handleMapClick}
+                                        onMouseEnter={() => setIsMapHovered(true)}
+                                        onMouseLeave={() => setIsMapHovered(false)}
+                                        className="flex items-center gap-2 text-slate-500 hover:text-amber-800 transition-colors cursor-pointer text-sm font-bold tracking-widest focus:outline-none"
+                                    >
+                                        <MapPin className="h-4 w-4 text-amber-600 animate-pulse"/> 
+                                        <span className="underline decoration-dotted decoration-amber-500/50 hover:decoration-amber-800">
+                                            {composer.ankita?.name ? t(composer.ankita.name) : '-'}
+                                        </span>
+                                    </button>
+                                    
+                                    <AnimatePresence>
+                                        {isMapHovered && (
+                                            <motion.div 
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute left-0 mt-2 z-50 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 w-[320px] pointer-events-auto"
+                                            >
+                                                <div className="space-y-3">
+                                                    <div className="flex items-start gap-2">
+                                                        <MapPin className="h-4 w-4 text-amber-600 mt-1 shrink-0" />
+                                                        <div className="text-left">
+                                                            <h4 className="font-bold text-slate-800 text-sm leading-tight normal-case tracking-normal">
+                                                                {lang === 'EN' ? locationData.nameEN : locationData.nameKN}
+                                                            </h4>
+                                                            <p className="text-xs text-slate-500 mt-0.5 normal-case tracking-normal font-normal">
+                                                                {lang === 'EN' ? 'Vrindavana / Sacred Site' : 'ಬೃಂದಾವನ / ಪವಿತ್ರ ಸ್ಥಳ'}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div className="w-full h-[180px] rounded-xl overflow-hidden border border-slate-100 relative">
+                                                        <iframe
+                                                            src={locationData.embedUrl}
+                                                            width="100%"
+                                                            height="100%"
+                                                            style={{ border: 0 }}
+                                                            allowFullScreen={false}
+                                                            loading="lazy"
+                                                            referrerPolicy="no-referrer-when-downgrade"
+                                                        />
+                                                    </div>
+                                                    
+                                                    <div className="text-center pt-1 border-t border-slate-100">
+                                                        <span className="text-[11px] font-bold text-amber-700 hover:text-amber-900 flex items-center justify-center gap-1 normal-case tracking-normal">
+                                                            {lang === 'EN' ? 'Click to open in Google Maps ↗' : 'ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್‌ನಲ್ಲಿ ತೆರೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ↗'}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            ) : (
+                                <span className="flex items-center gap-2">
+                                    <MapPin className="h-4 w-4"/> {composer.ankita?.name ? t(composer.ankita.name) : '-'}
+                                </span>
+                            )}
                             <span className="flex items-center gap-2"><Calendar className="h-4 w-4"/> {t(composer.timeline || '')}</span>
                             <span className="flex items-center gap-2">({composer.compositions?.length ?? 0} {t('statsCompositions')})</span>
                         </div>

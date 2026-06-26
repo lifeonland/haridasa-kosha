@@ -5,8 +5,10 @@ export async function POST(request: Request) {
   const apiKey = process.env.GEMINI_API_KEY;
   console.log("Using API Key starting with:", apiKey ? apiKey.substring(0, 5) : "undefined");
   if (!apiKey) {
-    console.error("GEMINI_API_KEY is not defined in environment variables.");
-    return NextResponse.json({ error: 'Configuration error' }, { status: 500 });
+    console.warn("GEMINI_API_KEY is not defined in environment variables. Returning local fallback mock response.");
+    return NextResponse.json({ 
+      content: "*(Local Development Mode: GEMINI_API_KEY is not defined)*\n\nTo enable live AI answers, please add your Google Gemini API Key to your `.env` file as `GEMINI_API_KEY=your_key`.\n\n**Example response:**\nSri Purandara Dasa (1484–1564) is revered as the Father of Carnatic Music. He systematized the method of teaching Carnatic music and composed thousands of songs under the pen name 'Purandara Vittala'." 
+    });
   }
 
   try {
@@ -15,7 +17,7 @@ export async function POST(request: Request) {
     console.log("Received messages:", messages);
 
     const model = genAI.getGenerativeModel({ 
-        model: "gemini-2.5-flash-lite",
+        model: "gemini-1.5-flash",
         systemInstruction: "You are a knowledgeable assistant specializing in Dasa Sahitya. Provide accurate, highly concise, and clear answers. Use bullet points for readability. Avoid lengthy introductions or conclusions. Maximum 3-4 sentences."
     });
 

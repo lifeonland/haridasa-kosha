@@ -3,6 +3,7 @@
 import { CopyButton } from '@/components/ui/CopyButton';
 import Link from 'next/link';
 import { useLanguage } from '@/components/shared/LanguageContext';
+import { getComposerTranslationKey } from '@/lib/utils';
 
 export default function CompositionDetailPageContent({ composition }: any) {
   const { t, lang } = useLanguage();
@@ -15,19 +16,19 @@ export default function CompositionDetailPageContent({ composition }: any) {
           {t('navLibrary')}
         </Link>
         <span className="text-slate-400">/</span>
-        <span className="text-slate-600">{t(composition.title)}</span>
+        <span className="text-slate-600">{composition.title}</span>
       </div>
 
       {/* Header */}
       <div className="mb-12 pb-8 border-b border-border/40">
         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8 tracking-tighter">
-          {t(composition.title)}
+          {composition.title}
         </h1>
 
             {/* Metadata Tags */}
         <div className="flex flex-wrap gap-3">
           {[
-            { label: 'composerLabel', value: t(composition.composer.name), link: `/haridasaru/${composition.composer.id}`, color: "bg-slate-100 text-slate-700 border-slate-200" },
+            { label: 'composerLabel', value: t(getComposerTranslationKey(composition.composer.id)), link: `/haridasaru/${composition.composer.id}`, color: "bg-slate-100 text-slate-700 border-slate-200" },
             { label: 'deityLabel', value: t(composition.deity.name), color: "bg-amber-50 text-amber-700 border-amber-100" },
             { label: 'ankitaLabel', value: t(composition.ankita.name), color: "bg-rose-50 text-rose-700 border-rose-100" },
             { label: 'ragaLabel', value: composition.raga ? t(composition.raga.name) : 'N/A', color: "bg-indigo-50 text-indigo-700 border-indigo-100" },
