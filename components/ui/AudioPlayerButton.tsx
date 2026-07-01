@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import ReactPlayer from 'react-player';
-import { Play, Pause, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Play, Pause } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface AudioPlayerButtonProps {
@@ -10,10 +9,7 @@ interface AudioPlayerButtonProps {
 }
 
 export default function AudioPlayerButton({ url }: AudioPlayerButtonProps) {
-  const [playing, setPlaying] = useState(false);
-  const [ready, setReady] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const playerRef = useRef<ReactPlayer>(null);
 
   const [showPlayer, setShowPlayer] = useState(false);
 
