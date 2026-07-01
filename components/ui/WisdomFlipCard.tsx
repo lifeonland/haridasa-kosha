@@ -39,16 +39,18 @@ export function WisdomFlipCard({ title, quote, source, meaning, transliteration,
            style={{ backgroundColor: `hsl(${hueRotate}, 50%, 95%)` }}
         >
           <div className="w-full h-full p-8 md:p-12 flex flex-col justify-between items-center text-center relative z-10">
-            <div className="z-10 w-full flex justify-between items-start opacity-70">
-              <Quote className="h-8 w-8 text-primary" />
-              {(raga || tala) && (
-                <div className="flex gap-2 text-[9px] font-bold uppercase tracking-widest text-slate-500 bg-white/50 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/40 shadow-sm items-center">
-                    <Music className="w-3 h-3 mr-1 text-primary" />
-                    <span>{raga || 'Ragamalika'}</span>
-                    <span className="opacity-50 mx-1">•</span>
-                    <span>{tala || 'Adi'}</span>
-                </div>
-              )}
+            <div className="z-10 w-full flex justify-between items-start opacity-90">
+              <Quote className="h-8 w-8 text-primary/70" />
+              <div className="flex flex-col items-end gap-2">
+                {(raga || tala) && (
+                  <div className="flex gap-2 text-[9px] font-bold uppercase tracking-widest text-slate-500 bg-white/50 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/40 shadow-sm items-center opacity-70">
+                      <Music className="w-3 h-3 mr-1 text-primary" />
+                      <span>{raga || 'Ragamalika'}</span>
+                      <span className="opacity-50 mx-1">•</span>
+                      <span>{tala || 'Adi'}</span>
+                  </div>
+                )}
+              </div>
             </div>
             
             <div className="z-10 w-full flex-grow flex flex-col items-center justify-center py-4">

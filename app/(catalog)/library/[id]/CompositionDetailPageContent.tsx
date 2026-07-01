@@ -7,6 +7,7 @@ import { getComposerTranslationKey } from '@/lib/utils';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info, Sparkles } from 'lucide-react';
+import AudioPlayerButton from '@/components/ui/AudioPlayerButton';
 
 export default function CompositionDetailPageContent({ composition }: any) {
   const { t, lang } = useLanguage();
@@ -28,9 +29,16 @@ export default function CompositionDetailPageContent({ composition }: any) {
 
       {/* Header */}
       <div className="mb-12 pb-8 border-b border-border/40">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8 tracking-tighter">
-          {composition.title}
-        </h1>
+        <div className="flex flex-col md:flex-row md:items-center justify-start gap-4 mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tighter">
+            {composition.title}
+          </h1>
+          {composition.audioFiles && composition.audioFiles.length > 0 && (
+            <div className="shrink-0 flex items-center justify-start mt-2 md:mt-0">
+              <AudioPlayerButton url={composition.audioFiles[0].url} />
+            </div>
+          )}
+        </div>
 
             {/* Metadata Tags */}
         <div className="flex flex-wrap gap-3">

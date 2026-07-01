@@ -206,10 +206,12 @@ export default function DailyWisdomPage() {
                             </span>
                         </div>
                         <div className="flex flex-col items-center justify-center text-center gap-2 my-1">
-                            <p className="text-[10px] text-slate-700 font-medium leading-relaxed whitespace-pre-line text-center line-clamp-4">
+                            <p className="text-[10px] text-slate-700 font-medium leading-relaxed whitespace-pre-line text-center overflow-hidden">
                                 {data.translation.wordByWord && data.translation.wordByWord !== '-' 
-                                    ? data.translation.wordByWord.split('\n').slice(0, 4).join('\n')
-                                    : (data.translation.english || data.commentary)}
+                                    ? data.translation.wordByWord.split('\n').slice(0, 4).join('\n') + (data.translation.wordByWord.split('\n').length > 4 ? '\n...' : '')
+                                    : ((data.translation.english || data.commentary)?.length > 120 
+                                        ? (data.translation.english || data.commentary)?.substring(0, 120) + '...'
+                                        : (data.translation.english || data.commentary))}
                             </p>
                         </div>
                         {data.translation.wordByWord && data.translation.wordByWord !== '-' && (

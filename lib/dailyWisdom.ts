@@ -40,6 +40,7 @@ export async function getDailyWisdom(date?: Date) {
           tala: true,
           deity: true,
           ankita: true,
+          audioFiles: true,
         }
       } 
     },
@@ -105,6 +106,7 @@ export async function getDailyWisdom(date?: Date) {
             tala: true,
             deity: true,
             ankita: true,
+            audioFiles: true,
           }
         } 
       },
