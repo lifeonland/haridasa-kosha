@@ -17,6 +17,7 @@ interface CompositionCardProps {
   tala?: string;
   hasLyrics?: boolean;
   lyrics?: string;
+  featured?: boolean;
 }
 
 export default function CompositionCard({

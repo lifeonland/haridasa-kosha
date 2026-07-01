@@ -69,7 +69,8 @@ Paramapadavaniva sirikrushnaniralagi narara sevisabedavo endendigu ||3||`,
            data: {
                compositionId: id,
                english: englishText,
-               kannadaMeaning: ""
+               kannadaMeaning: "",
+               wordByWord: ""
            }
        });
     }
