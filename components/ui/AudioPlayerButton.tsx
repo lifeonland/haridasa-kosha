@@ -50,12 +50,12 @@ export default function AudioPlayerButton({ url }: AudioPlayerButtonProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-4 right-0 md:left-0 md:right-auto z-50 bg-white p-3 rounded-2xl shadow-2xl border border-slate-100"
+            className="absolute top-full mt-4 left-0 z-50 bg-white p-3 rounded-2xl shadow-2xl border border-slate-100 max-w-[calc(100vw-32px)]"
           >
-            <div className="rounded-xl overflow-hidden bg-black/5 flex items-center justify-center w-[280px] h-[157px]">
+            <div className="rounded-xl overflow-hidden bg-black/5 flex items-center justify-center w-full max-w-[280px] aspect-video">
               <iframe 
-                width="280" 
-                height="157" 
+                width="100%" 
+                height="100%" 
                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} 
                 title="YouTube video player" 
                 frameBorder="0" 
@@ -63,8 +63,8 @@ export default function AudioPlayerButton({ url }: AudioPlayerButtonProps) {
                 allowFullScreen
               ></iframe>
             </div>
-            <p className="text-[10px] text-slate-500 text-center mt-3 font-medium">
-              If audio does not start automatically, click play above.
+            <p className="text-[10px] text-slate-500 text-center mt-3 font-medium whitespace-nowrap">
+              If audio doesn't start, click play.
             </p>
           </motion.div>
         )}
