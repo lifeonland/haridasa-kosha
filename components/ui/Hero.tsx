@@ -7,12 +7,21 @@ import { useLanguage } from '@/components/shared/LanguageContext';
 import { Typography } from '../ui/typography';
 import { Button } from '../ui/button';
 
-export default function Hero() {
+interface HeroProps {
+  stats: {
+    compositions: number | null;
+    composers: number | null;
+    ragas: number | null;
+    ankitas: number | null;
+  };
+}
+
+export default function Hero({ stats }: HeroProps) {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden pt-2 md:pt-4">
-      <div className="relative z-10 mx-auto flex items-start max-w-7xl px-6 pt-2 pb-12 md:pt-4 lg:pt-6 lg:pb-16">
+    <section className="relative overflow-hidden">
+      <div className="relative z-10 mx-auto flex items-center max-w-7xl px-6 pb-12 lg:pb-16">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full">
             
             {/* Left Content Column */}
@@ -20,7 +29,7 @@ export default function Hero() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-7 space-y-8"
+                className="lg:col-span-7 space-y-8 mt-0"
             >
                 <div className="space-y-6">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-slate-950 leading-[1.1] lg:-ml-1">
@@ -65,11 +74,11 @@ export default function Hero() {
                 {/* Desktop Mini Stats */}
                 <div className="hidden md:flex gap-12 pt-10 border-t border-slate-300/50">
                     <div>
-                        <div className="text-2xl font-bold tracking-tight text-slate-950">12K+</div>
+                        <div className="text-2xl font-bold tracking-tight text-slate-950">{stats?.compositions !== null ? stats.compositions.toLocaleString() + '+' : '...'}</div>
                         <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-1">{t('statsCompositions')}</div>
                     </div>
                     <div>
-                        <div className="text-2xl font-bold tracking-tight text-slate-950">150+</div>
+                        <div className="text-2xl font-bold tracking-tight text-slate-950">{stats?.composers !== null ? stats.composers.toLocaleString() + '+' : '...'}</div>
                         <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mt-1">{t('statsHaridasas')}</div>
                     </div>
                     <div>

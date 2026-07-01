@@ -11,6 +11,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'd18x2uyjeekruj.cloudfront.net' },
       { protocol: 'https', hostname: 'encrypted-tbn0.gstatic.com' },
       { protocol: 'https', hostname: 'www.sripadarajamutt.org' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
 }

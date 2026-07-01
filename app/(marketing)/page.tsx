@@ -30,21 +30,35 @@ import { useLanguage } from '@/components/shared/LanguageContext';
 import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 
+import { 
+  FcClock, 
+  FcReadingEbook, 
+  FcLibrary, 
+  FcConferenceCall, 
+  FcMusic, 
+  FcGlobe,
+  FcIdea,
+  FcVoicePresentation,
+  FcLike,
+  FcKey,
+  FcPortraitMode
+} from 'react-icons/fc';
+
 const quickStartItems = [
   {
     title: 'paramparaTitle',
     text: 'paramparaDesc',
-    icon: <History className="h-5 w-5 text-primary" />,
+    icon: <FcClock className="h-6 w-6" />,
   },
   {
     title: 'archiveTitle',
     text: 'archiveDesc',
-    icon: <BookOpen className="h-5 w-5 text-primary" />,
+    icon: <FcReadingEbook className="h-6 w-6" />,
   },
   {
     title: 'scholarlyTitle',
     text: 'scholarlyDesc',
-    icon: <Library className="h-5 w-5 text-primary" />,
+    icon: <FcLibrary className="h-6 w-6" />,
   },
 ];
 
@@ -52,17 +66,17 @@ const siteHighlights = [
   {
     title: 'historicalAuthenticity',
     text: 'historicalDesc',
-    icon: <Users className="h-6 w-6" />,
+    icon: <FcConferenceCall className="h-7 w-7" />,
   },
   {
     title: 'musicalHeritage',
     text: 'musicalHeritageDesc',
-    icon: <Music className="h-6 w-6" />,
+    icon: <FcMusic className="h-7 w-7" />,
   },
   {
     title: 'universalAccess',
     text: 'universalAccessDesc',
-    icon: <Globe className="h-6 w-6" />,
+    icon: <FcGlobe className="h-7 w-7" />,
   },
 ];
 
@@ -71,17 +85,19 @@ function GlassSectionHeader({
   title,
   description,
   variant = 'center',
+  icon = <FcIdea className="h-4 w-4" />,
 }: {
   eyebrow: string;
   title: string;
   description?: string;
   variant?: 'center' | 'left';
+  icon?: React.ReactNode;
 }) {
   const { t } = useLanguage();
   return (
     <div className={`mx-auto max-w-5xl rounded-[3.5rem] border border-slate-100/50 bg-white/95 px-6 py-8 shadow-xl backdrop-blur-xl sm:px-10 sm:py-10 ${variant === 'center' ? 'text-center' : 'text-left'}`}>
       <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-[10px] font-bold tracking-[0.3em] text-primary shadow-sm mb-6 uppercase">
-        <Sparkles className="h-3 w-3 text-primary" />
+        {icon}
         {t(eyebrow)}
       </span>
       <Typography variant="h2" className="mt-6 font-bold tracking-tight text-3xl md:text-4xl">
@@ -135,7 +151,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-          <Hero />
+          <Hero stats={stats} />
       </div>
 
       <Section id="about" spacing="lg" className="relative z-10 mt-16">
@@ -148,25 +164,25 @@ export default function Home() {
             />
 
             <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] items-stretch">
-              <div className="h-full rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-8 sm:p-10 shadow-xl backdrop-blur-xl">
+              <div className="h-full rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-6 sm:p-8 shadow-xl backdrop-blur-xl">
                 <div className="flex items-center gap-4">
-                    <div className="rounded-2xl bg-primary/10 p-4 text-primary">
-                        <Feather className="h-6 w-6" />
+                    <div className="rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 p-4">
+                        <FcIdea className="h-6 w-6" />
                     </div>
                     <Typography variant="h3" className="font-bold">{t('livingTradition')}</Typography>
                 </div>
-                <Typography variant="lead" className="mt-8 max-w-2xl text-slate-600 leading-relaxed">
+                <Typography variant="lead" className="mt-6 max-w-2xl text-slate-600 leading-relaxed text-base">
                   {t('livingTraditionDesc')}
                 </Typography>
 
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   {[
-                    { text: 'foundations', icon: <Sparkles className="h-4 w-4 text-primary" /> },
-                    { text: 'verifiedKeertanas', icon: <Quote className="h-4 w-4 text-primary" /> },
-                    { text: 'discoverStories', icon: <Heart className="h-4 w-4 text-primary" /> },
-                    { text: 'studyStructures', icon: <Music className="h-4 w-4 text-primary" /> },
+                    { text: 'foundations', icon: <FcLibrary className="h-4 w-4" /> },
+                    { text: 'verifiedKeertanas', icon: <FcVoicePresentation className="h-4 w-4" /> },
+                    { text: 'discoverStories', icon: <FcLike className="h-4 w-4" /> },
+                    { text: 'studyStructures', icon: <FcMusic className="h-4 w-4" /> },
                   ].map((item) => (
-                    <div key={item.text} className="flex items-start gap-4 rounded-3xl border border-slate-100/50 bg-white/80 p-6 text-sm leading-relaxed text-slate-700 shadow-sm transition hover:bg-white">
+                    <div key={item.text} className="flex items-start gap-4 rounded-3xl border border-slate-100/50 bg-white/80 p-5 text-sm leading-relaxed text-slate-700 shadow-sm transition hover:bg-white">
                       <div className="mt-0.5">{item.icon}</div>
                       {t(item.text)}
                     </div>
@@ -174,14 +190,14 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-1 lg:content-start">
-                {shuffledItems.map((item) => (
-                  <div key={item.title} className="group h-full rounded-[2rem] border border-slate-100/50 bg-white/90 p-8 shadow-xl backdrop-blur-xl transition hover:border-primary/20">
-                    <div className="mb-6 inline-flex rounded-2xl bg-slate-50 p-4 shadow-sm ring-1 ring-slate-100 transition group-hover:bg-primary/5">
+              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-2 lg:content-start">
+                {shuffledItems.map((item, i) => (
+                  <div key={item.title} className="group rounded-3xl border border-slate-100/50 bg-white/90 p-5 shadow-lg backdrop-blur-xl transition flex flex-col items-center text-center">
+                    <div className="mb-3 inline-flex rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100 transition group-hover:scale-110">
                         {item.icon}
                     </div>
-                    <Typography variant="h4" className="font-bold">{t(item.title)}</Typography>
-                    <Typography variant="p" className="mt-4 text-sm leading-relaxed text-slate-600">
+                    <Typography variant="h4" className="font-bold text-base">{t(item.title)}</Typography>
+                    <Typography variant="p" className="mt-2 text-xs leading-relaxed text-slate-600">
                       {t(item.text)}
                     </Typography>
                   </div>
@@ -191,7 +207,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               {['Vyasa Kuta', 'Dasa Kuta', 'Udupi Krishna', 'Vittala Keertana', 'Haridasa Namavali'].map((item) => (
-                <span key={item} className="rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm px-6 py-3 text-[11px] font-bold text-slate-600 shadow-sm transition hover:border-primary/30 hover:text-primary">
+                <span key={item} className="rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm px-6 py-3 text-[11px] font-bold text-slate-600 shadow-sm transition hover:text-primary">
                   {t(item)}
                 </span>
               ))}
@@ -204,7 +220,7 @@ export default function Home() {
       <section className="bg-white/90 backdrop-blur-xl border-y border-slate-100/50 py-10 relative z-10">
             <Container className="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
                 <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.compositions !== null ? stats.compositions.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsCompositions')}</div></div>
-                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.composers !== null ? stats.composers.toLocaleString() : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsHaridasas')}</div></div>
+                <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.composers !== null ? stats.composers.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsHaridasas')}</div></div>
                 <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ragas !== null ? stats.ragas.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsRagas')}</div></div>
                 <div><div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter">{stats?.ankitas !== null ? stats.ankitas.toLocaleString() + '+' : '...'}</div><div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">{t('statsAnkitas')}</div></div>
             </Container>
@@ -217,17 +233,18 @@ export default function Home() {
               eyebrow="keyFeatures"
               title="structuredPath"
               description="pathDesc"
+              icon={<FcKey className="h-4 w-4" />}
             />
-
+            
             <div className="-mx-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden mt-20">
               <div className="flex gap-8 snap-x snap-mandatory">
                 {siteHighlights.map((item) => (
                   <motion.div 
                     key={item.title} 
                     whileHover={{ scale: 1.02 }}
-                    className="group rounded-[2rem] border border-slate-100/50 bg-white/90 p-8 shadow-xl backdrop-blur-xl transition hover:border-primary/20 w-[18rem] sm:w-[22rem] snap-start shrink-0"
+                    className="group rounded-[2rem] border border-slate-100/50 bg-white/90 p-8 shadow-xl backdrop-blur-xl transition w-[18rem] sm:w-[22rem] snap-start shrink-0 flex flex-col items-center text-center"
                   >
-                    <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-primary shadow-sm ring-1 ring-slate-100 transition group-hover:bg-primary group-hover:text-white">
+                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 transition duration-300 group-hover:scale-110">
                       {item.icon}
                     </div>
                     <Typography variant="h4" className="text-xl font-bold">{t(item.title)}</Typography>
@@ -242,6 +259,7 @@ export default function Home() {
         </Container>
       </Section>
 
+
       <Section spacing="lg" className="relative z-10 border-t border-slate-100/50">
         <Container>
           <RevealOnScroll>
@@ -249,6 +267,7 @@ export default function Home() {
               eyebrow="haridasaruTitle"
               title="saintsSoil"
               description="saintsSoilDesc"
+              icon={<FcPortraitMode className="h-4 w-4" />}
             />
 
             <div className="mt-12">
@@ -256,10 +275,10 @@ export default function Home() {
             </div>
 
             <div className="mt-12 flex justify-center">
-              <Button size="lg" variant="outline" className="h-14 rounded-full px-12 border-slate-200 bg-white/80 hover:border-primary/40 hover:bg-white transition-all duration-300 font-bold text-[11px] tracking-widest" asChild>
-                <Link href="/haridasaru" className="flex items-center gap-2">
-                    {t('exploreAllHaridasaru')}
-                    <ArrowRight className="h-4 w-4" />
+              <Button size="lg" variant="outline" className="h-14 rounded-full px-12 border-slate-200 bg-white/80 hover:bg-white transition-all duration-300 font-bold text-[11px] tracking-widest" asChild>
+                <Link href="/haridasaru">
+                  {t('viewDirectory')}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -274,6 +293,7 @@ export default function Home() {
               eyebrow="devotionalContext"
               title="exploreByDeity"
               description="deityDesc"
+              icon={<FcLike className="h-4 w-4" />}
             />
 
             <div className="mt-12 rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-8 sm:p-12 shadow-xl backdrop-blur-xl">
@@ -292,35 +312,38 @@ export default function Home() {
               description="journeyDesc"
             />
 
-            <div className="mt-12 rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-8 sm:p-12 shadow-xl backdrop-blur-xl">
-              <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-stretch">
-                <div className="space-y-6">
+            <div className="mt-12 rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-6 sm:p-8 shadow-xl backdrop-blur-xl">
+              <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-stretch">
+                <div className="space-y-6 flex flex-col justify-center">
                   <Typography variant="h3" className="text-3xl font-bold tracking-tight">{t('modernSeeker')}</Typography>
-                  <Typography variant="p" className="text-lg leading-relaxed text-slate-600">
+                  <Typography variant="p" className="text-base leading-relaxed text-slate-600">
                     {t('modernSeekerDesc')}
                   </Typography>
                   <div className="flex flex-wrap gap-4 pt-4">
-                    <Button size="lg" className="rounded-full px-8 h-14 font-bold tracking-widest text-[11px] shadow-sm" asChild>
+                    <Button size="lg" className="rounded-full px-8 h-12 font-bold tracking-widest text-[11px] shadow-sm" asChild>
                         <Link href="/library">{t('browseArchive')}</Link>
                     </Button>
-                    <Button size="lg" variant="outline" className="rounded-full px-8 h-14 font-bold tracking-widest text-[11px] border-slate-200 bg-white/80" asChild>
+                    <Button size="lg" variant="outline" className="rounded-full px-8 h-12 font-bold tracking-widest text-[11px] border-slate-200 bg-white/80 transition hover:bg-white" asChild>
                         <Link href="/about">{t('learnHistory')}</Link>
                     </Button>
                   </div>
                 </div>
-                <div className="rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-8 sm:p-10 shadow-xl backdrop-blur-xl">
-                  <Typography variant="h4" className="text-xl font-bold mb-6">{t('insideArchive')}</Typography>
-                  <ul className="space-y-5">
+                <div className="rounded-[2.5rem] border border-slate-100/50 bg-white/90 p-6 sm:p-8 shadow-xl backdrop-blur-xl">
+                  <Typography variant="h4" className="text-lg font-bold mb-6 flex items-center gap-2">
+                    <FcLibrary className="h-5 w-5" />
+                    {t('insideArchive')}
+                  </Typography>
+                  <ul className="space-y-4">
                     {[
-                        'biographiesCount',
-                        'authenticLyrics',
-                        'philosophicalMeanings',
-                        'categorization',
-                        'academicDevotional'
+                        { text: 'biographiesCount', icon: <FcPortraitMode className="h-4 w-4 shrink-0 mt-0.5" /> },
+                        { text: 'authenticLyrics', icon: <FcVoicePresentation className="h-4 w-4 shrink-0 mt-0.5" /> },
+                        { text: 'philosophicalMeanings', icon: <FcIdea className="h-4 w-4 shrink-0 mt-0.5" /> },
+                        { text: 'categorization', icon: <FcLibrary className="h-4 w-4 shrink-0 mt-0.5" /> },
+                        { text: 'academicDevotional', icon: <FcReadingEbook className="h-4 w-4 shrink-0 mt-0.5" /> }
                     ].map((item) => (
-                        <li key={item} className="flex items-start gap-3 text-slate-600 font-medium leading-relaxed">
-                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                            {t(item)}
+                        <li key={item.text} className="flex items-start gap-3 text-sm text-slate-600 font-medium leading-relaxed">
+                            {item.icon}
+                            {t(item.text)}
                         </li>
                     ))}
                   </ul>

@@ -67,6 +67,28 @@ export default function AboutPage() {
             ))}
           </div>
 
+          {/* Join Our Mission CTA (Moved Up) */}
+          <div className="mb-16">
+            <div className="relative max-w-md mx-auto rounded-[2rem] bg-slate-950 p-8 text-white text-center shadow-2xl overflow-hidden">
+              <Typography variant="h2" className="text-xl md:text-2xl font-bold mb-3 leading-tight tracking-tight">
+                  {t('joinMissionTitle')}
+              </Typography>
+              <Typography variant="p" className="text-xs text-slate-300 mb-6">
+                  {t('joinMissionDesc')}
+              </Typography>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <Button size="sm" className="rounded-full px-6 h-10 font-bold tracking-widest text-[10px] bg-white text-black hover:bg-slate-100 transition duration-300" asChild>
+                  <Link href="/contribute">{t('contributeBtn')}</Link>
+                </Button>
+                <Button size="sm" variant="outline" className="rounded-full px-6 h-10 font-bold tracking-widest text-[10px] border-white/30 bg-transparent hover:bg-white/10 transition duration-300" asChild>
+                  <a href="mailto:srivatsa.m.s.91@gmail.com">
+                    {t('contactBtn')}
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
           {/* Detailed Mission */}
           <div className="mb-16">
             <div className="max-w-3xl mx-auto text-center mb-10">
@@ -127,25 +149,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Footer CTA */}
-          <div className="relative rounded-[2rem] bg-slate-950 p-8 text-white text-center shadow-2xl overflow-hidden">
-            <Typography variant="h2" className="text-xl md:text-2xl font-bold mb-3 leading-tight tracking-tight">
-                {t('joinMissionTitle')}
-            </Typography>
-            <Typography variant="p" className="text-xs text-slate-300 mb-6 max-w-lg mx-auto">
-                {t('joinMissionDesc')}
-            </Typography>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Button size="sm" className="rounded-full px-6 h-10 font-bold tracking-widest text-[10px] bg-white text-black hover:bg-slate-100" asChild>
-                <Link href="/contribute">{t('contributeBtn')}</Link>
-              </Button>
-              <Button size="sm" variant="outline" className="rounded-full px-6 h-10 font-bold tracking-widest text-[10px] border-white/30 bg-transparent hover:bg-white/10" asChild>
-                <a href="mailto:srivatsa.m.s.91@gmail.com">
-                  {t('contactBtn')}
-                </a>
-              </Button>
-            </div>
-          </div>
+
         </Container>
       </Section>
     </main>

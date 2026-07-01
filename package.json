@@ -20,6 +20,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
     "eslint-config-next": "^16.2.6",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.17.0",
@@ -27,6 +28,7 @@
     "prisma": "^5.14.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-icons": "^5.7.0",
     "react-markdown": "^10.1.0",
     "tailwind-merge": "^3.6.0"
   },
