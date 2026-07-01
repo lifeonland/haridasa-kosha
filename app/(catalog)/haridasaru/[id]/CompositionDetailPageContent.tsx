@@ -397,6 +397,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                         raga={comp.raga?.name || 'TBD'}
                                         tala={comp.tala?.name || 'TBD'}
                                         hasLyrics={comp.lyrics && comp.lyrics.length > 0}
+                                        lyrics={comp.lyrics}
                                     />
                                 ))}
                             </motion.div>

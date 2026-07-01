@@ -19,7 +19,7 @@ export default function ComposerCard({ composer }: ComposerCardProps) {
 
   return (
     <Link href={`/haridasaru/${composer.id}`} className="group block h-full">
-      <div className="flex flex-col h-full gap-4 p-4 rounded-3xl border border-border/50 bg-white transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
+      <div className="flex flex-col h-full gap-4 p-4 rounded-3xl border border-border/50 bg-white transition-all duration-300 hover:shadow-lg">
         <div className="aspect-square md:aspect-[4/5] overflow-hidden rounded-2xl bg-secondary/50 relative">
           {composer.imageUrl ? (
             <Image

@@ -5,6 +5,7 @@ import { LanguageProvider, useLanguage } from '@/components/shared/LanguageConte
 import LanguageSwitcher from '@/components/shared/LanguageSwitcher';
 import { Navigation } from '@/components/shared/Navigation';
 import { MobileNavigation } from '@/components/shared/MobileNavigation';
+import { BottomNav } from '@/components/shared/BottomNav';
 import Footer from '@/components/shared/Footer';
 import Link from 'next/link';
 import { Noto_Sans_Kannada } from 'next/font/google';
@@ -17,7 +18,7 @@ function Header() {
   const { t } = useLanguage();
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-amber-100 text-slate-900 text-center py-2 text-[10px] font-bold tracking-widest">
+      <div className="bg-amber-100 text-slate-900 text-center py-1 sm:py-2 px-2 text-[8px] sm:text-[10px] font-bold tracking-widest leading-tight">
           {t('prototypeWarning')}
       </div>
       <div className="bg-white/60 backdrop-blur-3xl border-b border-white/40 shadow-sm">
@@ -50,10 +51,11 @@ export default function RootLayout({
       <body className="bg-background text-foreground antialiased flex flex-col min-h-screen font-sans">
         <LanguageProvider>
           <Header />
-          <div className="flex-1">
+          <div className="flex-1 pb-16 md:pb-0">
             {children}
           </div>
           <Footer />
+          <BottomNav />
         </LanguageProvider>
         <Analytics />
         <SpeedInsights />

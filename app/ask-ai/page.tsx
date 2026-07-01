@@ -7,13 +7,31 @@ import { useLanguage } from '@/components/shared/LanguageContext';
 import { Send, Bot, Sparkles, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function AskAiPage() {
+import { Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+
+function AskAiContent() {
   const { t } = useLanguage();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [messages, setMessages] = useState<Array<{id: string, role: 'user' | 'ai', content: string}>>([
     { id: 'welcome', role: 'ai', content: t('aiMeaningfulWelcome') }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Use a ref to track if we've already processed the initial query
+  const hasProcessedInitialQuery = useRef(false);
+
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q && !hasProcessedInitialQuery.current) {
+      hasProcessedInitialQuery.current = true;
+      // Remove query param from URL without reloading
+      router.replace('/ask-ai', { scroll: false });
+      handleSend(q);
+    }
+  }, [searchParams, router]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -107,5 +125,13 @@ export default function AskAiPage() {
             </div>
       </div>
     </main>
+  );
+}
+
+export default function AskAiPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#fcfaf7] flex items-center justify-center">Loading AI...</div>}>
+      <AskAiContent />
+    </Suspense>
   );
 }

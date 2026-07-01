@@ -40,7 +40,7 @@ export function MobileNavigation() {
                 key={link.href} 
                 href={link.href} 
                 onClick={() => setIsOpen(false)}
-                className="py-2 hover:text-primary transition-colors block border-b border-slate-100"
+                className="py-3 min-h-[44px] flex items-center hover:text-primary transition-colors border-b border-slate-100"
               >
                 {link.label}
               </Link>

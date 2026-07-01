@@ -336,7 +336,7 @@ export default function CompositionsPageContent({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" : "space-y-3"}
+                        className={viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" : "space-y-3"}
                       >
                         {compositions.map((comp: any) => (
                           <CompositionCard
@@ -349,6 +349,7 @@ export default function CompositionsPageContent({
                             raga={comp.raga?.name}
                             tala={comp.tala?.name}
                             hasLyrics={comp.lyrics && comp.lyrics.trim() !== comp.title.trim() && comp.lyrics.length > comp.title.length + 5}
+                            lyrics={comp.lyrics}
                           />
                         ))}
                       </motion.div>

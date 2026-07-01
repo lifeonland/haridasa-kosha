@@ -111,7 +111,7 @@ export default function HaridasaruDirectory() {
 
         return (
           <Link key={dasaru.id} href={`/haridasaru/${displayDasaru.id}`} className="group block snap-start">
-            <article className="w-[18rem] sm:w-[20rem] overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/90 p-4 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-2xl">
+            <article className="w-[18rem] sm:w-[20rem] overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/90 p-4 shadow-xl backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <div className="h-1 w-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent opacity-80" />
 
               <div className="mt-4 flex items-center gap-4">
@@ -148,8 +148,12 @@ export default function HaridasaruDirectory() {
               </Typography>
 
               <div className="mt-4 flex items-center justify-between border-t border-slate-200/80 pt-4 s text-muted-foreground">
-                <span>{t('exploreProfile')}</span>
-                <span className="font-semibold text-primary transition-transform duration-300 group-hover:translate-x-0.5">{t('open')} →</span>
+                <span className="text-[10px] font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 px-2.5 py-1 rounded-full tracking-widest uppercase">
+                  {dasaru._count?.compositions || 0} {t('Compositions')}
+                </span>
+                <span className="text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-0.5">
+                  {t('open')} →
+                </span>
               </div>
             </article>
           </Link>
