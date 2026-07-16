@@ -13,6 +13,7 @@ export function BottomNav() {
     { href: '/', icon: Home, label: t('navHome') || 'Home' },
     { href: '/library', icon: Library, label: t('navLibrary') },
     { href: '/haridasaru', icon: Users, label: t('navComposers') },
+    { href: '/graph', icon: Search, label: 'Graph' }, // Replace Ask AI with Graph for now, or just add it
     { href: '/ask-ai', icon: Search, label: t('navAskAI') },
   ];
 

@@ -4,7 +4,7 @@ import { CopyButton } from '@/components/ui/CopyButton';
 import Link from 'next/link';
 import { useLanguage } from '@/components/shared/LanguageContext';
 import { getComposerTranslationKey } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info, Sparkles } from 'lucide-react';
 import AudioPlayerButton from '@/components/ui/AudioPlayerButton';
@@ -13,11 +13,24 @@ export default function CompositionDetailPageContent({ composition }: any) {
   const { t, lang } = useLanguage();
   
   // Localized toggles that default to the user's preferred settings
-  const [lyricsLang, setLyricsLang] = useState<'KN' | 'EN'>('KN');
-  const [translationLang, setTranslationLang] = useState<'KN' | 'EN'>('EN');
+  const [lyricsLang, setLyricsLang] = useState<'KN' | 'EN'>(lang === 'KN' ? 'KN' : 'EN');
+  const [translationLang, setTranslationLang] = useState<'KN' | 'EN'>(lang === 'KN' ? 'KN' : 'EN');
+
+  // Sync with global language changes
+  useEffect(() => {
+    setLyricsLang(lang === 'KN' ? 'KN' : 'EN');
+    setTranslationLang(lang === 'KN' ? 'KN' : 'EN');
+  }, [lang]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12">
+    <>
+      {composition.id === 'nt-002' && (
+        <div 
+          className="fixed inset-0 pointer-events-none opacity-[0.15] bg-cover bg-top bg-no-repeat mix-blend-multiply z-[-1]"
+          style={{ backgroundImage: "url('/assets/webp/sharanagathi-bhakti.webp')" }}
+        />
+      )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12 relative z-10">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 py-8 text-sm">
         <Link href="/library" className="text-primary hover:text-primary/80 transition-colors font-medium">
@@ -110,7 +123,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
               </h2>
               <CopyButton text={lyricsLang === 'KN' ? composition.lyrics : composition.transliteration} />
             </div>
-            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-border/40 shadow-sm hover:shadow-xl transition-all duration-300 leading-relaxed">
+            <div className={`${composition.id === 'nt-002' ? 'bg-white/70 backdrop-blur-lg' : 'bg-white'} p-8 md:p-12 rounded-[2.5rem] border border-border/40 shadow-sm hover:shadow-xl transition-all duration-300 leading-relaxed`}>
               <p className={`text-lg text-slate-800 whitespace-pre-wrap ${lyricsLang === 'KN' ? 'font-kannada' : ''}`}>
                 {lyricsLang === 'KN' ? composition.lyrics : composition.transliteration}
               </p>
@@ -131,7 +144,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
               </div>
               <div className="space-y-8">
                 {composition.translations.map((translation: any) => (
-                  <div key={translation.id} className="border border-border/40 rounded-[2.5rem] p-8 md:p-12 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                  <div key={translation.id} className={`border border-border/40 rounded-[2.5rem] p-8 md:p-12 ${composition.id === 'nt-002' ? 'bg-white/70 backdrop-blur-lg' : 'bg-white'} shadow-sm hover:shadow-xl transition-all duration-300`}>
                     <AnimatePresence mode="wait">
                       {translationLang === 'EN' && (
                         <motion.div key="en" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}>
@@ -163,5 +176,6 @@ export default function CompositionDetailPageContent({ composition }: any) {
         )}
       </div>
     </div>
+    </>
   );
 }

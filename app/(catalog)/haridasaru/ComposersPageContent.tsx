@@ -98,7 +98,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                         <Link 
                             key={c.id} 
                             href={`/haridasaru/${c.id}`}
-                            className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 group block"
+                            className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 group flex flex-col h-full"
                         >
                             <div className="w-16 h-16 mb-4 rounded-2xl bg-slate-100 overflow-hidden shrink-0 transition-transform duration-500 group-hover:scale-105 shadow-inner">
                                 {c.imageUrl ? (
@@ -107,7 +107,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                                     <div className="w-full h-full flex items-center justify-center text-2xl opacity-50">🙏</div>
                                 )}
                             </div>
-                            <Typography variant="h4" className="font-bold mb-1 capitalize">{t(c.name)}</Typography>
+                            <Typography variant="h4" className="font-bold mb-1 capitalize">{getName(c)}</Typography>
                             <Typography variant="p" className="text-xs text-slate-500 mb-4">{t(c.ankita?.name || '')} • {t(c.timeline || '')}</Typography>
                             <Typography variant="p" className="text-sm text-slate-600 line-clamp-3 mb-6">{getBio(c)}</Typography>
                             <div className="flex items-center justify-between mt-auto border-t border-slate-100 pt-4">
@@ -135,7 +135,7 @@ export default function ComposersPageContent({ composers, stats, totalComposers,
                         <tbody className="divide-y divide-slate-100">
                             {filteredComposers.map((c: any) => (
                                 <tr key={c.id} className="hover:bg-slate-50/50">
-                                    <td className="px-6 py-4 font-bold capitalize">{t(c.name)}</td>
+                                    <td className="px-6 py-4 font-bold capitalize">{getName(c)}</td>
                                     <td className="px-6 py-4 text-slate-600">{t(c.ankita?.name || '')}</td>
                                     <td className="px-6 py-4 text-slate-600">{t(c.timeline || '')}</td>
                                     <td className="px-6 py-4 text-right"><Link href={`/haridasaru/${c.id}`} className="text-primary font-bold">{t('viewProfile')}</Link></td>

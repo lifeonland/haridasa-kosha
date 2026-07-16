@@ -7,9 +7,10 @@ import CompositionCard from '@/components/ui/CompositionCard';
 import { Section } from '@/components/ui/section';
 import { Container } from '@/components/ui/container';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { getComposerTranslationKey, getBioTranslationKey } from '@/lib/utils';
+import { Network } from 'lucide-react';
 
 const COMPOSER_LOCATIONS: Record<string, {
   nameEN: string;
@@ -277,7 +278,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                         composer.id === 'mahipati-dasa' ? t('mahipatiDasaSloka') : '';
                                     
                                     return sloka.split('\n').map((line, idx) => (
-                                        <span key={idx} className="block text-center whitespace-nowrap">{line.trim()}</span>
+                                        <span key={idx} className="block text-center break-words">{line.trim()}</span>
                                     ));
                                 })()}
                             </div>
@@ -361,9 +362,23 @@ export default function ComposerDetailPageContent({ composer }: any) {
 
                     <div className="prose prose-slate max-w-none">
                         <Typography variant="h3" className="font-bold mb-4">{t('about')}</Typography>
-                        <Typography variant="p" className="text-base text-slate-600 leading-relaxed">
-                            {t(getBioTranslationKey(composer.id))}
+                        <Typography variant="p" className="text-base text-slate-600 leading-relaxed mb-8 whitespace-pre-line">
+                            {(lang === 'EN' && composer.biography && composer.biography.length > 100) 
+                                ? composer.biography 
+                                : t(getBioTranslationKey(composer.id))}
                         </Typography>
+
+                        {/* Knowledge Graph Link Button */}
+                        <div className="mt-6">
+                            <Link 
+                                href={`/graph?composerId=${composer.id}`}
+                                className="inline-flex items-center gap-2 bg-amber-50 hover:bg-amber-100 border border-amber-200/50 text-amber-800 font-semibold text-xs py-2 px-4 rounded-full transition-colors shadow-sm group"
+                            >
+                                <Network className="w-3.5 h-3.5 text-amber-600" />
+                                {t('Explore Knowledge Graph')}
+                                <span className="text-amber-500 group-hover:translate-x-0.5 transition-transform">→</span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

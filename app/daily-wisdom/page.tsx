@@ -20,7 +20,6 @@ export default function DailyWisdomPage() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
     fetch(`/api/daily-wisdom?date=${selectedDate.toISOString()}`)
       .then((res) => res.json())
       .then((data) => {
