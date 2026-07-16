@@ -17,6 +17,12 @@ export default async function GraphPage(props: { searchParams: Promise<{ [key: s
     where: { id: composerId },
     include: {
       ankita: true,
+      guru: {
+        include: { ankita: true }
+      },
+      shishyas: {
+        include: { ankita: true }
+      },
       compositions: {
         include: {
           raga: true,

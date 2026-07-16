@@ -219,18 +219,25 @@ export default function ComposerDetailPageContent({ composer }: any) {
             {/* Hero Section */}
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start mb-20">
                 <div className="w-full lg:w-1/3 flex flex-col items-center gap-6">
-                    <div className="w-full max-w-[280px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg shrink-0 relative">
+                    <div className="group w-full max-w-[280px] aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg shrink-0 relative cursor-default">
                         {composer.imageUrl ? (
-                            <Image 
-                              src={composer.imageUrl} 
-                              alt={t(getComposerTranslationKey(composer.id))} 
-                              fill 
-                              className="object-cover" 
-                              priority 
-                              sizes="280px"
-                            />
+                            <>
+                                <Image 
+                                  src={composer.imageUrl} 
+                                  alt={t(getComposerTranslationKey(composer.id))} 
+                                  fill 
+                                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" 
+                                  priority 
+                                  sizes="280px"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-6 pointer-events-none">
+                                    <span className="text-white/90 text-sm font-bold tracking-widest uppercase opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                        {t(getComposerTranslationKey(composer.id))}
+                                    </span>
+                                </div>
+                            </>
                         ) : (
-                            <div className="w-full h-full bg-slate-100 flex items-center justify-center text-6xl opacity-20">🙏</div>
+                            <div className="w-full h-full bg-slate-100 flex items-center justify-center text-6xl opacity-20 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-40">🙏</div>
                         )}
                     </div>
 

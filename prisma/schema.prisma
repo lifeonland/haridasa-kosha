@@ -15,6 +15,9 @@ model Composer {
   imageUrl     String?
   ankitaId     String
   timeline     String?
+  guruId       String?
+  guru         Composer?     @relation("GuruShishya", fields: [guruId], references: [id])
+  shishyas     Composer[]    @relation("GuruShishya")
   ankita       Ankita        @relation(fields: [ankitaId], references: [id])
   compositions Composition[]
 }

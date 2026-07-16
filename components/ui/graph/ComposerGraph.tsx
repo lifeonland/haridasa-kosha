@@ -107,59 +107,50 @@ export default function ComposerGraph({ composer, compositions }: ComposerGraphP
       });
     });
 
-    // 4. Related Haridasas (Left Column - Use real valid IDs)
-    const related = [
-      { id: 'kanaka-dasa', name: 'Kanaka Dasa', relationship: 'Contemporary' },
-      { id: 'vijaya-dasa', name: 'Vijaya Dasa', relationship: 'Influenced By' },
-      { id: 'jagannatha-dasaru', name: 'Jagannatha Dasa', relationship: 'Lineage' },
-    ];
-    const relPositions = [
-      { x: -380, y: -100 },
-      { x: -420, y: 0 },
-      { x: -380, y: 100 },
-    ];
+    // The hardcoded related haridasas block was removed to avoid duplicate keys and 
+    // inaccurate data since the Guru/Shishya lineage is now fully dynamic.
 
-    related.forEach((rel, idx) => {
-      nodes.push({
-        id: rel.id,
-        type: 'relatedNode',
-        position: relPositions[idx],
-        data: { ...rel },
+    // 5. Disciple Lineage (Bottom Arc)
+    const lineage: any[] = [];
+    if (composer.guru) {
+      lineage.push({ id: composer.guru.id, name: composer.guru.name, relationship: 'Guru', isGuru: true });
+    }
+    if (composer.shishyas && composer.shishyas.length > 0) {
+      composer.shishyas.forEach((shishya: any) => {
+        lineage.push({ id: shishya.id, name: shishya.name, relationship: 'Disciple', isGuru: false });
       });
-      edges.push({
-        id: `e-center-${rel.id}`,
-        source: 'center',
-        target: rel.id,
-        sourceHandle: 'left',
-        style: { ...edgeStyle, stroke: '#c084fc' },
-      });
-    });
+    }
 
-    // 5. Disciple Lineage (Bottom Row - Use real valid IDs)
-    const lineage = [
-      { id: 'sripadaraja', name: 'Shripadaraya', relationship: 'Guru' },
-      { id: 'vadiraja-tirtha', name: 'Vadiraja Tirtha', relationship: 'Contemporary' },
-      { id: 'srinivasa-dasa', name: 'Srinivasa Dasa', relationship: 'Disciple' },
-    ];
-    const linPositions = [
-      { x: -200, y: 250 },
-      { x: 0, y: 280 },
-      { x: 200, y: 250 },
-    ];
+    // Distribute lineage nodes evenly at the bottom
+    const totalLineage = lineage.length;
+    const lineageSpacing = 220;
+    const startX = -((totalLineage - 1) * lineageSpacing) / 2;
 
     lineage.forEach((lin, idx) => {
       nodes.push({
         id: lin.id,
         type: 'lineageNode',
-        position: linPositions[idx],
+        position: { x: startX + (idx * lineageSpacing), y: 250 + (idx % 2 === 0 ? 0 : 30) },
         data: { ...lin },
       });
-      edges.push({
-        id: `e-center-${lin.id}`,
-        source: 'center',
-        target: lin.id,
-        style: { ...edgeStyle, stroke: '#60a5fa' },
-      });
+      
+      if (lin.isGuru) {
+          edges.push({
+            id: `e-${lin.id}-center`,
+            source: lin.id,
+            target: 'center',
+            style: { ...edgeStyle, stroke: '#60a5fa' },
+            animated: true,
+          });
+      } else {
+          edges.push({
+            id: `e-center-${lin.id}`,
+            source: 'center',
+            target: lin.id,
+            style: { ...edgeStyle, stroke: '#60a5fa' },
+            animated: true,
+          });
+      }
     });
 
     return { initialNodes: nodes, initialEdges: edges };
