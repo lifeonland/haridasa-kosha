@@ -162,23 +162,35 @@ export default async function CompositionsPage(props: {
 
   const showList = !!(category || search || composer || deity || ankita || raga || tala || tag);
 
+  const getCachedCompositions = unstable_cache(
+    async (filterStr: string, skip: number, take: number) => {
+      const filter = JSON.parse(filterStr);
+      const total = await prisma.composition.count({ where: filter });
+      const items = await prisma.composition.findMany({
+        where: filter,
+        include: {
+          composer: { select: { name: true } },
+          deity: { select: { name: true } },
+          raga: { select: { name: true } },
+          tala: { select: { name: true } },
+        },
+        skip,
+        take,
+        orderBy: { title: 'asc' },
+      });
+      return { total, items };
+    },
+    ['library-compositions-cache-v2'],
+    { revalidate: 3600, tags: ['library'] }
+  );
+
   let compositions: any[] = [];
   let totalCompositions = 0;
 
   if (showList) {
-    totalCompositions = await prisma.composition.count({ where: searchFilter });
-    compositions = await prisma.composition.findMany({
-      where: searchFilter,
-      include: {
-        composer: { select: { name: true } },
-        deity: { select: { name: true } },
-        raga: { select: { name: true } },
-        tala: { select: { name: true } },
-      },
-      skip,
-      take: COMPOSITIONS_PER_PAGE,
-      orderBy: { title: 'asc' },
-    });
+    const cached = await getCachedCompositions(JSON.stringify(searchFilter), skip, COMPOSITIONS_PER_PAGE);
+    compositions = cached.items;
+    totalCompositions = cached.total;
   }
 
   const uniqueByName = (items: Array<{ id: string; name: string }>) => 

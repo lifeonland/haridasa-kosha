@@ -24,40 +24,20 @@ const getGlobalStats = unstable_cache(
   { revalidate: 3600, tags: ['metadata'] }
 );
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
-
-export default async function ComposersPage(props: {
-  searchParams: SearchParams;
-}) {
-  const searchParams = await props.searchParams;
-  const currentPage = parseInt(String(searchParams.page || '1'));
-  const search = String(searchParams.search || '');
-  const showAll = searchParams.showAll === 'true';
-
-  const searchFilter = search
-    ? {
-        OR: [
-          { name: { contains: search, mode: 'insensitive' as const } },
-          { biography: { contains: search, mode: 'insensitive' as const } },
-        ],
-      }
-    : {};
-
+export default async function ComposersPage() {
   console.time('PrismaQueries');
   const [totalComposers, globalStats] = await Promise.all([
-      prisma.composer.count({ where: searchFilter }),
+      prisma.composer.count(),
       getGlobalStats()
   ]);
   const { compositionsCount, ragaCount, ankitaCount } = globalStats;
   console.timeEnd('PrismaQueries');
 
   console.time('ComposerFetch');
-  // Fetch paginated composers
+  // Fetch all composers for static generation
   const composers = await prisma.composer.findMany({
-    where: searchFilter,
     include: { _count: { select: { compositions: true } }, ankita: true },
-    take: COMPOSERS_PER_PAGE,
-    skip: (currentPage - 1) * COMPOSERS_PER_PAGE,
+    take: 100, // all of them
   });
   console.timeEnd('ComposerFetch');
 
@@ -84,7 +64,7 @@ export default async function ComposersPage(props: {
         totalComposers={totalComposers} 
         totalPages={Math.ceil(totalComposers / COMPOSERS_PER_PAGE)}
         stats={stats}
-        currentPage={currentPage}
+        currentPage={1}
     />
   );
 }
