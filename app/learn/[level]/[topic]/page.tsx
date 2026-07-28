@@ -99,6 +99,7 @@ export default function ModuleReaderPage() {
   const [units, setUnits] = useState<Unit[]>([]);
   const [activeUnitIdx, setActiveUnitIdx] = useState(0);
   const [completedUnits, setCompletedUnits] = useState<Set<number>>(new Set([0]));
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const pathLevel = typeof level === 'string' ? level.toLowerCase() : '';
   const pathTopic = typeof topic === 'string' ? topic.toLowerCase() : '';
@@ -124,6 +125,10 @@ export default function ModuleReaderPage() {
         });
         const data = await res.json();
         
+        if (!data.content) {
+          throw new Error(data.error || 'Failed to load lesson content');
+        }
+
         const fallbackDesc = moduleData ? moduleData.description[lang as 'EN'|'KN'] : "Welcome to this learning module.";
 
         const parsed = parseMarkdownToUnits(data.content, fallbackDesc);
@@ -131,6 +136,13 @@ export default function ModuleReaderPage() {
         setUnits(parsed.units);
       } catch (error) {
         console.error("Error fetching lesson:", error);
+        // Fallback UI or empty state instead of crashing
+        setUnits([{ 
+          title: "Error Loading Content", 
+          content: "There was an error loading this lesson. Please try again later.", 
+          type: "text", 
+          readTime: 1 
+        }]);
       } finally {
         setLoading(false);
       }
@@ -156,7 +168,6 @@ export default function ModuleReaderPage() {
     );
   }
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const activeUnit = units[activeUnitIdx];
   const isLastUnit = activeUnitIdx === units.length - 1;

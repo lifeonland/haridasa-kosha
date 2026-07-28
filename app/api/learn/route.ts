@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     // 2. Generate a new lesson using Gemini
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-3.5-flash",
+      model: process.env.GEMINI_MODEL || "gemini-3.5-flash-lite",
       generationConfig: {
         temperature: 0.7,
       },
