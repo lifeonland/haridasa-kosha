@@ -156,12 +156,12 @@ export default function ModuleReaderPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
+      <div className="w-full flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
         <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
         <h2 className="text-xl font-bold text-slate-700">
           {lang === 'KN' ? 'ಪಾಠವನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...' : 'Building your curriculum...'}
         </h2>
-        <p className="text-slate-500 mt-2">
+        <p className="text-slate-500 mt-2 text-sm md:text-base">
           {lang === 'KN' ? 'ವಿದ್ವಾಂಸರು ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸುತ್ತಿದ್ದಾರೆ' : 'This may take up to 30 seconds for new modules.'}
         </p>
       </div>
