@@ -31,3 +31,7 @@ yarn-error.log*
 .eslintcache
 .vercel
 .env*
+
+# local migration scripts
+scripts/
+prisma/dev.db
