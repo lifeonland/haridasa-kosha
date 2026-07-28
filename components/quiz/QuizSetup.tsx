@@ -115,12 +115,12 @@ export function QuizSetup({ onStart }: QuizSetupProps) {
             <input 
               type="range" 
               min="5" 
-              max="15" 
+              max="50" 
               step="5" 
               value={numQuestions}
               onChange={(e) => setNumQuestions(parseInt(e.target.value) as NumQuestions)}
               style={{ 
-                background: `linear-gradient(to right, #f97316 0%, #f97316 ${((numQuestions - 5) / 10) * 100}%, #e5e5ea ${((numQuestions - 5) / 10) * 100}%, #e5e5ea 100%)` 
+                background: `linear-gradient(to right, #f97316 0%, #f97316 ${((numQuestions - 5) / 45) * 100}%, #e5e5ea ${((numQuestions - 5) / 45) * 100}%, #e5e5ea 100%)` 
               }}
               className="w-full h-[4px] rounded-full appearance-none cursor-pointer 
                 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-7 [&::-webkit-slider-thumb]:h-7 
@@ -132,8 +132,8 @@ export function QuizSetup({ onStart }: QuizSetupProps) {
           </div>
           <div className="flex justify-between text-xs font-medium text-slate-400 mt-3">
             <span className={numQuestions === 5 ? 'text-primary font-bold' : ''}>5</span>
-            <span className={numQuestions === 10 ? 'text-primary font-bold' : ''}>10</span>
-            <span className={numQuestions === 15 ? 'text-primary font-bold' : ''}>15</span>
+            <span className={numQuestions === 25 ? 'text-primary font-bold' : ''}>25</span>
+            <span className={numQuestions === 50 ? 'text-primary font-bold' : ''}>50</span>
           </div>
         </div>
 
