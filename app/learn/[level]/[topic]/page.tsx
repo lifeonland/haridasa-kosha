@@ -138,10 +138,9 @@ export default function ModuleReaderPage() {
         console.error("Error fetching lesson:", error);
         // Fallback UI or empty state instead of crashing
         setUnits([{ 
+          id: "error",
           title: "Error Loading Content", 
-          content: "There was an error loading this lesson. Please try again later.", 
-          type: "text", 
-          readTime: 1 
+          content: "There was an error loading this lesson. Please try again later."
         }]);
       } finally {
         setLoading(false);
