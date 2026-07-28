@@ -18,6 +18,7 @@ interface CompositionCardProps {
   hasLyrics?: boolean;
   lyrics?: string;
   featured?: boolean;
+  tags?: { name: string }[];
 }
 
 export default function CompositionCard({
@@ -31,6 +32,7 @@ export default function CompositionCard({
   hasLyrics = true,
   featured = false,
   lyrics,
+  tags = [],
 }: CompositionCardProps) {
   const { t, lang } = useLanguage();
   const { toggleBookmark, isBookmarked } = useBookmarks();
@@ -83,19 +85,36 @@ export default function CompositionCard({
     return firstLine;
   };
 
-  const isSuladi = title.toLowerCase().includes('suladi');
+  const isSuladi = title.toLowerCase().includes('suladi') || tags.some(tag => tag.name.toLowerCase() === 'suladi');
   const isUgabhoga = title.toLowerCase().includes('ugabhoga');
+  const isMundige = title.toLowerCase().includes('mundige');
+  const isDasarapada = !isSuladi && !isUgabhoga && !isMundige;
+
+  const getTagColor = (tagName: string) => {
+    const colors = [
+      'text-blue-700 bg-blue-50 border-blue-100',
+      'text-purple-700 bg-purple-50 border-purple-100',
+      'text-yellow-700 bg-yellow-50 border-yellow-100',
+      'text-rose-700 bg-rose-50 border-rose-100',
+      'text-teal-700 bg-teal-50 border-teal-100',
+    ];
+    let hash = 0;
+    for (let i = 0; i < tagName.length; i++) {
+      hash = tagName.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colors[Math.abs(hash) % colors.length];
+  };
 
   return (
     <motion.div
         whileHover={{ y: -4 }}
         className="group relative bg-white border border-slate-100 rounded-[1.25rem] p-4 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full overflow-hidden"
     >
-        {/* Background Image - Only for Hariye Idu Sariye */}
-        {id === 'nt-002' && (
+        {/* Background Image - Only for Hariye Idu Sariye & Entu Marulade */}
+        {(id === 'nt-001' || id === 'nt-002') && (
             <div 
-                className="absolute inset-0 pointer-events-none opacity-60 bg-contain bg-right-bottom bg-no-repeat group-hover:opacity-80 transition-opacity duration-500 mix-blend-multiply"
-                style={{ backgroundImage: "url('/assets/webp/sharanagathi-bhakti.webp')" }}
+                className={`absolute inset-0 pointer-events-none opacity-60 bg-contain bg-right-bottom bg-no-repeat group-hover:opacity-80 transition-opacity duration-500 mix-blend-multiply ${id === 'nt-001' ? 'bg-right-bottom' : ''}`}
+                style={{ backgroundImage: `url('/assets/webp/${id === 'nt-001' ? 'vairagya-bhakti-reflection.webp' : 'sharanagathi-bhakti.webp'}')` }}
             />
         )}
 
@@ -103,7 +122,7 @@ export default function CompositionCard({
         <div className={`relative z-10 flex flex-col h-full`}>
             <Link href={`/library/${id}`} className="block flex-grow">
                 <div className="flex justify-between items-start mb-1.5">
-                  <Typography variant="h3" className="text-base font-bold group-hover:text-primary transition-colors line-clamp-2 inline-flex items-center gap-1.5">
+                  <Typography variant="h3" className="text-base font-bold group-hover:text-primary transition-colors line-clamp-2 inline-flex items-center gap-1.5 capitalize">
                       {getDisplayTitle(title)}
                       {id === 'vyasatirtha-29' && (
                         <span title="Has special note" className="text-amber-500 bg-amber-50 rounded-full p-0.5 shrink-0">
@@ -120,7 +139,7 @@ export default function CompositionCard({
                   )}
                 </div>
                 
-                <Typography variant="p" className="text-[10px] font-bold text-slate-800 mb-2">
+                <Typography variant="p" className="text-[10px] font-bold text-slate-800 mb-2 capitalize">
                     {t(composerName)} • {t(deityName)}
                 </Typography>
 
@@ -130,32 +149,53 @@ export default function CompositionCard({
 
                 <div className="flex flex-wrap gap-1.5 mb-3">
                     {raga !== "TBD" && (
-                        <span className={`text-[9px] font-bold px-2.5 py-0.5 rounded-full border ${raga === 'Stotra' ? 'text-fuchsia-700 bg-fuchsia-50 border-fuchsia-100' : 'text-indigo-700 bg-indigo-50 border-indigo-100'}`}>{t(raga)}</span>
+                        <span className={`text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize ${raga === 'Stotra' ? 'text-fuchsia-700 bg-fuchsia-50 border-fuchsia-100' : 'text-indigo-700 bg-indigo-50 border-indigo-100'}`}>{t(raga)}</span>
                     )}
                     {tala !== "TBD" && (
-                        <span className={`text-[9px] font-bold px-2.5 py-0.5 rounded-full border ${tala === 'Chanted' ? 'text-cyan-700 bg-cyan-50 border-cyan-100' : 'text-emerald-700 bg-emerald-50 border-emerald-100'}`}>{t(tala)}</span>
+                        <span className={`text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize ${tala === 'Chanted' ? 'text-cyan-700 bg-cyan-50 border-cyan-100' : 'text-emerald-700 bg-emerald-50 border-emerald-100'}`}>{t(tala)}</span>
+                    )}
+                    {isDasarapada && (
+                        <button 
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = '/library?category=dasarapada'; }}
+                          className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize text-blue-700 bg-blue-50 border-blue-100 hover:bg-blue-100 transition-colors"
+                        >
+                          {t('Dasarapada')}
+                        </button>
+                    )}
+                    {isMundige && (
+                        <button 
+                          onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = '/library?category=mundige'; }}
+                          className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize text-violet-700 bg-violet-50 border-violet-100 hover:bg-violet-100 transition-colors"
+                        >
+                          {t('Mundige')}
+                        </button>
                     )}
                     {isSuladi && (
                         <button 
                           onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = '/library?category=suladi'; }}
-                          className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border text-pink-700 bg-pink-50 border-pink-100 hover:bg-pink-100 transition-colors"
+                          className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize text-pink-700 bg-pink-50 border-pink-100 hover:bg-pink-100 transition-colors"
                         >
-                          Suladi
+                          {t('Suladi')}
                         </button>
                     )}
                     {isUgabhoga && (
                         <button 
                           onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = '/library?category=ugabhoga'; }}
-                          className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border text-orange-700 bg-orange-50 border-orange-100 hover:bg-orange-100 transition-colors"
+                          className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize text-orange-700 bg-orange-50 border-orange-100 hover:bg-orange-100 transition-colors"
                         >
-                          Ugabhoga
+                          {t('Ugabhoga')}
                         </button>
                     )}
+                    {tags.map(tag => (
+                        <span key={tag.name} className={`text-[9px] font-bold px-2.5 py-0.5 rounded-full border capitalize ${getTagColor(tag.name)}`}>
+                          {t(tag.name)}
+                        </span>
+                    ))}
                 </div>
             </Link>
 
             <div className="flex items-center justify-start gap-2 pt-2 mt-auto relative z-10">
-                <Link href={`/library/${id}`} className={`flex items-center gap-1 text-[11px] font-bold transition-colors ${id === 'nt-002' ? 'bg-white/90 backdrop-blur-md rounded-full px-3 py-1.5 text-primary shadow-sm' : 'text-primary hover:text-primary/80 py-1.5 pr-2'}`}>
+                <Link href={`/library/${id}`} className={`flex items-center gap-1 text-[11px] font-bold transition-colors ${(id === 'nt-001' || id === 'nt-002') ? 'bg-white/90 backdrop-blur-md rounded-full px-3 py-1.5 text-primary shadow-sm' : 'text-primary hover:text-primary/80 py-1.5 pr-2'}`}>
                     {t('read')} <ArrowRight className="h-3 w-3" />
                 </Link>
                 <button 
@@ -164,7 +204,7 @@ export default function CompositionCard({
                         e.stopPropagation();
                         toggleBookmark(id);
                     }}
-                    className={`h-7 w-7 flex items-center justify-center transition-colors ${saved ? 'text-primary' : (id === 'nt-002' ? 'text-slate-800 hover:text-primary' : 'text-slate-500 hover:text-primary')} ${id === 'nt-002' ? 'bg-white/90 backdrop-blur-md rounded-full shadow-sm' : ''}`}
+                    className={`h-7 w-7 flex items-center justify-center transition-colors ${saved ? 'text-primary' : ((id === 'nt-001' || id === 'nt-002') ? 'text-slate-800 hover:text-primary' : 'text-slate-500 hover:text-primary')} ${(id === 'nt-001' || id === 'nt-002') ? 'bg-white/90 backdrop-blur-md rounded-full shadow-sm' : ''}`}
                     aria-label={saved ? "Remove bookmark" : "Add bookmark"}
                 >
                     {saved ? <BookmarkCheck className="h-3.5 w-3.5 fill-current"/> : <Bookmark className="h-3.5 w-3.5"/>}

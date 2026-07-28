@@ -169,10 +169,11 @@ export default async function CompositionsPage(props: {
       const items = await prisma.composition.findMany({
         where: filter,
         include: {
-          composer: { select: { name: true } },
+          composer: { select: { id: true, name: true } },
           deity: { select: { name: true } },
           raga: { select: { name: true } },
           tala: { select: { name: true } },
+          tags: { select: { name: true } },
         },
         skip,
         take,

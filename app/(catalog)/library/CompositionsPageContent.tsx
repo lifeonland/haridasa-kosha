@@ -350,6 +350,7 @@ export default function CompositionsPageContent({
                             tala={comp.tala?.name}
                             hasLyrics={comp.lyrics && comp.lyrics.trim() !== comp.title.trim() && comp.lyrics.length > comp.title.length + 5}
                             lyrics={comp.lyrics}
+                            tags={comp.tags}
                           />
                         ))}
                       </motion.div>

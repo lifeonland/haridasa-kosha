@@ -14,6 +14,8 @@ export function Navigation() {
       <Link href="/graph" className="hover:text-primary transition-colors">{t('navConnections')}</Link>
       <Link href="/parampara" className="hover:text-primary transition-colors">{t('navParampara')}</Link>
       <Link href="/daily-wisdom" className="hover:text-primary transition-colors">{t('navDailyWisdom')}</Link>
+      <Link href="/learn" className="hover:text-primary transition-colors flex items-center gap-1.5">{t('navLearn') || 'Learn'} <span className="bg-orange-500 text-white text-[9px] px-1.5 py-0.5 rounded-md uppercase tracking-wider font-bold">New</span></Link>
+      <Link href="/quiz" className="hover:text-primary transition-colors flex items-center gap-1.5">{t('navQuiz')} <span className="bg-orange-500 text-white text-[9px] px-1.5 py-0.5 rounded-md uppercase tracking-wider font-bold">New</span></Link>
       <Link href="/ask-ai" className="hover:text-primary transition-colors">{t('navAskAI')}</Link>
       <Link href="/about" className="hover:text-primary transition-colors">{t('navAbout')}</Link>
       <Link href="/ask-ai" className="text-primary hover:text-primary/80 transition-colors">

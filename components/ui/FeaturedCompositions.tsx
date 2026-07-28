@@ -14,6 +14,7 @@ interface Composition {
   composer: { name: string };
   deity: { name: string };
   featured: boolean;
+  tags?: { name: string }[];
 }
 
 interface FeaturedCompositionsProps {
@@ -57,6 +58,7 @@ export default function FeaturedCompositions({ compositions }: FeaturedCompositi
                 composerName={comp.composer.name}
                 deityName={comp.deity.name}
                 featured={comp.featured}
+                tags={comp.tags}
                 />
             </div>
           ))}

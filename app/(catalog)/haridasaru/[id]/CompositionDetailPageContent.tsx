@@ -260,8 +260,12 @@ export default function ComposerDetailPageContent({ composer }: any) {
                       composer.id === 'pranesha-dasaru' ||
                       composer.id === 'prasanna-venkata-dasa' ||
                       composer.id === 'mahipati-dasa') && (
-                        <div className="w-full max-w-[280px] text-center p-3 rounded-2xl bg-amber-50/50 border border-amber-100/30 shadow-sm flex-shrink-0">
-                            <div className="text-amber-800 font-medium italic leading-relaxed font-serif tracking-tighter"
+                        <div className="group relative w-full max-w-[280px] text-center p-4 rounded-2xl bg-gradient-to-b from-amber-50/80 to-orange-50/50 border border-amber-200/50 shadow-sm hover:shadow-md hover:border-amber-300/80 hover:-translate-y-0.5 transition-all duration-500 flex-shrink-0 overflow-hidden cursor-default">
+                            {/* Decorative background glow on hover */}
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-amber-300/20 rounded-full blur-2xl -mr-8 -mt-8 transition-transform duration-700 group-hover:scale-150" />
+                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-orange-300/20 rounded-full blur-2xl -ml-8 -mb-8 transition-transform duration-700 group-hover:scale-150" />
+                            
+                            <div className="relative z-10 text-amber-900 font-medium italic leading-relaxed font-serif tracking-tighter transition-colors duration-300 group-hover:text-amber-950"
                                  style={{ fontSize: 'clamp(11.5px, 1.2vw, 13.5px)' }}>
                                 {(() => {
                                     const sloka = 
@@ -370,7 +374,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                     <div className="prose prose-slate max-w-none">
                         <Typography variant="h3" className="font-bold mb-4">{t('about')}</Typography>
                         <Typography variant="p" className="text-base text-slate-600 leading-relaxed mb-8 whitespace-pre-line">
-                            {(lang === 'EN' && composer.biography && composer.biography.length > 100) 
+                            {t(getBioTranslationKey(composer.id)) === t('reveredHaridasa') && composer.biography
                                 ? composer.biography 
                                 : t(getBioTranslationKey(composer.id))}
                         </Typography>
@@ -420,6 +424,7 @@ export default function ComposerDetailPageContent({ composer }: any) {
                                         tala={comp.tala?.name || 'TBD'}
                                         hasLyrics={comp.lyrics && comp.lyrics.length > 0}
                                         lyrics={comp.lyrics}
+                                        tags={comp.tags}
                                     />
                                 ))}
                             </motion.div>

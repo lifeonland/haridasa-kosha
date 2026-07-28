@@ -17,6 +17,7 @@ const getComposer = cache(async (id: string) => {
           raga: true,
           tala: true,
           translations: true,
+          tags: true,
         },
         orderBy: { title: 'asc' },
       },

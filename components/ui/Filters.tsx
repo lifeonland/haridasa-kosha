@@ -3,6 +3,7 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { useLanguage } from '@/components/shared/LanguageContext';
+import { getComposerTranslationKey } from '@/lib/utils';
 
 interface FiltersProps {
   composers?: Array<{ id: string; name: string }>;
@@ -88,12 +89,12 @@ export default function Filters({
               <select
                 value={getSelectedValue(filter.key)}
                 onChange={(e) => updateFilter(filter.key, e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl text-foreground bg-white border border-slate-200 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all hover:border-slate-300"
+                className="w-full px-3 py-2 text-xs rounded-xl text-foreground bg-white border border-slate-200 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all hover:border-slate-300 capitalize"
               >
                 <option value="">{t(filter.all)}</option>
                 {filter.options.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {t(option.name)}
+                    {filter.key === 'composer' ? t(getComposerTranslationKey(option.id)) : t(option.name)}
                   </option>
                 ))}
               </select>

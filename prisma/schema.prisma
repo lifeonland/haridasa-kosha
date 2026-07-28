@@ -123,3 +123,22 @@ model Reflection {
   note          String
   createdAt     DateTime @default(now())
 }
+
+model CachedQuiz {
+  id           String   @id @default(cuid())
+  ageGroup     String
+  difficulty   String
+  language     String   @default("EN")
+  numQuestions Int      @default(10)
+  questions    Json
+  createdAt    DateTime @default(now())
+}
+
+model CachedLesson {
+  id         String   @id @default(cuid())
+  level      String   // Prathama, Madhyama, Vidwat
+  topic      String
+  language   String   @default("EN")
+  content    String   @db.Text
+  createdAt  DateTime @default(now())
+}
