@@ -152,7 +152,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
                                 {t('englishTranslation')}
                             </h3>
                             <p className="text-base text-slate-600 leading-relaxed whitespace-pre-line">
-                                {translation.english}
+                                {(!translation.english || translation.english.trim() === '' || translation.english.trim() === '-') ? 'Translation not available.' : translation.english}
                             </p>
                         </motion.div>
                       )}
@@ -164,7 +164,7 @@ export default function CompositionDetailPageContent({ composition }: any) {
                               </h3>
                             </div>
                             <p className="text-base text-slate-700 leading-relaxed whitespace-pre-line font-kannada">
-                                {translation.kannadaMeaning || 'ಅನುವಾದ ಲಭ್ಯವಿಲ್ಲ'}
+                                {(!translation.kannadaMeaning || translation.kannadaMeaning.trim() === '' || translation.kannadaMeaning.trim() === '-') ? 'ಅನುವಾದ ಲಭ್ಯವಿಲ್ಲ' : translation.kannadaMeaning}
                             </p>
                         </motion.div>
                       )}
