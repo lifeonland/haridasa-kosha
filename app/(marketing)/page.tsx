@@ -22,6 +22,7 @@ import { RevealOnScroll } from '@/components/shared/RevealOnScroll';
 import DeityDirectory from '@/components/shared/DeityDirectory';
 import HaridasaruDirectory from '@/components/shared/HaridasaruDirectory';
 import Hero from '@/components/ui/Hero';
+import FeatureBentoGrid from '@/components/home/FeatureBentoGrid';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -154,7 +155,11 @@ export default function Home() {
           <Hero stats={stats} />
       </div>
 
-      <Section id="about" spacing="lg" className="relative z-10 mt-16">
+      <div className="relative z-20 -mt-8 mb-16">
+          <FeatureBentoGrid />
+      </div>
+
+      <Section id="about" spacing="lg" className="relative z-10 mt-4">
         <Container className="relative">
           <RevealOnScroll>
             <GlassSectionHeader
@@ -320,7 +325,7 @@ export default function Home() {
                     {t('modernSeekerDesc')}
                   </Typography>
                   <div className="flex flex-wrap gap-4 pt-4">
-                    <Button size="lg" className="rounded-full px-8 h-12 font-bold tracking-widest text-[11px] shadow-sm" asChild>
+                    <Button size="lg" className="rounded-full px-8 h-12 font-bold tracking-widest text-[11px] shadow-sm bg-orange-600 hover:bg-orange-700 text-white transition-colors" asChild>
                         <Link href="/library">{t('browseArchive')}</Link>
                     </Button>
                     <Button size="lg" variant="outline" className="rounded-full px-8 h-12 font-bold tracking-widest text-[11px] border-slate-200 bg-white/80 transition hover:bg-white" asChild>
